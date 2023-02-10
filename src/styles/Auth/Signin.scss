@@ -1,28 +1,18 @@
-html,
-body,
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-}
-$color: black;
-$backgroundcolor: #fcf8f3;
-$button: #3c7026;
-$backgroundcolorForm: #d1d3d1;
+@import "../Common.scss";
 #container {
-  width: 100%;
-  height: 750px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: space-around;
   align-content: center;
   align-items: center;
 }
-.signup {
+#error {
+  text-align: left;
+  color: red;
+  font-size: 12px;
+}
+.signin {
   width: 1200px;
   height: 100%;
   display: flex;
@@ -30,12 +20,12 @@ $backgroundcolorForm: #d1d3d1;
   align-content: center;
   align-items: center;
 }
-.signup__left--text-tittle {
+.signin__left--text-tittle {
   font-size: 30px;
   font-weight: 800;
   color: red;
 }
-.signup__right {
+.signin__right {
   width: 468px;
   height: 550px;
   background-color: $backgroundcolorForm;
@@ -43,26 +33,23 @@ $backgroundcolorForm: #d1d3d1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  // align-content: center;
-  // align-items: center;
 }
-.signup__right--form {
+.signin__right--form {
   height: 350px;
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
   justify-content: space-around;
-  .signup__right--title {
+  .signin__right--title {
     font-size: 30px;
     font-weight: 800;
   }
-  .phone,
+  .email,
   .password,
   .submit,
   .confirmPassword {
     width: 80%;
-    // height: 40px;
     padding: 15px;
     border-radius: 10px;
     border: none;
@@ -70,7 +57,7 @@ $backgroundcolorForm: #d1d3d1;
     font-size: 13px;
   }
   .submit {
-    width: 85%;
+    width: 400px;
     background-color: $button;
     font-size: 20px;
     font-weight: 600;
@@ -82,7 +69,7 @@ $backgroundcolorForm: #d1d3d1;
     color: blue;
   }
 }
-.signup__right--icon {
+.signin__right--icon {
   display: flex;
   justify-content: center;
   align-items: center;

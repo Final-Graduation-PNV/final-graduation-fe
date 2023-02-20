@@ -22,7 +22,7 @@ $backgroundcolorForm: #d1d3d1;
   align-content: center;
   align-items: center;
 }
-.signup {
+.signin {
   width: 1200px;
   height: 100%;
   display: flex;
@@ -30,12 +30,12 @@ $backgroundcolorForm: #d1d3d1;
   align-content: center;
   align-items: center;
 }
-.signup__left--text-tittle {
+.signin__left--text-tittle {
   font-size: 30px;
   font-weight: 800;
   color: red;
 }
-.signup__right {
+.signin__right {
   width: 468px;
   height: 550px;
   background-color: $backgroundcolorForm;
@@ -46,14 +46,14 @@ $backgroundcolorForm: #d1d3d1;
   // align-content: center;
   // align-items: center;
 }
-.signup__right--form {
+.signin__right--form {
   height: 350px;
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
   justify-content: space-around;
-  .signup__right--title {
+  .signin__right--title {
     font-size: 30px;
     font-weight: 800;
   }
@@ -82,7 +82,7 @@ $backgroundcolorForm: #d1d3d1;
     color: blue;
   }
 }
-.signup__right--icon {
+.signin__right--icon {
   display: flex;
   justify-content: center;
   align-items: center;

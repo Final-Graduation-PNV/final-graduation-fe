@@ -6,7 +6,7 @@ import "../../styles/Signin.scss";
 function Signin() {
   return (
     <div id="container">
-      <div className="container__signin">
+      <div className="signin">
         <div className="signin__left">
           <div className="signin__left--logo">
             <img src={logo} alt="" style={{ width: 100, height: 200 }} />

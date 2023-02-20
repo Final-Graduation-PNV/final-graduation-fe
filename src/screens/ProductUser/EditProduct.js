@@ -103,9 +103,10 @@ function EditProduct({ data }) {
                 type="select"
                 onChange={handlerInput}
               >
-                <option value={"high"}>High</option>
-                <option value={"medium"}>Medium</option>
-                <option value={"low"}>Low</option>
+                <option value={"Indoor plants"}>Indoor plants</option>
+                  <option value={"Out door tree"}>Out door tree</option>
+                  <option value={"Indorr flower"}>Indoor flower</option>
+                  <option value={"Out door flower"}>Out door flower</option>
               </Input>
             </FormGroup>
             <FormGroup>

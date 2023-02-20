@@ -5,19 +5,6 @@ import EditProduct from "./EditProduct";
 
 
 export default function ProductInfo({ data, onDelete }) {
-  // const deleteHandle = async (event) => {
-  //   event.preventDefault();
-  //   var isConfirmed = window.confirm("Are you sure for deleting?")
-  //   if (isConfirmed) {
-  //     axios
-  //     .delete("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + data.id)
-  //     .then(function (response) {
-  //       console.log(response);
-  //       window.location.reload();
-  //     })
-  //   }
-    
-  // }
   return (
     <div className="product-info">
       <div>{data.id}</div>

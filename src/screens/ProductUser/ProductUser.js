@@ -71,7 +71,11 @@ const Product = () => {
                     </div>
                     <div className="product__body__right-menu__list">
                         {product.map((product) => (
-                            <ProductInfo key={product.id} data={product} onDelete={deleteHandle} />
+                            <div>
+                                <ProductInfo key={product.id} data={product} onDelete={deleteHandle} />
+                                <hr/>
+                            </div>
+
                         ))}
                     </div>
 

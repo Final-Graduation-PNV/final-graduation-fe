@@ -45,11 +45,12 @@
             background-color: #EEEEEE;
             padding-left: 20px;
             width: 100%;
-            height: 800px;
+            height: 866px;
 
             &__body {
                 padding-bottom: 25px;
                 font-weight: bold;
+                font-size: 25px;
                 display: grid;
                 grid-template-columns: 1fr 2fr 2fr 1fr 1fr 3fr 1fr 1fr;
             }
@@ -119,7 +120,5 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr 1fr 3fr 1fr 1fr;
-    &__action{
-        
-    }
+    
 }

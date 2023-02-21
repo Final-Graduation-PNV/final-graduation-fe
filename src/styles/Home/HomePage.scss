@@ -1,11 +1,132 @@
 @import "../Common.scss";
-.header {
+.homePage {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 10px auto;
+  height: 100vw;
+  width: 1200px;
+}
+.navLeft-logo p,
+.navLeft-network p,
+.navLeft-Market p {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.homepage-navRight {
+  .navRigth-Top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: -30px;
+  }
+  .selectToday {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.navLeft-logo,
+.navLeft-network,
+.navLeft-Market {
+  display: flex;
   align-items: center;
 }
-.header-search {
+
+.categories {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.homePage-product {
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 20px;
+  .product {
+    padding: 20px 30px;
+    border: 1px black solid;
+    box-shadow: 2px 2px #888888;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.product__img {
+  height: 191px;
+  width: auto;
+}
+.product__name {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 0px;
+  margin-top: 20px;
+}
+.product__price {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 0px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  color: rgb(173, 3, 3);
+}
+.navRigth-Top__des {
+  font-weight: 600;
+  font-size: 20px;
+}
+.add-product_btn {
+  border: none;
   align-items: center;
+  padding: 7px 5px 7px 5px;
+  background-color: #3c7026;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.navRigth-Top__search {
+  display: flex;
+  align-items: center;
+  border: 1px black solid;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #e5e5e5;
+  .search {
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #e5e5e5;
+  }
+  .faSearch {
+    padding: 5px;
+    margin-left: 5px;
+  }
+}
+.selectToday__des {
+  font-size: 15px;
+  font-weight: 600;
+}
+.selectToday_name {
+  font-size: 13px;
+  padding: 10px 20px;
+  border: 1px black solid;
+  background-color: #cccbcb;
+  border: none;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.selectToday_name option {
+  background-color: white;
+  font-size: 15px;
+}
+.faBasketball-home,
+.faShop-home {
+  width: 20px;
+  height: 20px;
+  color: $button;
 }

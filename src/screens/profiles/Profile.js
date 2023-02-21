@@ -3,11 +3,14 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import account from "../../assets/Image/account.png";
-import "../../styles/Profile.scss";
+// import "../../styles/Profile.scss";
+import "../../styles/Profile/Profile.scss";
 function Profile() {
   return (
     <div className="container">
+
       <div className="container-profile">
+        {/* <Header /> */}
         <p className="profile__tittle">Account Setting</p>
         <div className="profile">
           <div className="profile-text">

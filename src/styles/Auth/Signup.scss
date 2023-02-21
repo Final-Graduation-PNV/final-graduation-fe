@@ -1,11 +1,29 @@
-@import "../Common.scss";
+// @import "../Common.scss";
+$color: black;
+$backgroundcolor: #fcf8f3;
+$button: #3c7026;
+$backgroundcolor__profile: white;
+$font-size__title: 30px;
+$font-weight__title: 800;
+$font-size__midium: 20px;
+$font-weight__midium: 600;
+$backgroundcolorForm: #d1d3d1;
+
 #container {
-  width: 100vw;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
   height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  justify-content: center;
   align-items: center;
+  background-image: url("../../assets/Image/bright-interior-flower-vases.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  // background: rgba(0, 0, 0, 0.1);
+  // filter: blur(1px);
 }
 .signup {
   width: 1200px;
@@ -20,6 +38,21 @@
   font-weight: 800;
   color: red;
 }
+.signup__left--logo {
+  display: flex;
+  justify-content: center;
+}
+.signup__left--text-tittle {
+  font-size: 30px;
+  font-weight: 800;
+  color: #172f0d;
+  line-height: 0px;
+}
+.signup__left--text-desc {
+  font-size: 15px;
+  color: black;
+  text-align: center;
+}
 .signup__right {
   width: 468px;
   height: 550px;
@@ -28,6 +61,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .signup__right--form {
@@ -36,12 +70,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // margin-left: 35px;
-  // margin-right: 35px;
   justify-content: space-around;
   .signup__right--title {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 800;
+    color: #153508;
+    line-height: 0px;
   }
   #error {
     text-align: left;
@@ -49,7 +83,7 @@
     font-size: 12px;
   }
   .name,
-  .emai,
+  .email,
   .password,
   .submit,
   .confirmPassword {
@@ -116,5 +150,7 @@
   }
 }
 .no__account {
-  font-size: 10px;
+  font-size: 12px;
+  text-align: center;
+  color: white;
 }

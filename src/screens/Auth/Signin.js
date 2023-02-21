@@ -2,53 +2,45 @@ import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import isEmail from 'validator/lib/isEmail';
-import isEmpty from "validator/lib/isEmpty";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Image/logo.png";
 import "../../styles/Auth/Signin.scss";
-import Modal from '../Modals/Modal';
+import ModalSigin from '../Modals/ModalSignin';
 function Signin() {
+  const URLSignin = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/login";
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [validatorMsg, setValidatorMsg] = useState("")
-  const openSignUpModal = (e) => {
-    // e.preventDefault()
-    setIsModalOpen(true)
-  }
-  const validateAll = () => {
-    const messenger = {};
-    if (isEmpty(email)) {
-      messenger.email = "Please input your Email!"
-    } else if (!isEmail(email)) {
-      messenger.email = "Invalid email!"
-    }
-    if (isEmpty(password)) {
-      messenger.password = "Please input your password!!"
-    }
-    setValidatorMsg(messenger);
-    if (Object.keys(messenger).length > 0) return false
-    return true
-  }
+  const navigate = useNavigate();
+
+  const initialErrors = Object.freeze({
+    email: "",
+    password: "",
+    error: ""
+  })
+
+  const [errors, setErrors] = useState(initialErrors);
+
   const handleSigin = (e) => {
+    resetErrors()
     e.preventDefault();
-    const isValid = validateAll()
-    if (!isValid) {
-      return
-    } else {
-      axios.get("https://62904135665ea71fe12f6eef.mockapi.io/login")
-        .then(res => handleSin(res.data))
-        .catch(err => console.log("err:", err))
-    }
+    axios.post(URLSignin, { email, password })
+      .then(res => {
+        console.log("Res: ", res)
+        alert("Sign in successful!")
+        navigate("/home")
+      })
+      // .then(navigate("/home"))
+      .catch(err => {
+        console.log("Err: ", err)
+        console.log("Err Mess: ", err.response)
+        setErrors(err.response.data.data)
+      })
   }
-  function handleSin(data) {
-    data.map(function (data) {
-      console.log(data.email, data.password)
-      if (data.email === email & data.password === password) {
-        openSignUpModal()
-      }
-    })
+
+  const resetErrors = () => {
+    setErrors(initialErrors)
   }
 
   return (
@@ -60,7 +52,7 @@ function Signin() {
           </div>
           <div className="signin__left--text">
             <p className="signin__left--text-tittle">
-              Wellcome to Plant &amp; Flower
+              Welcome to Plant &amp; Flower
             </p>
             <p className="signin__left--text-desc">
               Please to meet you! Wish you have health and success
@@ -69,12 +61,13 @@ function Signin() {
         </div>
         <div className="signin__right">
           <form action="" className='signin__right--form'>
-            <p className='signin__right--title'>Sign in</p>
+            <p className='signin__right--title'>Sign In</p>
             <input type="text" className="email" name="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-            <span id='error'>{validatorMsg.email}</span>
+            {errors.email && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.email}</div>}
             <input type="password" className="password" name="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-            <span id='error'>{validatorMsg.password}</span>
-            <Link to="/Sup"><input type="submit" className="submit" value="Sign in" onClick={handleSigin} /></Link>
+            {errors.password && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.password}</div>}
+            {errors.error && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.error}</div>}
+            <input type="submit" className="submit" value="Sign in" onClick={handleSigin} />
             <a className="forgotpassword" href=''>Forgot password</a>
           </form>
           <div className='signin__right--icon'>
@@ -84,9 +77,10 @@ function Signin() {
           </div>
           <p className='no__account'>Don't you have an? <Link to="/Sup">Sign up</Link> now</p>
         </div>
-      </div>
-      {isModalOpen && <Modal closeModal={setIsModalOpen} />}
-    </div>
+      </div >
+      {isModalOpen && <ModalSigin closeModal={setIsModalOpen} />
+      }
+    </div >
   )
 }
 export default Signin

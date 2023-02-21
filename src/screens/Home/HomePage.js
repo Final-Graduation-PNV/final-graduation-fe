@@ -1,35 +1,117 @@
-import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";
-import { faBasketball, faBell, faSearch, faShop, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faBasketball, faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import account from "../../assets/Image/account.png";
-import logo from "../../assets/Image/logo.png";
+import product from "../../assets/Image/product.png";
+import product1 from "../../assets/Image/product1.png";
+import Header from "../../header/Header";
 import "../../styles/Home/HomePage.scss";
+import Modal from "../Modals/Modal";
 function HomePage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="container">
-      <div className="header">
-        <div className="header-left">
-          <div className="header-left__img">
-            <img src={logo} alt="Logo" style={{ width: 100, height: 200 }} />
+      <Header />
+      <div className="homePage">
+        <div className="homepage-navLef">
+          <div className="navLeft-logo">
+            <img className="navLeft__logo" src={account} alt="account" style={{ width: 30, height: 30, borderRadius: 40 }} />
+            <p>Ngô Thị Tròn</p>
           </div>
-          <div className="header-search">
-            <FontAwesomeIcon icon={faSearch} />
-            <input type="text" name="search" placeholder="Search plan & flower" />
+          <div className="navLeft-network">
+            <FontAwesomeIcon className="faBasketball-home" icon={faBasketball} />
+            <p>Social network</p>
+          </div>
+          <div className="navLeft-Market">
+            <FontAwesomeIcon className="faShop-home" icon={faShop} />
+            <p>Create your marketplace</p>
           </div>
         </div>
-        <div className="header-center">
-          <FontAwesomeIcon icon={faShop} />
-          <FontAwesomeIcon icon={faUserGroup} />
-          <FontAwesomeIcon icon={faBasketball} />
-        </div>
-        <div className="header-right">
-          <FontAwesomeIcon icon={faFacebookMessenger} />
-          <FontAwesomeIcon icon={faBell} />
-          <img src={account} alt="account" style={{ width: 100, height: 200 }} />
+        <div className="homepage-navRight">
+          <div className="navRigth-Top">
+            <p className="navRigth-Top__des" >Marketplace</p>
+            <div className="navRigth-Top__search">
+              <FontAwesomeIcon className="faSearch" icon={faSearch} />
+              <input type="text" className="search" placeholder="Search plan & flower" />
+            </div>
+          </div>
+          <br />
+          <div className="selectToday">
+            <p className="selectToday__des">
+              Today's selection
+            </p>
+            <div className="categories">
+              <select id="selectToday_id" className="selectToday_name">
+                <option value="Flower">Plants</option>
+                <option value="Indoors">Flowers</option>
+                <option value="Outdoors">Indoor plants</option>
+                <option value="Outdoors">Outdoor plants</option>
+                <option value="Outdoors">Indoor flowers</option>
+                <option value="Outdoors">Outdoor flowers</option>
+              </select>
+              <p className="position" onClick={() => setIsModalOpen(true)}>Da Nang <FontAwesomeIcon icon={faLocationDot} /></p>
+            </div>
+
+          </div>
+          <div className="homePage-product">
+            <div className="product">
+              <Link to="detail"><img className="product__img" src={product} /></Link>
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+            <div className="product">
+              <img className="product__img" src={product1} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+            <div className="product">
+              <img className="product__img" src={product} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+            <div className="product">
+              <img className="product__img" src={product} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+          </div>
+          <div className="homePage-product">
+            <div className="product">
+              <img className="product__img" src={product} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+            <div className="product">
+              <img className="product__img" src={product} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+            <div className="product">
+              <img className="product__img" src={product} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+            <div className="product">
+              <img className="product__img" src={product} />
+              <p className="product__name">Sago Palm</p>
+              <p className="product__price">315.000 vnd</p>
+              <button className="add-product_btn">Add to cart</button>
+            </div>
+          </div>
         </div>
       </div>
+      {isModalOpen && <Modal closeModal={setIsModalOpen} />}
     </div>
   )
 }
+
 export default HomePage

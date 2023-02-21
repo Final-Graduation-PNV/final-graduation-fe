@@ -1,9 +1,13 @@
 import { faClipboard, faLocationDot, faPen, faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import product from "../../assets/Image/product.png";
 import Header from "../../header/Header";
 import "../../styles/Home/payment.scss";
 function Payment() {
+  const [isShow, setIsShow] = useState(false);
+
   return (
     <div className="container-payment">
       <div className="con-payment">
@@ -11,10 +15,10 @@ function Payment() {
         <div className="payment">
           <div className="payment-top__nav">
             <p>
-              Marketplace >
-              <a>Detail > </a>
-              <a>Add to cart > </a>
-              <a>Payment</a>
+              <Link to="/home">Marketplace ></Link>
+              <Link to="/home/detail">Detail > </Link>
+              <Link to="/home/detail/addtocart">Add to cart > </Link>
+              <Link to="/home/detail/addtocart/payment">Payment</Link>
             </p>
           </div>
           <div className="delivery-address">
@@ -28,7 +32,7 @@ function Payment() {
                 <p>101B, Le Huu Trac, Son Tra, Danang, Vietnam</p>
               </div>
             </div>
-            <FontAwesomeIcon className="faPen" icon={faPen} />
+            <FontAwesomeIcon className="faPen" icon={faPen} onClick={() => { setIsShow(true) }} />
           </div>
           <div className="product">
             <div className="product-top">

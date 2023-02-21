@@ -14,9 +14,9 @@ function AddTocart() {
           <div className="detail-top">
             <div className="detail-top__nav">
               <p>
-              Marketplace >
-                <a>Detail ></a>
-                <a>Add to cart </a>
+                <Link to="/home">Marketplace ></Link>
+                <Link to="/home/detail">Detail ></Link>
+                <Link to="/home/detail/addtocart">Add to cart </Link>
               </p>
             </div>
           </div>

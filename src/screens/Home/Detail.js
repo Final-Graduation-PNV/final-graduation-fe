@@ -14,14 +14,10 @@ function Detail() {
         <div className="detail-top">
           <div className="detail-top__nav">
             <p>
-              Marketplace >
-              <a>Detail</a>
+              <Link to="/home">Marketplace ></Link>
+              <Link to="home/detail">Detail</Link>
             </p>
           </div>
-          {/* <div className="detail-top__cart">
-            <FontAwesomeIcon className="faCartShopping" icon={faCartShopping} />
-            <a>4</a>
-          </div> */}
         </div>
         <div className="detail-contain">
           <div className="detail-img">
@@ -75,8 +71,8 @@ function Detail() {
             </div>
           </div>
           <div className="btn-shop">
-            <button className="btn-chat">Buy now</button>
-            <button className="btn-seeshop">Add to cart</button>
+            <button className="btn-chat">Chat Now</button>
+            <Link to="/home/detail/seeshop"><button className="btn-seeshop">See shop</button></Link>
           </div>
         </div>
         <div className="product-des">

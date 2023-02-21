@@ -5,6 +5,7 @@ import AddTocart from "../../screens/Home/Addtocart";
 import Detail from "../../screens/Home/Detail";
 import HomePage from "../../screens/Home/HomePage";
 import Payment from "../../screens/Home/Payment";
+import SeeShop from "../../screens/Home/SeeShop";
 function Auth() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ function Auth() {
       <Route path="/home/detail" element={<Detail />} />
       <Route path="/home/detail/addtocart" element={<AddTocart />} />
       <Route path="/home/detail/addtocart/payment" element={<Payment />} />
+      <Route path="/home/detail/seeshop" element={<SeeShop />} />
     </Routes>
   )
 }

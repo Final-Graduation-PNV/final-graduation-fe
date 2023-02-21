@@ -4,33 +4,20 @@
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  // width: 100vw;
-  // height: 100%;
 }
 .con-addToCart {
   height: 100%;
   background-color: #eeeeee;
-  // height: 100vh;
-  // margin-top: -15px;
-
   padding: 10px 0px 0px 0px;
-  // height: 100vh;
-  // background-image: url("../../assets/Image/bright-interior-flower-vases.webp");
-  // background-size: 100% 100%;
-  // background-repeat: no-repeat;
 }
 .addToCart {
   width: 1000px;
   margin: 0px auto;
   background-color: white;
-  // height: 100%;
   padding: 5px 10px 0px 10px;
   border-radius: 10px;
   background: rgba(0, 93, 2, 0.2);
 }
-// .detail-top {
-//   line-height: 0px;
-// }
 .detail-top__nav p {
   font-size: 20px;
   font-size: 20px;
@@ -59,7 +46,6 @@
 }
 .addCart-header {
   display: flex;
-  // justify-content: space-between;
   border-bottom: 1px solid #bbbaba;
 }
 
@@ -90,8 +76,6 @@
 }
 .addCart-contaniner {
   display: flex;
-  // margin-top: -33px;
-  // justify-content: space-between;
   align-items: center;
   border-bottom: 1px #bbbaba solid;
 }
@@ -113,10 +97,8 @@
   background-color: #fff;
   width: 980px;
   margin: 0px auto;
-  // box-shadow: 5px 10px #220d0d;
   box-shadow: 00px 0px 10px rgb(47, 45, 45);
   padding: 0px 20px;
-  // height: 60px;
 }
 .total {
   display: flex;
@@ -133,6 +115,7 @@
   font-size: 18px;
   line-height: 12px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .purchase-total {
   display: flex;

@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import product from "../../assets/Image/product.png";
 import Header from "../../header/Header";
 import "../../styles/Home/payment.scss";
+import ModalPM from "../Modals/ModalPM";
+import Thanks from "../Modals/Thankyou";
 function Payment() {
   const [isShow, setIsShow] = useState(false);
-
+  const [thanks, setThanks] = useState(false);
   return (
     <div className="container-payment">
+      {isShow && <ModalPM closeModal={setIsShow} />}
+      {thanks && <Thanks closeModal={setThanks} />}
       <div className="con-payment">
         <Header />
         <div className="payment">
@@ -111,14 +115,14 @@ function Payment() {
                 <p>Total payment</p>
                 <p>220.000 vnd</p>
               </div>
-              <button className="order_btn">Order</button>
+              <button className="order_btn" onClick={() => { setThanks(true) }}>Order</button>
             </div>
           </div>
         </div>
       </div>
 
+      {/* {isShow && <ModalPM closeModal={setIsShow} />} */}
     </div>
-
   )
 }
 export default Payment

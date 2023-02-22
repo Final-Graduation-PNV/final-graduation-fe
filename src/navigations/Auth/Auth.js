@@ -17,6 +17,7 @@ function Auth() {
       <Route path="/home/detail/addtocart" element={<AddTocart />} />
       <Route path="/home/detail/addtocart/payment" element={<Payment />} />
       <Route path="/home/detail/seeshop" element={<SeeShop />} />
+      {/* <Route path="/home/detail/seeshop" element={< />} /> */}
     </Routes>
   )
 }

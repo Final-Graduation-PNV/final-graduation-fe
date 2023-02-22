@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../../styles/Modal/Modal.scss";
+import "../../styles/Modal/ModalHPage.scss";
 function Modal({ closeModal }) {
   return (
     <div className="modalBackground">

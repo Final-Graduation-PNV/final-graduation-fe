@@ -54,7 +54,7 @@ function EditProduct({ data }) {
   return (
     <div>
       <Button color="none" onClick={tooggle}>
-        <img className="product-icon" src="/image/Pencil.png" alt="" />
+        <img className="product-info__icon" src="/image/Pencil.png" alt="" />
       </Button>
       <Modal isOpen={modal} toggle={tooggle}>
         <form

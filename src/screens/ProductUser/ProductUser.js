@@ -1,8 +1,8 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../../components/header";
 import AddProduct from "./AddProduct";
 import ProductInfo from "./ProductInfo";
+import HeaderShopOwner from "../../components/HeaderShopOwner";
 
 const Product = () => {
     const [product, setProduct] = useState([]);
@@ -28,38 +28,37 @@ const Product = () => {
         }
     }
     return (
-        <div className="product">
-            <div className="product__header"><Header /></div>
+        <div className="product-user">
+            <div className="product-user__header"><HeaderShopOwner/></div>
             <hr></hr>
-            {/* <AddProduct/> */}
-            <div className="product__body">
+            <div className="product-user__body">
 
-                <div className="product__body__left-menu">
-                    <div className="product__body__left-menu__avata">
-                        <img className="product-img" src="/image/avata.png" alt="" />
+                <div className="product-user__body__left-menu">
+                    <div className="product-user__body__left-menu__avata">
+                        <img className="product-user-img" src="/image/avata.png" alt="" />
                         <h3>Your market place</h3>
                         <p>Ngô Thị Tròn</p>
                     </div>
-                    <div className="product__body__left-menu__menu">
+                    <div className="product-user__body__left-menu__menu">
                         <ul>
-                            <li><img className="product-icon" src="/image/Yourpro.png" alt="" /> Your product</li>
-                            <li><img className="product-icon" src="/image/manacus.png" alt="" /> Manage customers</li>
-                            <li><img className="product-icon" src="/image/manare.png" alt="" /> Manage revenue</li>
-                            <li><img className="product-icon" src="/image/manaor.png" alt="" /> Manage order</li>
-                            <li><img className="product-icon" src="/image/home.png" alt="" /> Home</li>
-                            <li><img className="product-icon" src="/image/Logout.png" alt="" /> Log out</li>
+                            <li><img className="product-user-icon" src="/image/Yourpro.png" alt="" /> Your product</li>
+                            <li><img className="product-user-icon" src="/image/manacus.png" alt="" /> Manage customers</li>
+                            <li><img className="product-user-icon" src="/image/manare.png" alt="" /> Manage revenue</li>
+                            <li><img className="product-user-icon" src="/image/manaor.png" alt="" /> Manage order</li>
+                            <li><img className="product-user-icon" src="/image/home.png" alt="" /> Home</li>
+                            <li><img className="product-user-icon" src="/image/Logout.png" alt="" /> Log out</li>
                         </ul>
 
                     </div>
                 </div>
-                <div className="product__body__right-menu">
+                <div className="product-user__body__right-menu">
                     <h1>Your products</h1>
 
-                    <div className="product__body__right-menu__head">
+                    <div className="product-user__body__right-menu__head">
                         <input placeholder="Filter"></input>
                         <AddProduct />
                     </div>
-                    <div className="product__body__right-menu__body">
+                    <div className="product-user__body__right-menu__body">
                         <div>ID</div>
                         <div>Name</div>
                         <div>Image</div>
@@ -69,7 +68,8 @@ const Product = () => {
                         <div>Quantity</div>
                         <div>Action</div>
                     </div>
-                    <div className="product__body__right-menu__list">
+                    <hr/>
+                    <div className="product-user__body__right-menu__list">
                         {product.map((product) => (
                             <div>
                                 <ProductInfo key={product.id} data={product} onDelete={deleteHandle} />

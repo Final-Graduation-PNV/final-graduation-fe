@@ -132,7 +132,7 @@ function EditProduct({ data }) {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" type="submit">
-              Finish
+              Save
             </Button>{" "}
             <Button onClick={function noRefCheck() { }}>Cancel</Button>
           </ModalFooter>

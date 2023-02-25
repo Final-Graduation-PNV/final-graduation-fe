@@ -52,7 +52,7 @@
                 font-weight: bold;
                 font-size: 25px;
                 display: grid;
-                grid-template-columns: 1fr 2fr 2fr 1fr 1fr 3fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 3fr 1fr 1fr 3fr 1fr 1fr;
             }
 
             h1 {
@@ -113,7 +113,7 @@
 .product-info {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 1fr 1fr 3fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 3fr 1fr 1fr 3fr 1fr 1fr;
 
     &-img {
         width: 125px;

@@ -13,7 +13,10 @@ const Product = () => {
             .get("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products")
             .then((res) => {
                 setProduct(res.data);
-            });
+            })
+            .catch(err=>{
+                console.log("Err: ", err)
+            })
     }, [toggle]);
 
     const deleteHandle = async (id) => {

@@ -131,7 +131,7 @@ import {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" type="submit">
-                Thêm
+                Add
               </Button>{" "}
               <Button onClick={function noRefCheck() {}}>Cancel</Button>
             </ModalFooter>

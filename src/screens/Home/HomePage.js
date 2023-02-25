@@ -19,7 +19,6 @@ function HomePage() {
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
       <div className="container-homepage">
         <Header />
-
         <div className="homePage">
           <div className="homepage-navLef">
             <div className="navLeft-logo">

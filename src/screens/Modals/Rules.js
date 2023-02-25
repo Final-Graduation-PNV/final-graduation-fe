@@ -1,8 +1,24 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import React from "react";
 import "../../styles/Modal/Rules.scss";
 function Rules({ closeModal }) {
+  const user_id = localStorage.getItem("user_id");
+  const token = localStorage.getItem("token_user");
+  const UrlShopOnwer = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/be-shop";
+
+  const handleShopOnwer = () => {
+    axios.post(UrlShopOnwer, {
+      user_id,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+      .then(res => console.log("Ress:", res))
+      .catch(err => { console.log("Err:", err, "token_user:", token, "user_id", user_id) })
+  }
   return (
     <div className="modalBackground-Rules">
       <div className="modalContainer-Rules">
@@ -28,7 +44,7 @@ function Rules({ closeModal }) {
             <p className="rules">k. The products are on Shopee's Prohibited/Restricted Products List.</p>
           </div>
           <div className="Rules-btn">
-            <button className="Rules-btn__yes" onClick={() => closeModal(false)}>Yes</button>
+            <button className="Rules-btn__yes" onClick={handleShopOnwer}>Yes</button>
           </div>
         </div>
       </div>

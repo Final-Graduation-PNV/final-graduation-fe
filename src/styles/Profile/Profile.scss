@@ -1,5 +1,5 @@
 @import "../Common.scss";
-.container {
+.container-Profile {
   width: 100%;
   height: 760px;
   display: flex;
@@ -21,7 +21,7 @@
   flex-direction: column;
   .profile {
     width: 800px;
-    height: 434px;
+    height: 370px;
     background-color: $backgroundcolor__profile;
     border-radius: 10px;
     padding: 10px 20px;
@@ -44,20 +44,23 @@
     flex-direction: row;
     border: black 1px;
     .profile-info-text {
-      margin-left: 10px;
       .profile-info-text__name {
+        margin-right: 50px;
         font-size: 15px;
         font-weight: $font-weight__midium;
+        margin-left: 20px;
       }
       .faEdit {
         color: #3c7026;
         font-weight: 800;
+        margin-right: 10px;
       }
       .profile-info-text__edit {
         padding: 5px 10px 6px;
         margin-left: 20px;
         background-color: #949895;
         border-radius: 10px;
+        cursor: pointer;
       }
     }
   }

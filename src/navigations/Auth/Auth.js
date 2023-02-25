@@ -6,6 +6,8 @@ import Detail from "../../screens/Home/Detail";
 import HomePage from "../../screens/Home/HomePage";
 import Payment from "../../screens/Home/Payment";
 import SeeShop from "../../screens/Home/SeeShop";
+import EditProfile from "../../screens/profiles/EditProfile";
+import Profile from "../../screens/profiles/Profile";
 function Auth() {
   return (
     <Routes>
@@ -17,6 +19,8 @@ function Auth() {
       <Route path="/home/detail/addtocart" element={<AddTocart />} />
       <Route path="/home/detail/addtocart/payment" element={<Payment />} />
       <Route path="/home/detail/seeshop" element={<SeeShop />} />
+      <Route path="/home/profile" element={<Profile />} />
+      <Route path="/home/EditProfile" element={<EditProfile />} />
       {/* <Route path="/home/detail/seeshop" element={< />} /> */}
     </Routes>
   )

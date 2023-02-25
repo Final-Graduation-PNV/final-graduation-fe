@@ -12,6 +12,7 @@ function Signin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const initialErrors = Object.freeze({
@@ -22,34 +23,27 @@ function Signin() {
   })
 
   const [errors, setErrors] = useState(initialErrors);
-  const [err, setErr] = useState("")
-  // const erro = " ";
+
   const handleSigin = (e) => {
     resetErrors()
     e.preventDefault();
     axios.post(URLSignin, { email, password })
       .then(res => {
         console.log("Res: ", res)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.user);
         alert(res.data.message)
         navigate("/home")
       })
       .catch(err => {
         console.log("Err: ", err)
         console.log("Err Mess: ", err.response)
-
-        // if (email, password) {
-        // erro = err.response.data;
-        // console.log("!email, not !passord: ", erro)
-        // }
-        // setErr(err.response.data.msg)  
         if (err.response.status == 422) {
           setErrors(err.response.data.errors)
         }
         else {
           setErrors({ msg: err.response.data.msg })
         }
-
-        // setErrors(err.response.data.errors)
       })
   }
 
@@ -82,8 +76,6 @@ function Signin() {
             {errors.password && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.password}</div>}
             {errors.error && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.error}</div>}
             {errors.msg && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.msg}</div>}
-
-            {/* {err && <div style={{ color: "rgb(173, 3, 3)" }}>{err}</div>} */}
             <input type="submit" className="submit" value="Sign in" onClick={handleSigin} />
             <a className="forgotpassword" href=''>Forgot password</a>
           </form>

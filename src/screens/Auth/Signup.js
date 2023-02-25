@@ -44,8 +44,6 @@ function Signup() {
       .then(res => {
         console.log("res", res)
         alert("Sign up successful!")
-        // localStorage.setItem("user_id", res.data.user.id)
-        // localStorage.setItem("token_user", res.data.token)
         navigate("/Sin")
       })
       .catch(err => {

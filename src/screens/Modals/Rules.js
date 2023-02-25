@@ -5,17 +5,21 @@ import React from "react";
 import "../../styles/Modal/Rules.scss";
 function Rules({ closeModal }) {
   const user_id = localStorage.getItem("user_id");
-  const token = localStorage.getItem("token_user");
+  const token = localStorage.getItem("token");
   const UrlShopOnwer = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/be-shop";
 
   const handleShopOnwer = () => {
-    axios.post(UrlShopOnwer, {
-      user_id,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+    axios.post(UrlShopOnwer,
+      {
+        user_id
       },
-    })
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
       .then(res => console.log("Ress:", res))
       .catch(err => { console.log("Err:", err, "token_user:", token, "user_id", user_id) })
   }

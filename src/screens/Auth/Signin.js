@@ -31,7 +31,8 @@ function Signin() {
       .then(res => {
         console.log("Res: ", res)
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.user);
+        localStorage.setItem("user", res.data.username);
+        localStorage.setItem("user_id", res.data.id);
         alert(res.data.message)
         navigate("/home")
       })

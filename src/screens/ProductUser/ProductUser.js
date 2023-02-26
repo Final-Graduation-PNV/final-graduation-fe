@@ -72,7 +72,7 @@ const Product = () => {
                     </div>
                     <div className="product-user__body__right-menu">
                         <div className="right-menu">
-                            <h1>Your products</h1>
+                            <h2>Your products</h2>
 
                             <div className="product-user__body__right-menu__head">
                                 <input name="filter"

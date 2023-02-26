@@ -13,9 +13,9 @@ function Auth() {
     <Routes>
       <Route index element={<Signin />} />
       <Route path="Sup" element={<Signup />} />
-      <Route path="Sin" element={<Signin />} />
+      <Route path="Sin" element={<Signin />} />"
       <Route path="/home" element={<HomePage />} />
-      <Route path="/home/detail" element={<Detail />} />
+      <Route path="/home/detail/:id" element={<Detail />} />
       <Route path="/home/detail/addtocart" element={<AddTocart />} />
       <Route path="/home/detail/addtocart/payment" element={<Payment />} />
       <Route path="/home/detail/seeshop" element={<SeeShop />} />

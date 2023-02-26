@@ -6,7 +6,7 @@ import "../../styles/Modal/Rules.scss";
 function Rules({ closeModal }) {
   const user_id = localStorage.getItem("user_id");
   const token = localStorage.getItem("token");
-  const UrlShopOnwer = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/be-shop";
+  const UrlShopOnwer   = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/be-shop";
 
   const handleShopOnwer = () => {
     axios.post(UrlShopOnwer,
@@ -18,10 +18,15 @@ function Rules({ closeModal }) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
-      }
-    )
-      .then(res => console.log("Ress:", res))
-      .catch(err => { console.log("Err:", err, "token_user:", token, "user_id", user_id) })
+      })
+      .then(res => {
+        console.log("Ress:", res)
+        alert(res.data.message)
+      })
+      .catch(err => {
+        console.log("Err:", err, "token_user:", token, "user_id", user_id)
+        alert(err.response.data.message)
+      })
   }
   return (
     <div className="modalBackground-Rules">

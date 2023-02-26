@@ -1,10 +1,9 @@
 import { faBasketball, faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import account from "../../assets/Image/account.png";
-import product from "../../assets/Image/product.png";
-import product1 from "../../assets/Image/product1.png";
 import Header from "../../header/Header";
 import "../../styles/Home/HomePage.scss";
 import ChangePs from "../Modals/ChangePs";
@@ -12,6 +11,23 @@ import CreatePM from "../Modals/CreateMP";
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreateMp, setIsCreateMp] = useState(false);
+  const [products, setProducts] = useState([])
+  const UrlHomePage = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products";
+  const token = localStorage.getItem("token")
+  useEffect(() => {
+    axios.get(UrlHomePage, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(res => {
+        console.log("Res:", res)
+        setProducts(res.data)
+      })
+      .catch(err => { console.log("Err:", err) })
+  }, [])
+  { console.log("homepage: ", typeof (products)) }
 
   return (
     <>
@@ -19,7 +35,6 @@ function HomePage() {
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
       <div className="container">
         <Header />
-
         <div className="homePage">
           <div className="homepage-navLef">
             <div className="navLeft-logo">
@@ -61,57 +76,23 @@ function HomePage() {
               </div>
 
             </div>
+            {console.log("Product:", products)}
+
+
+
             <div className="homePage-product">
-              <div className="product">
-                <Link to="detail"><img className="product__img" src={product} /></Link>
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-              <div className="product">
-                <img className="product__img" src={product1} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-              <div className="product">
-                <img className="product__img" src={product} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-              <div className="product">
-                <img className="product__img" src={product} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-            </div>
-            <div className="homePage-product">
-              <div className="product">
-                <img className="product__img" src={product} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-              <div className="product">
-                <img className="product__img" src={product} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-              <div className="product">
-                <img className="product__img" src={product} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
-              <div className="product">
-                <img className="product__img" src={product} />
-                <p className="product__name">Sago Palm</p>
-                <p className="product__price">315.000 vnd</p>
-                <button className="add-product_btn">Add to cart</button>
-              </div>
+              {
+                products.map((pro) => {
+                  return (
+                    <div className="product">
+                      <Link to={`detail/${pro.id}`}><img className="product__imgHP" src={pro.image} /></Link>
+                      <p className="product__name">{pro.name}</p>
+                      <p className="product__price">{pro.price}000 vnđ</p>
+                      <button className="add-product_btn">Add to cart</button>
+                    </div>
+                  )
+                })
+              }
             </div>
           </div>
         </div>

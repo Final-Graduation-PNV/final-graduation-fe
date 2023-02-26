@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import map from "../../assets/Image/map.png";
 import "../../styles/Modal/ChangePs.scss";
-function ChangePs({ closeModal }) {
+function  ChangePs({ closeModal }) {
   return (
     <div className="modalBackground-changePs">
       <div className="modalContainer-changePs">

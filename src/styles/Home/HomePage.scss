@@ -14,6 +14,7 @@
   margin-left: 10px;
 }
 .homepage-navRight {
+  width: 70%;
   .navRigth-Top {
     display: flex;
     align-items: center;
@@ -41,7 +42,7 @@
 .homePage-product {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   margin-bottom: 20px;
   .product {
     padding: 20px 30px;
@@ -54,9 +55,9 @@
     flex-direction: column;
   }
 }
-.product__img {
+.product__imgHP {
   height: 191px;
-  width: auto;
+  width: 139px;
 }
 .product__name {
   font-size: 18px;

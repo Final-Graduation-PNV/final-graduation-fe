@@ -1,13 +1,37 @@
 import { faLocationDot, faStar, faStarHalfStroke, faTruckFast } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Link } from "react-router-dom"
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 import pReview from "../../assets/Image/pReviewpng.png"
 import product from "../../assets/Image/product.png"
 import shopImage from "../../assets/Image/shopImage.png"
 import Header from "../../header/Header"
 import "../../styles/Home/Detail.scss"
 function Detail() {
+  const { id } = useParams();
+  const token = localStorage.getItem("token")
+  const [detailProduct, setDetailProduct] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(res => {
+        console.log("Detail", res)
+        setDetailProduct(res.data.product)
+      })
+      .catch(err => {
+        console.log("Detail:", err)
+      })
+  }, [])
+  // console.log("ShopeOwner", detailProduct.shop.name)
+  console.log("type", (detailProduct.name))
   return (
+
     <div className="container">
       <Header />
       <div className="detail">
@@ -31,7 +55,7 @@ function Detail() {
           </div>
           <div className="detail-text">
             <p className="detail-text__title">
-              Sago Palm
+              {detailProduct.name}
             </p>
             <div className="text-evaluate">
               <p className="detail-text__icon">
@@ -43,7 +67,7 @@ function Detail() {
               </p>
               <i className="detail-text__view">223 views</i>
             </div>
-            <p className="text-price">315.000 vnd</p>
+            <p className="text-price"> {detailProduct.price}000 vnd</p>
             <div className="text-ship">
               <FontAwesomeIcon className="faTruckFast" icon={faTruckFast} />
               <div className="ship">
@@ -53,7 +77,7 @@ function Detail() {
             </div>
             <div className="text-quantily">
               <p className="quantily__plus">+</p>
-              <p className="quantily__number">1</p>
+              <p className="quantily__number"> {detailProduct.quantity}</p>
               <p className="quantily__minus">-</p>
             </div>
             <div className="btn">
@@ -66,6 +90,7 @@ function Detail() {
           <div className="shopowner">
             <img className="shop__img" src={shopImage} />
             <div className="shopowner-ger">
+
               <p className="shopower__name">Gardenshop21</p>
               <p className="shopower__location"><FontAwesomeIcon icon={faLocationDot} /> Da Nang</p>
             </div>
@@ -125,7 +150,6 @@ function Detail() {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

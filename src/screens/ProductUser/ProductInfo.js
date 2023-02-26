@@ -1,13 +1,6 @@
 import React from "react";
-import EditProduct from "./EditProduct";
-import { useState } from "react";
-import ButtonSubmit from "../../components/ButtonSubmit";
-
-
-
 export default function ProductInfo({ data, onDelete, closeModal,setEditData}) {
   const handlerEditData = (e) => {
-    
     closeModal(true);
     setEditData(data);
 };
@@ -16,7 +9,7 @@ export default function ProductInfo({ data, onDelete, closeModal,setEditData}) {
       <div className="product-info">
         <div>{data.id}</div>
         <div>{data.name}</div>
-        <div><img className="product-info-img" src="/image/avata.png" alt="" /></div>
+        <div><img className="product-info-img" src="/image/hoasu.png" alt="" /></div>
         <div>{data.type}</div>
         <div>{data.price}</div>
         <div>{data.description}</div>

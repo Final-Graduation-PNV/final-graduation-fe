@@ -2,7 +2,6 @@ import { React, useEffect, useState } from "react";
 import axios from "axios";
 import AddProduct from "./AddProduct";
 import ProductInfo from "./ProductInfo";
-import FormInput from "../../components/FormInput";
 import HeaderShopOwner from "../../components/HeaderShopOwner";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import EditProduct from "./EditProduct";
@@ -13,9 +12,6 @@ const Product = () => {
     const [modalAddProduct, setModalAddProduct] = useState(false);
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
-
-
-
 
     useEffect(() => {
         axios
@@ -64,12 +60,12 @@ const Product = () => {
                         </div>
                         <div className="product-user__body__left-menu__menu">
                             <ul>
-                                <li><img className="product-user-icon" src="/image/Yourpro.png" alt="" /> Your product</li>
-                                <li><img className="product-user-icon" src="/image/manacus.png" alt="" /> Manage customers</li>
-                                <li><img className="product-user-icon" src="/image/manare.png" alt="" /> Manage revenue</li>
-                                <li><img className="product-user-icon" src="/image/manaor.png" alt="" /> Manage order</li>
-                                <li><img className="product-user-icon" src="/image/home.png" alt="" /> Home</li>
-                                <li><img className="product-user-icon" src="/image/Logout.png" alt="" /> Log out</li>
+                                <li><a href="#"><img className="product-user-icon" src="/image/Yourpro.png" alt="" />Your product</a></li>
+                                <li><a href="#"><img className="product-user-icon" src="/image/manacus.png" alt="" />Manage customers</a></li>
+                                <li><a href="#"><img className="product-user-icon" src="/image/manare.png" alt="" />Manage revenue</a></li>
+                                <li><a href="#"><img className="product-user-icon" src="/image/manaor.png" alt="" />Manage order</a></li>
+                                <li><a href="#"><img className="product-user-icon" src="/image/home.png" alt="" />Home</a></li>
+                                <li><a href="#"><img className="product-user-icon" src="/image/Logout.png" alt="" />Log out</a></li>
                             </ul>
 
                         </div>
@@ -87,7 +83,7 @@ const Product = () => {
                                 />
                                 <ButtonSubmit className="product-user__body__right-menu__head__add-button" title="Add product" onClick={() => setModalAddProduct(true)} />
                             </div>
-                            <div className="product-user__body__right-menu__body">
+                            <div className="product-user__body__right-menu__title">
                                 <div>ID</div>
                                 <div>Name</div>
                                 <div>Image</div>
@@ -97,24 +93,19 @@ const Product = () => {
                                 <div>Quantity</div>
                                 <div>Action</div>
                             </div>
-                            <hr />
                             <div className="product-user__body__right-menu__list">
                                 {product.map((product) => (
                                     <div>
-                                        <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData}/>
+                                        <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
                                         <hr />
                                     </div>
-
                                 ))}
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
-            </div></>
-
+            </div>
+        </>
     )
 };
 export default Product;

@@ -5,9 +5,6 @@ import ButtonSubmit from "../../components/ButtonSubmit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-
-
-
 function AddProduct({ closeModal }) {
   const [modal, setModal] = useState(false);
   const [product, setProduct] = useState({

@@ -1,0 +1,64 @@
+.add-product {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__form {
+        width: 525px;
+        height: 640px;
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.35);
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px 20px 20px;
+        position: relative;
+
+        &__button-cancel {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            margin-top: 15px;
+            margin-left: 480px;
+        }
+
+        &__select-type {
+
+            text-align: left;
+            padding-bottom: 20px;
+
+            & label {
+                font-weight: bold;
+
+            }
+
+            & input,
+            & select {
+                padding: 10px;
+                width: 520px;
+                height: 45px;
+                border: 1px solid #dddddd;
+                outline: none;
+                border-radius: 8px;
+                font-size: 15px;
+                line-height: 1.5;
+
+            }
+
+            & select {
+                background-color: transparent;
+            }
+        }
+
+        &__submit-button {
+            &__add-new {
+                width: 500px;
+            }
+        }
+    }
+}

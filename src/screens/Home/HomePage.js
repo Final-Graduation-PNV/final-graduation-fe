@@ -33,7 +33,7 @@ function HomePage() {
     <>
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
-      <div className="container">
+      <div className="container-homepage">
         <Header />
         <div className="homePage">
           <div className="homepage-navLef">

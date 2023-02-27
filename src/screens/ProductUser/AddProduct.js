@@ -7,11 +7,12 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 function AddProduct({ closeModal }) {
   const [modal, setModal] = useState(false);
+  const [img, setImg] = useState("");
   const [product, setProduct] = useState({
     name: "",
     price: "",
     description: "",
-    image: "",
+    // image: "",
     quantity: "",
     category_id: "",
     shop_id: localStorage.getItem("user_id")
@@ -34,33 +35,44 @@ function AddProduct({ closeModal }) {
     tooggle();
   };
 
-  const handleSubmitForm = () => {
-    const token = localStorage.getItem("token")
-    axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products",
-      {
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        image: product.image,
-        quantity: product.quantity,
-        category_id: product.category_id,
-        shop_id: product.shop_id
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        }
-      }
-    )
-      .then(function (response) {
-        console.log("res product shop onwer:", response);
-        closeModal(false);
-        onRedirect();
-      })
-      .catch(function (error) {
-        console.log("Er product shop onwer", error);
+  const handleSubmitForm = async () => {
+    const formData = new FormData()
+    formData.append('file', img)
+    formData.append("upload_preset", "gl32w86e")
+    formData.append("cloud_name", "dx88ipscr")
+    await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
+      .then((res) => {
+
+        const token = localStorage.getItem("token")
+        axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products",
+          {
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            image: res.data.secure_url,
+            quantity: product.quantity,
+            category_id: product.category_id,
+            shop_id: product.shop_id
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            }
+          }
+        )
+          .then(function (response) {
+            console.log("res product shop onwer:", response);
+            console.log("product", product, res.data.secure_url)
+            closeModal(false);
+            onRedirect();
+          })
+          .catch(function (error) {
+            console.log("Er product shop onwer", error);
+          });
       });
+
+
   };
   // useEffect(() => {
   // const token = localStorage.getItem("token")
@@ -94,8 +106,8 @@ function AddProduct({ closeModal }) {
           name="image"
           title="Product Image"
           value={product.image}
-          onChange={handlerInput}
-          type="text"
+          onChange={(e) => setImg(e.target.files[0])}
+          type="file"
         />
         <FormInput
           name="price"

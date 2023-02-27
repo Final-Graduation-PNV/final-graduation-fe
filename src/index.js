@@ -5,6 +5,7 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import "./styles/StylesPageIntro.scss";   
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 

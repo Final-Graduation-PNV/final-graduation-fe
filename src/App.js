@@ -6,7 +6,8 @@
 
 // import Thankyou from "./screens/Modals/Thankyou";
 
-import Auth from "../src/navigations/Auth/Auth";
+import Auth from "./navigations/Auth/Auth";
+// import Product from "./screens/ProductUser/ProductUser";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
       {/* <Thankyou /> */}
       {/* <CreatePM /> */}
       {/* <Rules /> */}
+      {/* <Product /> */}
     </>
 
   )

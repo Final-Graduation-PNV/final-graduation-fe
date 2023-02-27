@@ -14,6 +14,7 @@ function AddProduct({ closeModal }) {
     type: "",
     description: "",
     quantity: "",
+    shop_id:""
   });
 
   const handlerInput = (e) => {
@@ -32,9 +33,6 @@ function AddProduct({ closeModal }) {
     tooggle();
 
   };
-  // const handlerInput = (e) => {
-  //   setData({ ...data, [e.target.name]: e.target.value });
-  // };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -49,6 +47,21 @@ function AddProduct({ closeModal }) {
         console.log(error);
       });
   };
+  useEffect(() => {
+  const token = localStorage.getItem("token")
+    axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products", {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(res => {
+        console.log("Res:", res)
+        setProducts(res.data)
+      })
+      .catch(err => { console.log("Err:", err) })
+  }, [])
+
   return (
     <div className="add-product">
 
@@ -79,10 +92,10 @@ function AddProduct({ closeModal }) {
         <div className="add-product__form__select-type">
           <label>Product Type</label>
           <select name="type" title="Product Type" onChange={handlerInput} type="select">
-            <option value={"Indoor plants"}>Indoor plants</option>
-            <option value={"Out door tree"}>Out door tree</option>
-            <option value={"Indorr flower"}>Indoor flower</option>
-            <option value={"Out door flower"}>Out door flower</option>
+            <option value={1}>Indoor plants</option>
+            <option value={2}>Out door tree</option>
+            <option value={3}>Indoor flower</option>
+            <option value={4}>Out door flower</option>
           </select>
         </div>
         <FormInput

@@ -17,7 +17,7 @@ function Auth() {
       <Route path="Sin" element={<Signin />} />"
       <Route path="/home" element={<HomePage />} />
       <Route path="/home/detail/:id" element={<Detail />} />
-      <Route path="/home/detail/addtocart" element={<AddTocart />} />
+      <Route path="/home/detail/:id/addtocart" element={<AddTocart />} />
       <Route path="/home/detail/addtocart/payment" element={<Payment />} />
       <Route path="/home/detail/seeshop" element={<SeeShop />} />
       <Route path="/home/profile" element={<Profile />} />

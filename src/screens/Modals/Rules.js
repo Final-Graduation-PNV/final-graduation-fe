@@ -25,8 +25,7 @@ function Rules({ closeModal }) {
         console.log("Ress:", res)
         alert(res.data.message)
         navigate("/home/shopOnnwer")
-      }
-      )
+      })
       .catch(err => {
         console.log("Err:", err, "token_user:", token, "user_id", user_id)
         alert(err.response.data.message)

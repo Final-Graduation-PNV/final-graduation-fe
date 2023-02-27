@@ -28,7 +28,6 @@ function Detail() {
         console.log("Detail:", err)
       })
   }, [])
-  // console.log("ShopeOwner", detailProduct.shop.name)
   console.log("type", (detailProduct.name))
   return (
 

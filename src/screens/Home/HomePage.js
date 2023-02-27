@@ -2,18 +2,23 @@ import { faBasketball, faLocationDot, faSearch, faShop } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import account from "../../assets/Image/account.png";
 import Header from "../../header/Header";
 import "../../styles/Home/HomePage.scss";
 import ChangePs from "../Modals/ChangePs";
 import CreatePM from "../Modals/CreateMP";
+
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreateMp, setIsCreateMp] = useState(false);
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const token = localStorage.getItem("token");
   const UrlHomePage = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products";
-  const token = localStorage.getItem("token")
+  const shopOnwer = localStorage.getItem('shopOnwer');
+  const navigate = useNavigate();
+
+  console.log(shopOnwer)
   useEffect(() => {
     axios.get(UrlHomePage, {
       headers: {
@@ -27,6 +32,7 @@ function HomePage() {
       })
       .catch(err => { console.log("Err:", err) })
   }, [])
+
   { console.log("homepage: ", typeof (products)) }
 
   return (
@@ -47,7 +53,11 @@ function HomePage() {
             </div>
             <div className="navLeft-Market">
               <FontAwesomeIcon className="faShop-home" icon={faShop} />
-              <p onClick={() => setIsCreateMp(true)}>Create your marketplace</p>
+              {
+                shopOnwer
+                  ? <p onClick={() => navigate("/home/shopOnnwer")}>Your marketplace</p>
+                  : <p onClick={() => setIsCreateMp(true)}>Create your marketplace</p>
+              }
             </div>
           </div>
           <div className="homepage-navRight">
@@ -77,9 +87,6 @@ function HomePage() {
 
             </div>
             {console.log("Product:", products)}
-
-
-
             <div className="homePage-product">
               {
                 products.map((pro) => {

@@ -34,6 +34,7 @@ function Signin() {
         localStorage.setItem("user", res.data.username);
         localStorage.setItem("user_id", res.data.id);
         alert(res.data.message)
+        localStorage.setItem('shopOnwer', res.data.shopOwner)
         navigate("/home")
       })
       .catch(err => {

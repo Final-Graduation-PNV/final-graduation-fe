@@ -1,9 +1,27 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import map from "../../assets/Image/map.png";
 import "../../styles/Modal/ChangePs.scss";
-function  ChangePs({ closeModal }) {
+function ChangePs({ closeModal }) {
+  const [city, setCity] = useState("")
+  const token = localStorage.getItem("token");
+
+  const handleSearch = () => {
+    axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search?city=${city}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(res => {
+        console.log(res);
+
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className="modalBackground-changePs">
       <div className="modalContainer-changePs">
@@ -13,27 +31,20 @@ function  ChangePs({ closeModal }) {
         <div className="changePs-text">
           <p className="changePs-text__tittle">Change position </p>
           <div className="changePs-option">
-            <select>
-              <option value="0">City</option>
-              <option value="1">Audi</option>
-              <option value="2">BMW</option>
-              <option value="3">Citroen</option>
-              <option value="4">Ford</option>
-              <option value="5">Honda</option>
-              <option value="6">Jaguar</option>
-              <option value="7">Land Rover</option>
-              <option value="8">Mercedes</option>
-              <option value="9">Mini</option>
-              <option value="10">Nissan</option>
-              <option value="11">Toyota</option>
-              <option value="12">Volvo</option>
+            <select value={city} onChange={(e) => setCity(e.target.value)}>
+              <option value="Da Nang">Da Nang</option>
+              <option value="Ho Chi Minh">Ho Chi Minh</option>
+              <option value="Quang Tri">Quang Tri</option>
+              <option value="Quang Nam">Quang Nam</option>
+              <option value="Quang Ngai">Quang Ngai</option>
+              <option value="Ha Noi">Ha Noi</option>
             </select>
           </div>
           <div className="changePs__img">
             <img src={map} />
           </div>
           <div className="changePs-btn">
-            <button className="changePs-btn__search" onClick={() => closeModal(false)}>Search</button>
+            <button className="changePs-btn__search" onClick={handleSearch}>Search</button>
           </div>
 
           {/* //  <button className="btn__checkEmail" onClick={() => closeModal(false)}><Link className="checkEmail" to="/Sin">Check your email</Link></button> */}

@@ -16,7 +16,7 @@ function AddProduct({ toggle, closeModal }) {
     category_id: "",
     shop_id: localStorage.getItem("user_id")
   });
-  console.log("product:", product)
+
 
   const handlerInput = (e) => {
     const { name, value } = e.target;
@@ -41,7 +41,6 @@ function AddProduct({ toggle, closeModal }) {
     formData.append("cloud_name", "dx88ipscr")
     await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
       .then((res) => {
-
         const token = localStorage.getItem("token")
         axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
           {

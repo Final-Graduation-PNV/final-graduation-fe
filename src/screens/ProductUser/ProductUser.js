@@ -72,8 +72,8 @@ const Product = () => {
 
     return (
         <>
-            {modalAddProduct && <AddProduct toggle={setToggle} closeModal={setModalAddProduct} />}
-            {modalEditProduct && <EditProduct data={editData} closeModal={setModalEditProduct} />}
+            {modalAddProduct && <AddProduct toggle={setToggle}  closeModal={setModalAddProduct} />}
+            {modalEditProduct && <EditProduct toggle={setToggle} key={editData.id} data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
                 <div className="product-user__body">

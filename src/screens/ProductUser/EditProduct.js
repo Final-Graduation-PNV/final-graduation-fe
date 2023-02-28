@@ -6,16 +6,17 @@ import ButtonSubmit from "../../components/ButtonSubmit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-function EditProduct({ data, closeModal }) {
+function EditProduct({ toggle, data, closeModal }) {
   const [modal, setModal] = useState(false);
+  const [img, setImg] = useState("");
   const [product, setProduct] = useState({
     name: data.name,
     image: data.image,
     price: data.price,
-    type: data.type,
     description: data.description,
     quantity: data.quantity,
   });
+
   const handlerInput = (e) => {
     const { name, value } = e.target;
     console.log(product);
@@ -32,24 +33,70 @@ function EditProduct({ data, closeModal }) {
     tooggle();
 
   };
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    console.log(product.id);
-    axios
-      .put("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + data.id, product)
-      .then(function (response) {
-        console.log(response);
-        onRedirect();
-        closeModal(false);
+  const handleSubmitForm = async () => {
+    if (img !== "") {
+      const formData = new FormData()
+      formData.append('file', img)
+      formData.append("upload_preset", "gl32w86e")
+      formData.append("cloud_name", "dx88ipscr")
+      await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
+        .then((res) => {
+          const token = localStorage.getItem("token")
+          axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
+            {
+              name: product.name,
+              price: product.price,
+              description: product.description,
+              image: res.data.secure_url,
+              quantity: product.quantity,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+              }
+            }
+          )
+            .then(function (response) {
+              toggle(true)
+              closeModal(false);
+              onRedirect();
+            })
+            .catch(function (error) {
+              console.log("Er product shop onwer", error);
+            });
+        });
+    } else {
+      const token = localStorage.getItem("token")
+      axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
+        {
+          name: product.name,
+          price: product.price,
+          description: product.description,
+          image: product.image,
+          quantity: product.quantity,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+      )
+        .then(function (response) {
+          toggle(true)
+          closeModal(false);
+          onRedirect();
+        })
+        .catch(function (error) {
+          console.log("Er product shop onwer", error);
+        });
+    }
 
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   };
   return (
     <div className="edit-product">
-    <div className="edit-product__form">
+      <div className="edit-product__form">
         <h2>Edit product</h2>
         <button className="edit-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
         <FormInput
@@ -59,13 +106,15 @@ function EditProduct({ data, closeModal }) {
           onChange={handlerInput}
           type="text"
         />
+        <img className="product-info-img" src={product.image} alt="" />
         <FormInput
           name="image"
           title="Product Image"
-          value={product.image}
-          onChange={handlerInput}
-          type="text"
+          // value={product.image}
+          onChange={(e) => setImg(e.target.files[0])}
+          type="file"
         />
+
         <FormInput
           name="price"
           title="Product Price"
@@ -73,15 +122,7 @@ function EditProduct({ data, closeModal }) {
           onChange={handlerInput}
           type="number"
         />
-        <div className="edit-product__form__select-type">
-          <label>Product Type</label>
-          <select name="type" title="Product Type" onChange={handlerInput} type="select">
-            <option value={"Indoor plants"}>Indoor plants</option>
-            <option value={"Out door tree"}>Out door tree</option>
-            <option value={"Indorr flower"}>Indoor flower</option>
-            <option value={"Out door flower"}>Out door flower</option>
-          </select>
-        </div>
+
         <FormInput
           name="description"
           title="Product Description"

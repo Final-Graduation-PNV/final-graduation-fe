@@ -39,8 +39,9 @@ function EditProduct({ data, closeModal }) {
       .put("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + data.id, product)
       .then(function (response) {
         console.log(response);
-        window.location.reload();
         onRedirect();
+        closeModal(false);
+
       })
       .catch(function (error) {
         console.log(error);
@@ -48,7 +49,7 @@ function EditProduct({ data, closeModal }) {
   };
   return (
     <div className="edit-product">
-    <form className="edit-product__form">
+    <div className="edit-product__form">
         <h2>Edit product</h2>
         <button className="edit-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
         <FormInput
@@ -99,7 +100,7 @@ function EditProduct({ data, closeModal }) {
         <div className="edit-product__form__submit-button">
           <ButtonSubmit className="edit-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Save" />
         </div>
-      </form>
+      </div>
     </div>
   );
 }

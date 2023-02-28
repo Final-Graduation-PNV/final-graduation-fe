@@ -5,19 +5,28 @@
 
 .product-user {
     width: 100%;
+
     &__header {
         width: 100%;
     }
+
     &__body {
+        margin-top: 3px;
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 5fr;
+        background-color: #EEEEEE;
 
         &__left-menu {
+            background-color: white;
+            margin-top: 7px;
             width: 100%;
-            height: 550px;
+            height: 100%;
+
             &__avata {
                 padding: 10px 0px 0px 0px;
+                text-align: center;
+
                 img {
                     width: 120px;
                     height: 120px;
@@ -27,9 +36,10 @@
 
             &__menu {
                 margin-left: 0px;
+
                 ul {
                     list-style: none;
-                    margin-left: -15px; 
+                    margin-left: -15px;
                 }
 
                 li {
@@ -55,7 +65,8 @@
         &__right-menu {
             background-color: #EEEEEE;
             width: 100%;
-            height: 632px;
+            height: 100%;
+
             &__title {
                 width: 99%;
                 padding-bottom: 10px;
@@ -64,25 +75,48 @@
                 display: grid;
                 margin: 0px 0px 5px 0px;
                 padding-top: 5px;
+                text-align: center;
                 grid-template-columns: 1fr 2fr 2fr 1fr 1fr 3fr 1fr 1fr;
-                border: 2px solid #8f8e8e;
+                border: 1px solid #8f8e8e;
             }
 
             h2 {
                 text-align: left;
-                padding: 0px;
-                margin:5px;
+                padding-left: 10px;
+                margin: 5px;
             }
 
             &__head {
                 display: flex;
                 padding: 0px 0px 10px 0px;
+
+                &__icon {
+                    height: 30px;
+
+                }
+
                 &__filter {
                     border: 1px solid #dddddd;
-                    padding: 0px 0px 0px 20px;
+                    padding: 0px 0px 0px 0px;
                     width: 900px;
                     height: 40px;
                     border-radius: 5px;
+                    display: flex;
+
+                    &-icon {
+                        width: 40px;
+                        margin: auto;
+                        color: #4F4F4F;
+                    }
+
+                    &-input {
+                        width: 860px;
+                        border: none;
+                        background-color: #EEEEEE;
+                        border-left: 1px solid #dddddd;
+                        padding-left: 20px;
+                        outline: none;
+                    }
                 }
 
                 &__add-button {
@@ -94,7 +128,7 @@
 
             &__list {
                 width: 100%;
-                height: 492px;
+                height: 543px;
                 overflow: auto;
             }
 
@@ -112,13 +146,6 @@
             }
         }
     }
-
-
-
-
-
-
-
 }
 
 .add-button {
@@ -132,13 +159,14 @@
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr 1fr 3fr 1fr 1fr;
     font-size: 14px;
+    text-align: center;
+
     &-img {
         width: 125px;
     }
 
     &__action {
         background-color: #EEEEEE;
-        padding-left: 10px;
         border: none;
     }
 

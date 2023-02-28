@@ -2,7 +2,6 @@ import { faBasketball, faLocationDot, faSearch, faShop } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from "react-router-dom";
 import account from "../../assets/Image/account.png";
 import Header from "../../header/Header";
@@ -35,6 +34,16 @@ function HomePage() {
       .catch(err => { console.log("Err:", err) })
   }, [])
 
+  // const handlePageClick = () => {
+  //   axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products?_page=2&_limit=10`, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`,
+  //     }
+  //   })
+  //     .then(res => { console.log("limit", res) })
+  //     .catch(err => { "Err:", console.log("Err:", err) })
+  // }
 
   return (
     <>
@@ -111,14 +120,16 @@ function HomePage() {
           <div>No products</div>
         )
       }
-      <ReactPaginate
+      {/* <ReactPaginate
         previousLabel="< previous"
         nextLabel="next >"
         breakLabel="..."
         pageCount={15}
         pageRangeDisplayed={5}
+        marginPagesDisplayed={3}
+        onPageChange={handlePageClick}
         renderOnZeroPageCount={null}
-      />
+      /> */}
     </>
   )
 }

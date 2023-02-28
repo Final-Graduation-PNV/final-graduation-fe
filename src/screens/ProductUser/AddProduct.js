@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import FormInput from "../../components/FormInput";
 import ButtonSubmit from "../../components/ButtonSubmit";
@@ -7,14 +7,16 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 function AddProduct({ closeModal }) {
   const [modal, setModal] = useState(false);
+  const [img, setImg] = useState("");
   const [product, setProduct] = useState({
     name: "",
-    image: "",
     price: "",
-    type: "",
     description: "",
     quantity: "",
+    category_id: "",
+    shop_id: localStorage.getItem("user_id")
   });
+  console.log("product:", product)
 
   const handlerInput = (e) => {
     const { name, value } = e.target;
@@ -28,31 +30,68 @@ function AddProduct({ closeModal }) {
     setModal(!modal);
   };
   const onRedirect = () => {
-    setProduct({}); //set lại state product là đói tượng rỗng
+    setProduct({});
     tooggle();
-
   };
-  // const handlerInput = (e) => {
-  //   setData({ ...data, [e.target.name]: e.target.value });
-  // };
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    axios
-      .post("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products", product)
-      .then(function (response) {
-        console.log(response);
-        window.location.reload();
-        onRedirect();
-      })
-      .catch(function (error) {
-        console.log(error);
+  const handleSubmitForm = async () => {
+    const formData = new FormData()
+    formData.append('file', img)
+    formData.append("upload_preset", "gl32w86e")
+    formData.append("cloud_name", "dx88ipscr")
+    await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
+      .then((res) => {
+
+        const token = localStorage.getItem("token")
+        axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products",
+          {
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            image: res.data.secure_url,
+            quantity: product.quantity,
+            category_id: product.category_id,
+            shop_id: product.shop_id
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            }
+          }
+        )
+          .then(function (response) {
+            console.log("res product shop onwer:", response);
+            console.log("product", product, res.data.secure_url)
+            closeModal(false);
+            onRedirect();
+          })
+          .catch(function (error) {
+            console.log("Er product shop onwer", error);
+          });
       });
+
+
   };
+  // useEffect(() => {
+  // const token = localStorage.getItem("token")
+  //   axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products", {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`,
+  //     }
+  //   })
+  //     .then(res => {
+  //       console.log("Res:", res)
+  //       setProducts(res.data)
+  //     })
+  //     .catch(err => { console.log("Err:", err) })
+  // }, [])
+
   return (
     <div className="add-product">
 
-      <form className="add-product__form">
+      <div className="add-product__form">
         <h2>Add product</h2>
         <button className="add-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
         <FormInput
@@ -66,8 +105,8 @@ function AddProduct({ closeModal }) {
           name="image"
           title="Product Image"
           value={product.image}
-          onChange={handlerInput}
-          type="text"
+          onChange={(e) => setImg(e.target.files[0])}
+          type="file"
         />
         <FormInput
           name="price"
@@ -78,11 +117,11 @@ function AddProduct({ closeModal }) {
         />
         <div className="add-product__form__select-type">
           <label>Product Type</label>
-          <select name="type" title="Product Type" onChange={handlerInput} type="select">
-            <option value={"Indoor plants"}>Indoor plants</option>
-            <option value={"Out door tree"}>Out door tree</option>
-            <option value={"Indorr flower"}>Indoor flower</option>
-            <option value={"Out door flower"}>Out door flower</option>
+          <select name="category_id" title="Category" onChange={handlerInput} type="select">
+            <option value={1}>Indoor plants</option>
+            <option value={2}>Out door tree</option>
+            <option value={3}>Indoor flower</option>
+            <option value={4}>Out door flower</option>
           </select>
         </div>
         <FormInput
@@ -103,7 +142,7 @@ function AddProduct({ closeModal }) {
         <div className="add-product__form__submit-button">
           <ButtonSubmit className="add-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Add new" />
         </div>
-      </form>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,8 @@ import ProductInfo from "./ProductInfo";
 import HeaderShopOwner from "../../components/HeaderShopOwner";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import EditProduct from "./EditProduct";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 const Product = () => {
     const [product, setProduct] = useState([]);
     const [toggle, setToggle] = useState(false);
@@ -50,7 +51,6 @@ const Product = () => {
             {modalEditProduct && <EditProduct data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
-                <hr></hr>
                 <div className="product-user__body">
                     <div className="product-user__body__left-menu">
                         <div className="product-user__body__left-menu__avata">
@@ -75,12 +75,16 @@ const Product = () => {
                             <h2>Your products</h2>
 
                             <div className="product-user__body__right-menu__head">
+                                <div className="product-user__body__right-menu__head__filter">
+                                <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
                                 <input name="filter"
                                     placeholder="Filter"
                                     onChange={handlerInput}
                                     type="text"
-                                    className="product-user__body__right-menu__head__filter"
+                                    className="product-user__body__right-menu__head__filter-input"
                                 />
+                                </div>
+                                
                                 <ButtonSubmit className="product-user__body__right-menu__head__add-button" title="Add product" onClick={() => setModalAddProduct(true)} />
                             </div>
                             <div className="product-user__body__right-menu__title">

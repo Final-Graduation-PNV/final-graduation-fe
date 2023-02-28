@@ -1,14 +1,14 @@
-import { React, useEffect, useState } from "react";
-import axios from "axios";
-import AddProduct from "./AddProduct";
-import ProductInfo from "./ProductInfo";
-import HeaderShopOwner from "../../components/HeaderShopOwner";
-import ButtonSubmit from "../../components/ButtonSubmit";
-import EditProduct from "./EditProduct";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from "axios";
+import { React, useEffect, useState } from "react";
+import ButtonSubmit from "../../components/ButtonSubmit";
+import HeaderShopOwner from "../../components/HeaderShopOwner";
+import AddProduct from "./AddProduct";
+import EditProduct from "./EditProduct";
+import ProductInfo from "./ProductInfo";
 const Product = () => {
-    const [product, setProduct] = useState([]);
+    const [products, setProducts] = useState([]);
     const [toggle, setToggle] = useState(false);
     const [modalAddProduct, setModalAddProduct] = useState(false);
     const [modalEditProduct, setModalEditProduct] = useState(false);
@@ -17,28 +17,28 @@ const Product = () => {
 
     useEffect(() => {
 
-        const user_id = localStorage.getItem("user_id");
+        const shop_id = localStorage.getItem("user_id");
         const token = localStorage.getItem("token");
-        console.log("user id nha:", user_id);
-        axios
-            .get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
-                {
-                    user_id
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                    }
-                }
-            )
+
+        console.log("user id:", shop_id);
+        console.log("User token", token)
+        axios.get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products", {
+            params: { shop_id }
+            ,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+        )
             .then((res) => {
-                setProduct(res.data);
+                setProducts(res.data);
+
             })
             .catch(err => {
-                console.log("Err: ", err)
+                console.log("Err get product: ", err)
             })
-    }, [toggle]);
+    }, []);
 
     const deleteHandle = async (id) => {
 
@@ -63,9 +63,9 @@ const Product = () => {
     }
     const handlerInput = (e) => {
         const { name, value } = e.target;
-        console.log(product);
-        setProduct({
-            ...product,
+        console.log(products);
+        setProducts({
+            ...products,
             [name]: value,
         });
     };
@@ -122,16 +122,20 @@ const Product = () => {
                                 <div>Quantity</div>
                                 <div>Action</div>
                             </div>
-                            <div className="product-user__body__right-menu__list">
-                                {product
-                                    .map((product) => (
-                                        <div>
-                                            <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
-                                            <hr />
-                                        </div>
-                                    ))
-                                }
-                            </div>
+                            {
+                                products ? (
+                                    <div className="product-user__body__right-menu__list">
+                                        {products.map((product) => (
+                                            <div>
+                                                <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
+                                                <hr />
+                                            </div>
+                                        ))
+                                        }
+                                    </div>
+                                ) : <div>Please, add product</div>
+                            }
+
                         </div>
                     </div>
                 </div>

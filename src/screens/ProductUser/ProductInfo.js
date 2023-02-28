@@ -1,9 +1,11 @@
+import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-export default function ProductInfo({ data, onDelete, closeModal,setEditData}) {
+export default function ProductInfo({ data, onDelete, closeModal, setEditData }) {
   const handlerEditData = (e) => {
     closeModal(true);
     setEditData(data);
-};
+  };
   return (
     <>
       <div className="product-info">
@@ -15,12 +17,8 @@ export default function ProductInfo({ data, onDelete, closeModal,setEditData}) {
         <div>{data.description}</div>
         <div>{data.quantity}</div>
         <div className="product-info__action">
-          <button  className="product-info__action" onClick={handlerEditData}>
-            <img className="product-info__icon" src="/image/pencil.png" alt="" />
-          </button>
-          <button className="product-info__action" onClick={() => onDelete(data.id)} >
-            <img className="product-info__icon" src="/image/Delete.png" alt="" />
-          </button>
+          <FontAwesomeIcon className="product-info__iconPen" icon={faPen} onClick={handlerEditData} />
+          <FontAwesomeIcon className="product-info__iconTrash" icon={faTrashCan} onClick={() => onDelete(data.id)} />
         </div>
       </div></>
 

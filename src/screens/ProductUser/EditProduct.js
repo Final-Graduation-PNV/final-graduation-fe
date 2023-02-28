@@ -30,7 +30,7 @@ function EditProduct({ data, closeModal }) {
   const onRedirect = () => {
     setProduct({}); //set lại state product là đói tượng rỗng
     tooggle();
-    // onAdded(false);
+
   };
   const handleSubmitForm = (e) => {
     e.preventDefault();

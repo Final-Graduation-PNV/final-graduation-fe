@@ -69,23 +69,7 @@ function AddProduct({ toggle, closeModal }) {
             console.log("Er product shop onwer", error);
           });
       });
-
-
   };
-  // useEffect(() => {
-  // const token = localStorage.getItem("token")
-  //   axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products", {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`,
-  //     }
-  //   })
-  //     .then(res => {
-  //       console.log("Res:", res)
-  //       setProducts(res.data)
-  //     })
-  //     .catch(err => { console.log("Err:", err) })
-  // }, [])
 
   return (
     <div className="add-product">

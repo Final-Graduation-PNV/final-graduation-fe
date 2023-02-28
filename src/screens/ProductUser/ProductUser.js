@@ -13,10 +13,25 @@ const Product = () => {
     const [modalAddProduct, setModalAddProduct] = useState(false);
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
+    const [userId, setUserID] = useState([]);
+    const [token, setToken] = useState([]);
+
+
 
     useEffect(() => {
+
+        setUserID(localStorage.getItem("user_id"));
+        setToken(localStorage.getItem("token"));
+
         axios
-            .get("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products")
+            .get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products",
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    }
+                }
+            )
             .then((res) => {
                 setProduct(res.data);
             })
@@ -29,7 +44,14 @@ const Product = () => {
         var isConfirmed = window.confirm("Are you sure for deleting?")
         if (isConfirmed) {
             axios
-                .delete("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + id)
+                .delete("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products/" + id,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    }
+                }
+                )
                 .then(function (response) {
                     console.log(response);
                     setToggle(!toggle)
@@ -76,15 +98,15 @@ const Product = () => {
 
                             <div className="product-user__body__right-menu__head">
                                 <div className="product-user__body__right-menu__head__filter">
-                                <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
-                                <input name="filter"
-                                    placeholder="Filter"
-                                    onChange={handlerInput}
-                                    type="text"
-                                    className="product-user__body__right-menu__head__filter-input"
-                                />
+                                    <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
+                                    <input name="filter"
+                                        placeholder="Filter"
+                                        onChange={handlerInput}
+                                        type="text"
+                                        className="product-user__body__right-menu__head__filter-input"
+                                    />
                                 </div>
-                                
+
                                 <ButtonSubmit className="product-user__body__right-menu__head__add-button" title="Add product" onClick={() => setModalAddProduct(true)} />
                             </div>
                             <div className="product-user__body__right-menu__title">
@@ -98,12 +120,14 @@ const Product = () => {
                                 <div>Action</div>
                             </div>
                             <div className="product-user__body__right-menu__list">
-                                {product.map((product) => (
-                                    <div>
-                                        <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
-                                        <hr />
-                                    </div>
-                                ))}
+                                {product.filter((pro) => String(pro.shop_id) === userId )
+                                    .map((product) => (
+                                        <div>
+                                            <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
+                                            <hr />
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>

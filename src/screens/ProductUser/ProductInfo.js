@@ -9,8 +9,8 @@ export default function ProductInfo({ data, onDelete, closeModal,setEditData}) {
       <div className="product-info">
         <div>{data.id}</div>
         <div>{data.name}</div>
-        <div><img className="product-info-img" src="/image/hoasu.png" alt="" /></div>
-        <div>{data.type}</div>
+        <div><img className="product-info-img" src={data.image} alt="" /></div>
+        <div>{data.category_id}</div>
         <div>{data.price}</div>
         <div>{data.description}</div>
         <div>{data.quantity}</div>

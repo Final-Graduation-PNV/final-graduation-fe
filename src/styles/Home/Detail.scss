@@ -18,25 +18,7 @@
   justify-content: space-between;
   align-items: center;
 }
-// .faCartShopping {
-//   color: white;
-//   font-size: 20px;
-//   position: relative;
-// }
-// .detail-top__cart {
-//   padding: 10px;
-//   border-radius: 50px;
-//   background-color: #13542c;
-// }
-// .detail-top__cart a {
-//   position: absolute;
-//   margin-top: -12px;
-//   margin-left: -5px;
-//   color: white;
-//   padding: 0px 7px;
-//   background-color: #10d023;
-//   border-radius: 20px;
-// }
+
 .detail-top__nav p {
   font-size: 20px;
   font-size: 20px;
@@ -54,13 +36,17 @@
   border-radius: 10px;
 }
 .detail-img {
-  width: 35%;
+  width: 38%;
+}
+.detail-img__one {
+  width: 330px;
+  height: auto;
 }
 .detail-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 65%;
+  width: 62%;
 }
 .detail-img__large {
   width: 216px;

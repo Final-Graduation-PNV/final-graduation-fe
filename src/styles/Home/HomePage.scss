@@ -47,6 +47,7 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
   .product {
+    width: 130px;
     padding: 20px 30px;
     border: 1px black solid;
     box-shadow: 2px 2px #888888;
@@ -55,6 +56,11 @@
     margin-right: 6px;
     display: flex;
     flex-direction: column;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 .product__imgHP {

@@ -2,6 +2,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import ButtonSubmit from "../../components/ButtonSubmit";
 import HeaderShopOwner from "../../components/HeaderShopOwner";
 import AddProduct from "./AddProduct";
@@ -13,7 +14,6 @@ const Product = () => {
     const [modalAddProduct, setModalAddProduct] = useState(false);
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
-
 
     useEffect(() => {
 
@@ -37,7 +37,7 @@ const Product = () => {
             .catch(err => {
                 console.log("Err get product: ", err)
             })
-    }, []);
+    }, [toggle]);
 
     const deleteHandle = async (id) => {
 
@@ -56,6 +56,7 @@ const Product = () => {
                 )
                 .then(function (response) {
                     console.log(response);
+
                     setToggle(!toggle)
                 })
         }
@@ -76,7 +77,7 @@ const Product = () => {
     return (
         <>
             {modalAddProduct && <AddProduct toggle={setToggle} closeModal={setModalAddProduct} />}
-            {modalEditProduct && <EditProduct data={editData} closeModal={setModalEditProduct} />}
+            {modalEditProduct && <EditProduct toggle={setToggle} key={editData.id} data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
                 <div className="product-user__body">
@@ -92,8 +93,7 @@ const Product = () => {
                                 <li><a href="#"><img className="product-user-icon" src="/image/manacus.png" alt="" />Manage customers</a></li>
                                 <li><a href="#"><img className="product-user-icon" src="/image/manare.png" alt="" />Manage revenue</a></li>
                                 <li><a href="#"><img className="product-user-icon" src="/image/manaor.png" alt="" />Manage order</a></li>
-                                <li><a href="#"><img className="product-user-icon" src="/image/home.png" alt="" />Home</a></li>
-                                <li><a href="#"><img className="product-user-icon" src="/image/Logout.png" alt="" />Log out</a></li>
+                                <Link to="/home" style={{ textDecoration: "none", color: "black", fontSize: 15, fontWeight: 600 }}><li><img className="product-user-icon" src="/image/home.png" alt="" />Home</li></Link>
                             </ul>
 
                         </div>
@@ -136,7 +136,7 @@ const Product = () => {
                                         ))
                                         }
                                     </div>
-                                ) : <div>Please, add product</div>
+                                ) : (<div>Please, add product</div>)
                             }
 
                         </div>

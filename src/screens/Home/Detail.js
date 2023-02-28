@@ -4,7 +4,6 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import pReview from "../../assets/Image/pReviewpng.png"
-import product from "../../assets/Image/product.png"
 import shopImage from "../../assets/Image/shopImage.png"
 import Header from "../../header/Header"
 import "../../styles/Home/Detail.scss"
@@ -44,13 +43,7 @@ function Detail() {
             </div>
             <div className="detail-contain">
               <div className="detail-img">
-                <img className="detail-img__large" src={product} />
-                <div className="detail-img__small">
-                  <img className="img-small detail-img__one" src={product} />
-                  <img className="img-small detail-img__two" src={product} />
-                  <img className="img-small detail-img__three" src={product} />
-                  <img className="img-small detail-img__four" src={product} />
-                </div>
+                <img className="detail-img__one" src={detailProduct.image} />
               </div>
               <div className="detail-text">
                 <p className="detail-text__title">

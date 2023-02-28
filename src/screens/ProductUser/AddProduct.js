@@ -43,7 +43,7 @@ function AddProduct({ toggle, closeModal }) {
       .then((res) => {
 
         const token = localStorage.getItem("token")
-        axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products",
+        axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
           {
             name: product.name,
             price: product.price,

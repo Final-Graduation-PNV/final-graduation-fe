@@ -14,7 +14,6 @@ const Product = () => {
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
 
-
     useEffect(() => {
 
         const shop_id = localStorage.getItem("user_id");
@@ -38,7 +37,7 @@ const Product = () => {
             .catch(err => {
                 console.log("Err get product: ", err)
             })
-    }, []);
+    }, [toggle]);
 
     const deleteHandle = async (id) => {
 
@@ -57,6 +56,7 @@ const Product = () => {
                 )
                 .then(function (response) {
                     console.log(response);
+                    
                     setToggle(!toggle)
                 })
         }
@@ -133,7 +133,7 @@ const Product = () => {
                                         ))
                                         }
                                     </div>
-                                ) : <div>Please, add product</div>
+                                ) : (<div>Please, add product</div>)
                             }
 
                         </div>

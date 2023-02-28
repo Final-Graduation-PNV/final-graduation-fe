@@ -13,18 +13,18 @@ const Product = () => {
     const [modalAddProduct, setModalAddProduct] = useState(false);
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
-    const [userId, setUserID] = useState([]);
-    const [token, setToken] = useState([]);
-
 
 
     useEffect(() => {
 
-        setUserID(localStorage.getItem("user_id"));
-        setToken(localStorage.getItem("token"));
-
+        const user_id = localStorage.getItem("user_id");
+        const token = localStorage.getItem("token");
+        console.log("user id nha:", user_id);
         axios
-            .get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products",
+            .get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
+                {
+                    user_id
+                },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,16 +41,19 @@ const Product = () => {
     }, [toggle]);
 
     const deleteHandle = async (id) => {
+
         var isConfirmed = window.confirm("Are you sure for deleting?")
         if (isConfirmed) {
+            const token = localStorage.getItem("token");
+
             axios
-                .delete("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/products/" + id,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
+                .delete("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + id,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
                     }
-                }
                 )
                 .then(function (response) {
                     console.log(response);
@@ -69,7 +72,7 @@ const Product = () => {
 
     return (
         <>
-            {modalAddProduct && <AddProduct closeModal={setModalAddProduct} />}
+            {modalAddProduct && <AddProduct toggle={setToggle} closeModal={setModalAddProduct} />}
             {modalEditProduct && <EditProduct data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
@@ -120,7 +123,7 @@ const Product = () => {
                                 <div>Action</div>
                             </div>
                             <div className="product-user__body__right-menu__list">
-                                {product.filter((pro) => String(pro.shop_id) === userId )
+                                {product
                                     .map((product) => (
                                         <div>
                                             <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />

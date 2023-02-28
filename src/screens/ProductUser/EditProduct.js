@@ -105,14 +105,18 @@ function EditProduct({ toggle, data, closeModal }) {
           onChange={handlerInput}
           type="text"
         />
+        <div className="edit-product__form__image">
         <img className="product-info-img" src={product.image} alt="" />
         <FormInput
           name="image"
           title="Product Image"
           // value={product.image}
           onChange={(e) => setImg(e.target.files[0])}
+          className="dit-product__form__image-input"
           type="file"
         />
+        </div>
+        
 
         <FormInput
           name="price"

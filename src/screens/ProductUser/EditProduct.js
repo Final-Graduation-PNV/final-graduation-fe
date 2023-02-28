@@ -56,15 +56,14 @@ function EditProduct({ toggle, data, closeModal }) {
                 'Authorization': `Bearer ${token}`,
               }
             }
-          )
-            .then(function (response) {
-              toggle(true)
-              closeModal(false);
-              onRedirect();
-            })
-            .catch(function (error) {
-              console.log("Er product shop onwer", error);
-            });
+          ).then(function (response) {
+            toggle(true);
+            closeModal(false);
+            onRedirect();
+          })
+          .catch(function (error) {
+            console.log("Er product shop onwer", error);
+          });
         });
     } else {
       const token = localStorage.getItem("token")
@@ -84,7 +83,7 @@ function EditProduct({ toggle, data, closeModal }) {
         }
       )
         .then(function (response) {
-          toggle(true)
+          toggle(true);
           closeModal(false);
           onRedirect();
         })

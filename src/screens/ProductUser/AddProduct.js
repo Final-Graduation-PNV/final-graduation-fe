@@ -60,7 +60,7 @@ function AddProduct({ toggle, closeModal }) {
           }
         )
           .then(function (response) {
-            toggle(true)
+            toggle(true);
             closeModal(false);
             onRedirect();
           })

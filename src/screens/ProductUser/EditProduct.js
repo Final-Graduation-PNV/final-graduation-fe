@@ -35,8 +35,7 @@ function EditProduct({ data, closeModal }) {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     console.log(product.id);
-    axios
-      .put("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + data.id, product)
+    axios.put("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + data.id, product)
       .then(function (response) {
         console.log(response);
         onRedirect();

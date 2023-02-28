@@ -18,6 +18,10 @@ function Logout({ closeModal }) {
     }).then((response) => {
       alert(response.data.message);
       navigate("/Sin")
+      localStorage.removeItem("token")
+      localStorage.removeItem("user")
+      localStorage.removeItem("shopOnwer")
+      localStorage.removeItem("user_id")
     }).catch((error) => {
       console.error('Error logging out user:', error);
     });

@@ -21,6 +21,7 @@ function HomePage() {
   const shopOnwer = localStorage.getItem('shopOnwer');
   const navigate = useNavigate();
 
+  console.log(shopOnwer);
   useEffect(() => {
     axios.get(UrlHomePage, {
       headers: {
@@ -66,7 +67,7 @@ function HomePage() {
                 <div className="navLeft-Market">
                   <FontAwesomeIcon className="faShop-home" icon={faShop} />
                   {
-                    shopOnwer
+                    shopOnwer === "true"
                       ? <p onClick={() => navigate("/home/shopOnnwer")}>Your marketplace</p>
                       : <p onClick={() => setIsCreateMp(true)}>Create your marketplace</p>
                   }

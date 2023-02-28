@@ -69,7 +69,7 @@ function AddTocart() {
           </div>
           <div className="purchase">
             <div className="purchase-dete">
-              <p className="purchase__dete">  <input type="checkbox" /> Xóa tất cả</p>
+              <p className="purchase__dete">  <input type="checkbox" />Detele All</p>
             </div>
             <div className="purchase-total">
               <div className="total">

@@ -1,4 +1,4 @@
-.modalBackground-sigin {
+.modalBackground-sigup {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
 }
-.modalContainer-sigin {
+.modalContainer-sigup {
   width: 250px;
   height: 180px;
   border-radius: 12px;
@@ -20,18 +20,18 @@
   justify-content: space-between;
   box-shadow: 0px 0px 10px #595353;
 }
-.modal-icon-sigin {
+.modal-icon-sigup {
   display: flex;
   flex-direction: row-reverse;
 }
-.modal-text__tittle-sigin {
+.modal-text__tittle-sigup {
   font-size: 20px;
   font-weight: 700;
 }
-.modal-text__desc-sigin {
+.modal-text__desc-sigup {
   font-size: 13px;
 }
-.check-icon-sigin {
+.check-icon-sigup {
   padding: 20px;
   font-size: 30px;
   background-color: #3c7026;
@@ -41,7 +41,7 @@
   margin-left: 75px;
   margin-top: -165px;
 }
-.modalSignin__btn-sigin {
+.modalSignin__btn-sigup {
   border: none;
   background-color: #3c7026;
   color: #fff;

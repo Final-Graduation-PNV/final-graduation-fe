@@ -22,8 +22,6 @@ function CreatePM({ closeModal }) {
             <button className="createMp-btn__no" onClick={() => closeModal(false)}>No</button>
             <button className="createMp-btn__yes" onClick={() => setIsShow(true)}>Yes</button>
           </div>
-
-          {/* //  <button className="btn__checkEmail" onClick={() => closeModal(false)}><Link className="checkEmail" to="/Sin">Check your email</Link></button> */}
         </div>
       </div>
     </div>

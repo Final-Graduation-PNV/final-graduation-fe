@@ -1,23 +1,23 @@
-import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../../styles/Modal/ModalSignin.scss";
-function ModalSigin({ closeModal }) {
-  
+function ModalSigin() {
+  const navigate = useNavigate();
+
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">
-        <div className="modal-icon">
-          <FontAwesomeIcon icon={faClose} onClick={() => closeModal(false)} />
-        </div>
-        <div className="modal-text">
-          <p className="modal-text__tittle">Logged in successfully</p>
+    <div className="modalBackground-sigin">
+      <div className="modalContainer-sigin">
+        <div className="modal-text-sigin">
+          <p className="modal-text__tittle-sigin">Logged in successfully</p>
           <p>You have logged in successfully</p>
-          {/* <p className="modal-text__check" onClick={() => closeModal(false)}><Link className="checkEmail" to="/Sin"><FontAwesomeIcon icon={faCheck} /></Link></p> */}
-          <FontAwesomeIcon className="check-icon" icon={faCheck} />
+          <FontAwesomeIcon className="check-icon-sigin" icon={faCheck} />
         </div>
+        <button className="modalSignin__btn-sigin" onClick={() => navigate("/home")}>OK</button>
       </div>
+
     </div>
   )
 }

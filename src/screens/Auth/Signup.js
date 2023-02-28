@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Image/logo.png";
 import "../../styles/Auth/Signup.scss";
+import ModalSigup from '../Modals/ModalSignup';
 
 
 function Signup() {
@@ -16,7 +17,9 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [password_confirmation, setConfirmPassword] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("")
+  const [city, setCity] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
 
   const initialErrors = Object.freeze({
@@ -43,8 +46,9 @@ function Signup() {
     })
       .then(res => {
         console.log("res", res)
-        alert("Sign up successful!")
-        navigate("/Sin")
+        // alert("Sign up successful!")
+        setIsModalOpen(true)
+        
       })
       .catch(err => {
         console.log(err)
@@ -56,6 +60,7 @@ function Signup() {
   }
   return (
     <div id="container">
+      {isModalOpen && <ModalSigup closeModal={setIsModalOpen} />}
       <div className="signup">
         <div className="signup__left">
           <div className="signup__left--logo">

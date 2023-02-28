@@ -1,7 +1,6 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-// import { Link } from "react-router-dom";
 
 import "../../styles/Modal/ModalPM.scss";
 function ModalPM({ closeModal }) {
@@ -50,7 +49,6 @@ function ModalPM({ closeModal }) {
             <button className="btn__cancel" onClick={() => closeModal(false)}>Cancel</button>
             <button className="btn__save" onClick={() => closeModal(false)}>Save</button>
           </div>
-          {/* //  <button className="btn__checkEmail" onClick={() => closeModal(false)}><Link className="checkEmail" to="/Sin">Check your email</Link></button> */}
         </div>
       </div>
     </div>

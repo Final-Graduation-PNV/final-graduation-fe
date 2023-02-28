@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import FormInput from "../../components/FormInput";
-import ButtonSubmit from "../../components/ButtonSubmit";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { useState } from "react";
+import ButtonSubmit from "../../components/ButtonSubmit";
+import FormInput from "../../components/FormInput";
 
 function AddProduct({ toggle, closeModal }) {
   const [modal, setModal] = useState(false);

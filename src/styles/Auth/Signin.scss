@@ -15,18 +15,21 @@ $backgroundcolorForm: #d1d3d1;
   box-sizing: border-box;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   background-image: url("../../assets/Image/bright-interior-flower-vases.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-
 }
 #error {
   text-align: left;
   color: rgb(173, 3, 3);
   font-size: 12px;
+}
+.container-Signin {
+  height: 100vh;
+  width: 100vw;
 }
 .signin {
   width: 1200px;
@@ -35,6 +38,7 @@ $backgroundcolorForm: #d1d3d1;
   justify-content: space-around;
   align-content: center;
   align-items: center;
+  margin: 0px auto;
 }
 .signin__left--text-tittle {
   font-size: 30px;

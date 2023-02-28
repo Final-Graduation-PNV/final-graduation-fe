@@ -14,9 +14,24 @@ const Product = () => {
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
 
+
     useEffect(() => {
+
+        const user_id = localStorage.getItem("user_id");
+        const token = localStorage.getItem("token");
+        console.log("user id nha:", user_id);
         axios
-            .get("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products")
+            .get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
+                {
+                    user_id
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    }
+                }
+            )
             .then((res) => {
                 setProduct(res.data);
             })
@@ -26,10 +41,20 @@ const Product = () => {
     }, [toggle]);
 
     const deleteHandle = async (id) => {
+
         var isConfirmed = window.confirm("Are you sure for deleting?")
         if (isConfirmed) {
+            const token = localStorage.getItem("token");
+
             axios
-                .delete("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + id)
+                .delete("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + id,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    }
+                )
                 .then(function (response) {
                     console.log(response);
                     setToggle(!toggle)
@@ -47,7 +72,7 @@ const Product = () => {
 
     return (
         <>
-            {modalAddProduct && <AddProduct closeModal={setModalAddProduct} />}
+            {modalAddProduct && <AddProduct toggle={setToggle} closeModal={setModalAddProduct} />}
             {modalEditProduct && <EditProduct data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
@@ -76,15 +101,15 @@ const Product = () => {
 
                             <div className="product-user__body__right-menu__head">
                                 <div className="product-user__body__right-menu__head__filter">
-                                <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
-                                <input name="filter"
-                                    placeholder="Filter"
-                                    onChange={handlerInput}
-                                    type="text"
-                                    className="product-user__body__right-menu__head__filter-input"
-                                />
+                                    <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
+                                    <input name="filter"
+                                        placeholder="Filter"
+                                        onChange={handlerInput}
+                                        type="text"
+                                        className="product-user__body__right-menu__head__filter-input"
+                                    />
                                 </div>
-                                
+
                                 <ButtonSubmit className="product-user__body__right-menu__head__add-button" title="Add product" onClick={() => setModalAddProduct(true)} />
                             </div>
                             <div className="product-user__body__right-menu__title">
@@ -98,12 +123,14 @@ const Product = () => {
                                 <div>Action</div>
                             </div>
                             <div className="product-user__body__right-menu__list">
-                                {product.map((product) => (
-                                    <div>
-                                        <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
-                                        <hr />
-                                    </div>
-                                ))}
+                                {product
+                                    .map((product) => (
+                                        <div>
+                                            <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
+                                            <hr />
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>

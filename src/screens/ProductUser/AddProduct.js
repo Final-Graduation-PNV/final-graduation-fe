@@ -5,7 +5,7 @@ import ButtonSubmit from "../../components/ButtonSubmit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-function AddProduct({ closeModal }) {
+function AddProduct({ toggle, closeModal }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
   const [product, setProduct] = useState({
@@ -61,8 +61,7 @@ function AddProduct({ closeModal }) {
           }
         )
           .then(function (response) {
-            console.log("res product shop onwer:", response);
-            console.log("product", product, res.data.secure_url)
+            toggle(true)
             closeModal(false);
             onRedirect();
           })

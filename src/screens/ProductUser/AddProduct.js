@@ -78,9 +78,12 @@ function AddProduct({ toggle, closeModal }) {
         <button className="add-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
         <FormInput
           name="name"
+        className="add-product__form__name"
+
           title="Product Name"
           value={product.name}
           onChange={handlerInput}
+          placeholder="Product name"
           type="text"
         />
         <FormInput
@@ -90,13 +93,35 @@ function AddProduct({ toggle, closeModal }) {
           onChange={(e) => setImg(e.target.files[0])}
           type="file"
         />
-        <FormInput
+        <div className="add-product__form__price-quantity">
+          <FormInput
+            className="add-product__form__price-quantity__input"
+            name="price"
+            title="Product Price"
+            placeholder="Product price"
+            value={product.price}
+            onChange={handlerInput}
+            type="number"
+          />
+          <FormInput
+            className="add-product__form__price-quantity__input"
+            name="quantity"
+            placeholder="Product quantity"
+            title="Product Quantity"
+            value={product.quantity}
+            onChange={handlerInput}
+            type="number"
+          />
+        </div>
+
+        {/* <FormInput
           name="price"
           title="Product Price"
           value={product.price}
           onChange={handlerInput}
+          placeholder="Product price"
           type="number"
-        />
+        /> */}
         <div className="add-product__form__select-type">
           <label>Product Type</label>
           <select name="category_id" title="Category" onChange={handlerInput} type="select">
@@ -106,21 +131,20 @@ function AddProduct({ toggle, closeModal }) {
             <option value={4}>Out door flower</option>
           </select>
         </div>
-        <FormInput
-          name="description"
-          title="Product Description"
-          className="add-product__form__input-description"
-          value={product.description}
-          onChange={handlerInput}
-          type="text"
-        />
-        <FormInput
+        <div className="add-product__form__input-description">
+          <label >Product Description</label>
+          <textarea rows="4" cols="58" name="description" value={product.description} onChange={handlerInput} placeholder="Product description">
+          </textarea>
+        </div>
+        {/* <FormInput
           name="quantity"
           title="Product Quantity"
           value={product.quantity}
           onChange={handlerInput}
+          placeholder="Product quantity"
+
           type="number"
-        />
+        /> */}
         <div className="add-product__form__submit-button">
           <ButtonSubmit className="add-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Add new" />
         </div>

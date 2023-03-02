@@ -13,6 +13,7 @@ function EditProduct({ toggle, data, closeModal }) {
     name: data.name,
     image: data.image,
     price: data.price,
+    category_id: data.category_id,
     description: data.description,
     quantity: data.quantity,
   });
@@ -41,6 +42,7 @@ function EditProduct({ toggle, data, closeModal }) {
   //       console.log(response);
   //       onRedirect();
   //       closeModal(false);
+  console.log("hinh", img)
   const handleSubmitForm = async () => {
     if (img !== "") {
       const formData = new FormData()
@@ -55,6 +57,7 @@ function EditProduct({ toggle, data, closeModal }) {
               name: product.name,
               price: product.price,
               description: product.description,
+              category_id: product.category_id,
               image: res.data.secure_url,
               quantity: product.quantity,
             },
@@ -69,9 +72,9 @@ function EditProduct({ toggle, data, closeModal }) {
             closeModal(false);
             onRedirect();
           })
-          .catch(function (error) {
-            console.log("Er product shop onwer", error);
-          });
+            .catch(function (error) {
+              console.log("Er product shop onwer", error);
+            });
         });
     } else {
       const token = localStorage.getItem("token")
@@ -80,6 +83,7 @@ function EditProduct({ toggle, data, closeModal }) {
           name: product.name,
           price: product.price,
           description: product.description,
+          category_id: product.category_id,
           image: product.image,
           quantity: product.quantity,
         },
@@ -107,6 +111,7 @@ function EditProduct({ toggle, data, closeModal }) {
         <h2>Edit product</h2>
         <button className="edit-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
         <FormInput
+          className="edit-product__form__name"
           name="name"
           title="Product Name"
           value={product.name}
@@ -114,41 +119,50 @@ function EditProduct({ toggle, data, closeModal }) {
           type="text"
         />
         <div className="edit-product__form__image">
-        <img className="product-info-img" src={product.image} alt="" />
-        <FormInput
-          name="image"
-          title="Product Image"
-          // value={product.image}
-          onChange={(e) => setImg(e.target.files[0])}
-          className="dit-product__form__image-input"
-          type="file"
-        />
+          <img className="product-info-img" src={product.image} alt="" />
+          <FormInput
+            name="image"
+            title="Product Image"
+            // value={product.image}
+            onChange={(e) => setImg(e.target.files[0])}
+            className="dit-product__form__image-input"
+            type="file"
+          />
         </div>
-        
+        <div className="edit-product__form__price-quantity">
+          <FormInput
+            className="edit-product__form__price-quantity__input"
+            name="price"
+            title="Product Price"
+            value={product.price}
+            onChange={handlerInput}
+            type="number"
+          />
+          <FormInput
+            className="edit-product__form__price-quantity__input"
+            name="quantity"
+            title="Product Quantity"
+            value={product.quantity}
+            onChange={handlerInput}
+            type="number"
+          />
+        </div>
 
-        <FormInput
-          name="price"
-          title="Product Price"
-          value={product.price}
-          onChange={handlerInput}
-          type="number"
-        />
+        <div className="edit-product__form__select-type">
+          <label>Product Type</label>
+          <select name="category_id" title="Category" onChange={handlerInput} type="select">
+            <option value={1}>Indoor plants</option>
+            <option value={2}>Out door tree</option>
+            <option value={3}>Indoor flower</option>
+            <option value={4}>Out door flower</option>
+          </select>
+        </div>
+        <div className="edit-product__form__input-description">
+          <label >Product Description</label>
+          <textarea rows="4" cols="58" name="description" value={product.description} onChange={handlerInput} placeholder="Product description">
+          </textarea>
+        </div>
 
-        <FormInput
-          name="description"
-          title="Product Description"
-          className="edit-product__form__input-description"
-          value={product.description}
-          onChange={handlerInput}
-          type="text"
-        />
-        <FormInput
-          name="quantity"
-          title="Product Quantity"
-          value={product.quantity}
-          onChange={handlerInput}
-          type="number"
-        />
         <div className="edit-product__form__submit-button">
           <ButtonSubmit className="edit-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Save" />
         </div>

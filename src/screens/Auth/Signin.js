@@ -19,7 +19,7 @@ function Signin() {
     email: "",
     password: "",
     error: "",
-    msg: ""
+    message: ""
   })
 
   const [errors, setErrors] = useState(initialErrors);
@@ -44,7 +44,7 @@ function Signin() {
           setErrors(err.response.data.errors)
         }
         else {
-          setErrors({ msg: err.response.data.msg })
+          setErrors({ message: err.response.data.message })
         }
       })
   }
@@ -80,7 +80,7 @@ function Signin() {
                 <input type="password" className="password" name="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 {errors.password && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.password}</div>}
                 {errors.error && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.error}</div>}
-                {errors.msg && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.msg}</div>}
+                {errors.message && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.message}</div>}
                 <input type="submit" className="submit" value="Sign in" onClick={handleSigin} />
                 <a className="forgotpassword" href=''>Forgot password</a>
               </form>

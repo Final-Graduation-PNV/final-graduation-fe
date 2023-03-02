@@ -23,7 +23,7 @@ const Product = () => {
         console.log("user id:", shop_id);
         console.log("User token", token)
         axios.get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products", {
-            params: { shop_id },
+            // params: { shop_id },
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,

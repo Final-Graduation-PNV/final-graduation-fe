@@ -15,13 +15,14 @@ function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreateMp, setIsCreateMp] = useState(false);
   const [products, setProducts] = useState([]);
+  const [searchUser, setSearchUser] = useState("");
   const token = localStorage.getItem("token");
 
 
   const shopOnwer = localStorage.getItem('shopOnwer');
   const navigate = useNavigate();
 
-  console.log(shopOnwer);
+
   useEffect(() => {
     axios.get(UrlHomePage, {
       headers: {
@@ -45,7 +46,22 @@ function HomePage() {
   //     .then(res => { console.log("limit", res) })
   //     .catch(err => { "Err:", console.log("Err:", err) })
   // }
-
+  const handleSearchUser = (event) => {
+    if (event.key === 'Enter') {
+      console.log('enter press here! ')
+    }
+    axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/key?key=${searchUser}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
+      .then((res) => { setProducts(res.data) })
+      .catch((err) => { console.log("Err search home page", err) })
+  }
+  // console.log(searchUser)
   return (
     <>
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} />}
@@ -77,8 +93,14 @@ function HomePage() {
                 <div className="navRigth-Top">
                   <p className="navRigth-Top__des" >Marketplace</p>
                   <div className="navRigth-Top__search">
-                    <FontAwesomeIcon className="faSearch" icon={faSearch} />
-                    <input type="text" className="search" placeholder="Search plan & flower" />
+                    <FontAwesomeIcon className="faSearch" icon={faSearch} onClick={handleSearchUser} />
+                    <input
+                      onKeyPress={handleSearchUser}
+                      type="text"
+                      className="search"
+                      placeholder="Search plan & flower"
+                      value={searchUser}
+                      onChange={(e) => setSearchUser(e.target.value)} />
                   </div>
                 </div>
                 <br />
@@ -101,7 +123,7 @@ function HomePage() {
                 </div>
                 <div className="homePage-product">
                   {
-                    products.map((pro) => {
+                    products ? (products.map((pro) => {
                       return (
                         <div className="product" key={pro.id}>
                           <Link to={`detail/${pro.id}`}><img className="product__imgHP" src={pro.image} /></Link>
@@ -110,7 +132,10 @@ function HomePage() {
                           <button className="add-product_btn">Add to cart</button>
                         </div>
                       )
-                    })
+                    })) : (<div>No products</div>)
+
+
+
                   }
                 </div>
               </div>

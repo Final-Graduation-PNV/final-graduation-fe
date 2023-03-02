@@ -34,14 +34,7 @@ function EditProduct({ toggle, data, closeModal }) {
     tooggle();
 
   };
-  // const handleSubmitForm = (e) => {
-  //   e.preventDefault();
-  //   console.log(product.id);
-  //   axios.put("https://61ce733e7067f600179c5ea7.mockapi.io/mn/products/" + data.id, product)
-  //     .then(function (response) {
-  //       console.log(response);
-  //       onRedirect();
-  //       closeModal(false);
+
   console.log("hinh", img)
   const handleSubmitForm = async () => {
     if (img !== "") {
@@ -67,7 +60,7 @@ function EditProduct({ toggle, data, closeModal }) {
                 'Authorization': `Bearer ${token}`,
               }
             }
-          ).then(function (response) {
+          ).then(function () {
             toggle(true);
             closeModal(false);
             onRedirect();
@@ -94,7 +87,7 @@ function EditProduct({ toggle, data, closeModal }) {
           }
         }
       )
-        .then(function (response) {
+        .then(function () {
           toggle(true);
           closeModal(false);
           onRedirect();

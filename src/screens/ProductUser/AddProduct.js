@@ -71,14 +71,15 @@ function AddProduct({ toggle, closeModal }) {
   };
 
   return (
-    <div className="add-product">
-
-      <div className="add-product__form">
+    <><div className="add-product">
+      {
+        product ? (
+        <div className="add-product__form">
         <h2>Add product</h2>
         <button className="add-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
         <FormInput
           name="name"
-        className="add-product__form__name"
+          className="add-product__form__name"
 
           title="Product Name"
           value={product.name}
@@ -148,8 +149,13 @@ function AddProduct({ toggle, closeModal }) {
         <div className="add-product__form__submit-button">
           <ButtonSubmit className="add-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Add new" />
         </div>
-      </div>
+      </div>) : (<div>Please add product</div>)
+      }
     </div>
+
+
+      
+    </>
   );
 }
 export default AddProduct;

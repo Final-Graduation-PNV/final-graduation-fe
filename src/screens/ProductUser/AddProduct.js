@@ -71,61 +71,65 @@ function AddProduct({ toggle, closeModal }) {
   };
 
   return (
-    <div className="add-product">
+    <>
+      {
+        product ? (<div className="add-product">
+          <div className="add-product__form">
+            <h2>Add product</h2>
+            <button className="add-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
+            <FormInput
+              name="name"
+              title="Product Name"
+              value={product.name}
+              onChange={handlerInput}
+              type="text"
+            />
+            <FormInput
+              name="image"
+              title="Product Image"
+              value={product.image}
+              onChange={(e) => setImg(e.target.files[0])}
+              type="file"
+            />
+            <FormInput
+              name="price"
+              title="Product Price"
+              value={product.price}
+              onChange={handlerInput}
+              type="number"
+            />
+            <div className="add-product__form__select-type">
+              <label>Product Type</label>
+              <select name="category_id" title="Category" onChange={handlerInput} type="select">
+                <option value={1}>Indoor plants</option>
+                <option value={2}>Out door tree</option>
+                <option value={3}>Indoor flower</option>
+                <option value={4}>Out door flower</option>
+              </select>
+            </div>
+            <FormInput
+              name="description"
+              title="Product Description"
+              className="add-product__form__input-description"
+              value={product.description}
+              onChange={handlerInput}
+              type="text"
+            />
+            <FormInput
+              name="quantity"
+              title="Product Quantity"
+              value={product.quantity}
+              onChange={handlerInput}
+              type="number"
+            />
+            <div className="add-product__form__submit-button">
+              <ButtonSubmit className="add-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Add new" />
+            </div>
+          </div>
+        </div>) : (<div>Please add product</div>)
+      }
 
-      <div className="add-product__form">
-        <h2>Add product</h2>
-        <button className="add-product__form__button-cancel" onClick={() => closeModal(false)}><FontAwesomeIcon icon={faClose} /></button>
-        <FormInput
-          name="name"
-          title="Product Name"
-          value={product.name}
-          onChange={handlerInput}
-          type="text"
-        />
-        <FormInput
-          name="image"
-          title="Product Image"
-          value={product.image}
-          onChange={(e) => setImg(e.target.files[0])}
-          type="file"
-        />
-        <FormInput
-          name="price"
-          title="Product Price"
-          value={product.price}
-          onChange={handlerInput}
-          type="number"
-        />
-        <div className="add-product__form__select-type">
-          <label>Product Type</label>
-          <select name="category_id" title="Category" onChange={handlerInput} type="select">
-            <option value={1}>Indoor plants</option>
-            <option value={2}>Out door tree</option>
-            <option value={3}>Indoor flower</option>
-            <option value={4}>Out door flower</option>
-          </select>
-        </div>
-        <FormInput
-          name="description"
-          title="Product Description"
-          className="add-product__form__input-description"
-          value={product.description}
-          onChange={handlerInput}
-          type="text"
-        />
-        <FormInput
-          name="quantity"
-          title="Product Quantity"
-          value={product.quantity}
-          onChange={handlerInput}
-          type="number"
-        />
-        <div className="add-product__form__submit-button">
-          <ButtonSubmit className="add-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Add new" />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 export default AddProduct;

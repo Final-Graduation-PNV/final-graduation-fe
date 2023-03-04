@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import AdminPage from "../../Admin";
 import Signin from "../../screens/Auth/Signin";
 import Signup from "../../screens/Auth/Signup";
 import AddTocart from "../../screens/Home/Addtocart";
@@ -11,20 +12,21 @@ import EditProfile from "../../screens/profiles/EditProfile";
 import Profile from "../../screens/profiles/Profile";
 function Auth() {
   return (
-    <Routes>
-      <Route index element={<Signin />} />
-      <Route path="Sup" element={<Signup />} />
-      <Route path="Sin" element={<Signin />} />"
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/home/detail/:id" element={<Detail />} />
-      <Route path="/home/detail/:id/addtocart" element={<AddTocart />} />
-      <Route path="/home/detail/:id/addtocart/payment" element={<Payment />} />
-      <Route path="/home/detail/seeshop" element={<SeeShop />} />
-      <Route path="/home/profile" element={<Profile />} />
-      <Route path="/home/EditProfile" element={<EditProfile />} />
-      <Route path="/home/shopOnnwer" element={<Product />} />
-      {/* <Route path="/home/detail/seeshop" element={< />} /> */}
-    </Routes>
+    // <Routes>
+    //   <Route index element={<Signin />} />
+    //   <Route path="Sup" element={<Signup />} />
+    //   <Route path="Sin" element={<Signin />} />"
+    //   <Route path="/home" element={<HomePage />} />
+    //   <Route path="/home/detail/:id" element={<Detail />} />
+    //   <Route path="/home/detail/:id/addtocart" element={<AddTocart />} />
+    //   <Route path="/home/detail/:id/addtocart/payment" element={<Payment />} />
+    //   <Route path="/home/detail/seeshop" element={<SeeShop />} />
+    //   <Route path="/home/profile" element={<Profile />} />
+    //   <Route path="/home/EditProfile" element={<EditProfile />} />
+    //   <Route path="/home/shopOnnwer" element={<Product />} />
+    //   {/* <Route path="/home/detail/seeshop" element={< />} /> */}
+    // </Routes>
+    <AdminPage/>
   )
 }
 export default Auth

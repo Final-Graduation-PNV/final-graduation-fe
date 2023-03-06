@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 import DashboardHeader from '../../components/DashboardHeader';
@@ -6,7 +6,7 @@ import DashboardHeader from '../../components/DashboardHeader';
 import all_orders from '../../constants/orders';
 import { calculateRange, sliceData } from '../../utils/table-pagination';
 
-import './styles.css';
+import './styles.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 
 
-function Categories() {
+function Categories({ openModal, toggle, setToggle }) {
     const [search, setSearch] = useState('');
     const [orders, setOrders] = useState(all_orders);
     const [page, setPage] = useState(1);
@@ -23,7 +23,6 @@ function Categories() {
 
     const [categories, setCategories] = useState([]);
 
-    const [toggle, setToggle] = useState(false);
     useEffect(() => {
 
         const shop_id = localStorage.getItem("user_id");
@@ -40,13 +39,34 @@ function Categories() {
         }
         )
             .then((res) => {
-                setCategories(res.data);
+                setCategories(res.data.categories);
 
             })
             .catch(err => {
                 console.log("Err get product: ", err)
             })
     }, [toggle]);
+
+    const deleteHandle = async (id) => {
+        console.log("id xóa:", id)
+        var isConfirmed = window.confirm("Are you sure for deleting?")
+        if (isConfirmed) {
+            const token = localStorage.getItem("token");
+            axios
+                .delete("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/admin/categories/" + id,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    }
+                )
+                .then(function (response) {
+                    console.log(response);
+                    setToggle(true);
+                })
+        }
+    }
 
     useEffect(() => {
         setPagination(calculateRange(all_orders, 5));
@@ -78,7 +98,7 @@ function Categories() {
     return (
         <div className='dashboard-content'>
             <DashboardHeader
-                btnText="New Category" />
+                btnText="New Category" onClick={() => openModal(true)} />
 
             <div className='dashboard-content-container'>
                 <div className='dashboard-content-header'>
@@ -94,17 +114,18 @@ function Categories() {
                 </div>
 
                 <table>
-                    <thead>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>CREATE AT</th>
-                        <th>UPDATE AT</th>
-                        <th>EDIT</th>
-                        <th>DELETE</th>
-                    </thead>
 
                     {categories.length !== 0 ?
                         <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>CREATE AT</th>
+                                <th>UPDATE AT</th>
+                                <th>EDIT</th>
+                                <th>DELETE</th>
+                            </tr>
+
                             {categories.map((category, index) => (
                                 <tr key={index}>
                                     <td><span>{category.id}</span></td>
@@ -112,29 +133,12 @@ function Categories() {
                                     <td><span>{category.created_at}</span></td>
                                     <td><span>{category.updated_at}</span></td>
                                     <td><span><FontAwesomeIcon icon={faPen} /></span></td>
-                                    <td><span><FontAwesomeIcon icon={faTrash} /></span></td>
+                                    <td><span><FontAwesomeIcon onClick={() => deleteHandle(category.id)} icon={faTrash} /></span></td>
                                 </tr>
                             ))}
                         </tbody>
                         : null}
                 </table>
-
-                {orders.length !== 0 ?
-                    <div className='dashboard-content-footer'>
-                        {pagination.map((item, index) => (
-                            <span
-                                key={index}
-                                className={item === page ? 'active-pagination' : 'pagination'}
-                                onClick={() => __handleChangePage(item)}>
-                                {item}
-                            </span>
-                        ))}
-                    </div>
-                    :
-                    <div className='dashboard-content-footer'>
-                        <span className='empty-table'>No data</span>
-                    </div>
-                }
             </div>
         </div>
     )

@@ -8,8 +8,8 @@ const sidebar_menu = [
     {
         id: 2,
         icon: '/icons/shipping.svg',
-        path: '/admin/orders',
-        title: 'Orders',
+        path: '/admin/users',
+        title: 'Manage Users',
     },
     {
         id: 3,

@@ -132,7 +132,7 @@ function Categories({ openModal, toggle, setToggle }) {
                                     <td><span>{category.name}</span></td>
                                     <td><span>{category.created_at}</span></td>
                                     <td><span>{category.updated_at}</span></td>
-                                    <td><span><FontAwesomeIcon icon={faPen} /></span></td>
+                                    <td><span><FontAwesomeIcon icon={faPen} onClick='' /></span></td>
                                     <td><span><FontAwesomeIcon onClick={() => deleteHandle(category.id)} icon={faTrash} /></span></td>
                                 </tr>
                             ))}

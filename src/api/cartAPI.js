@@ -1,0 +1,24 @@
+import http from "./http";
+
+const CART_API_URL = "user/carts";
+const CLEAR_ALL_CART_URL = 'user/clear-carts';
+
+export const getCarts = async () => {
+  return await http.get(CART_API_URL)
+}
+
+export const addToCart = async (id, quantity) => {
+  return await http.post(`${CART_API_URL}/${id}`, { quantity })
+}
+
+export const deleteCartById = async (id) => {
+  return await http.delete(`${CART_API_URL}/${id}`)
+}
+
+export const deleteAllCart = async () => {
+  return await http.delete(CLEAR_ALL_CART_URL)
+}
+
+export const updateCart = async (id, quantity) => {
+  return await http.patch(`${CART_API_URL}/${id}`, { quantity })
+}

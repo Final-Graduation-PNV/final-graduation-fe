@@ -1,0 +1,171 @@
+@import "../theme.scss";
+.container-seeshop {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+}
+.con-seeshop {
+  background-color: #eeeeee;
+  padding: 10px 0px 0px 0px;
+  height: 100%;
+  margin-top: 55px;
+}
+.seeshop {
+  width: 900px;
+  margin: 0px auto;
+  padding: 5px 10px 0px 10px;
+  border-radius: 10px;
+}
+.see-top__nav p {
+  font-size: 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.see-top__nav a {
+  color: blue;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.shop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.shop__img {
+  width: 65px;
+  height: 65px;
+  margin-right: 20px;
+}
+.shopower__name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 0px;
+}
+.shopowner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-chat {
+  border: none;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px red solid;
+  color: red;
+  margin-right: 20px;
+}
+.btn-seeshop {
+  border: none;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px #808080 solid;
+  color: #808080;
+}
+
+.seeshop-product {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  // margin-bottom: 20px;
+  .product {
+    padding: 20px 30px;
+    border: 1px black solid;
+    box-shadow: 2px 2px #888888;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.product__img {
+  height: 191px;
+  width: auto;
+}
+// .product__name {
+//   font-size: 18px;
+//   font-weight: 600;
+//   text-align: center;
+//   line-height: 0px;
+//   margin-top: 20px;
+// }
+.product__price {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 0px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  color: rgb(173, 3, 3);
+}
+.navRigth-Top__des {
+  font-weight: 600;
+  font-size: 20px;
+}
+.add-product_btn {
+  border: none;
+  align-items: center;
+  padding: 7px 5px 7px 5px;
+  background-color: #3c7026;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.navRigth-Top__search {
+  display: flex;
+  align-items: center;
+  border: 1px black solid;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #e5e5e5;
+  .search {
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #e5e5e5;
+  }
+  .faSearch {
+    padding: 5px;
+    margin-left: 5px;
+  }
+}
+.selectToday__des {
+  font-size: 20px;
+  font-weight: 600;
+}
+.selectToday_name {
+  font-size: 13px;
+  padding: 10px 20px;
+  border: 1px black solid;
+  background-color: #cccbcb;
+  border: none;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.selectToday_name option {
+  background-color: white;
+  font-size: 15px;
+}
+.faBasketball-home,
+.faShop-home {
+  width: 20px;
+  height: 20px;
+  color: $button;
+}
+.btn-shop {
+  display: flex;
+  align-items: center;
+}

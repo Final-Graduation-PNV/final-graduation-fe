@@ -6,10 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Open Sans", sans-serif;
 }
 .modalContainer {
   width: 600px;
-  height: 430px;
+  height: 370px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35);
@@ -34,10 +35,17 @@
 .modal-text__name,
 .modal-text__phone,
 .modal-city__city,
-.modal-des p {
+.modal-despayment p {
   font-size: 18px;
   font-weight: 600;
   line-height: 0px;
+  display: flex;
+}
+.modal-despayment textarea {
+  width: 580px;
+  padding: 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
 }
 .modal-name__input,
 .modal-phone__input {

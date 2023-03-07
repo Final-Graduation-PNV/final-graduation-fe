@@ -1,6 +1,6 @@
 // import ModalSigin from "./screens/Modals/ModalSignin";
 
-import Auth from "./navigations/Auth/Auth";
+import Auth from "./navigations/Auth";
 function App() {
   return (
     <>

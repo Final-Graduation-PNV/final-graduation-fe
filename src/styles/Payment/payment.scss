@@ -1,0 +1,233 @@
+.container-payment {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+.con-payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eeeeee;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.payment {
+  width: 1000px;
+  margin: 70px auto;
+}
+.payment-top__nav p {
+  font-size: 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.payment-top__nav a {
+  color: blue;
+  font-size: 14px;
+  text-decoration: none;
+}
+.delivery-address {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+}
+.location-icon {
+  display: flex;
+  align-items: center;
+}
+.location-icon p {
+  line-height: 0px;
+  color: #3c7026;
+  font-size: 20px;
+}
+.location-person p {
+  line-height: 0px;
+}
+.location-person p:first-child {
+  font-weight: 600;
+}
+.location-person {
+  display: flex;
+  align-items: center;
+}
+.faLocationDot {
+  width: 15px;
+  color: #3c7026;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.faPen {
+  color: #3c7026;
+  font-size: 20px;
+  cursor: pointer;
+}
+.product {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.product-top {
+  display: flex;
+}
+.top__name {
+  width: 40%;
+  font-size: 20px;
+  color: #cccbcb;
+  width: 600;
+  line-height: 0px;
+}
+.top__price {
+  width: 20%;
+  text-align: center;
+  font-size: 20px;
+  color: #cccbcb;
+  width: 600;
+  line-height: 0px;
+}
+.top__quantily {
+  width: 20%;
+  text-align: center;
+  font-size: 20px;
+  color: #cccbcb;
+  width: 600;
+  line-height: 0px;
+}
+.top__amount {
+  width: 20%;
+  text-align: center;
+  font-size: 20px;
+  color: #cccbcb;
+  width: 600;
+  line-height: 0px;
+}
+.product-con {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #bbbaba;
+  .img__product {
+    width: 68px;
+    height: auto;
+  }
+  .product-imgName {
+    width: 40%;
+    display: flex;
+    align-items: center;
+  }
+  .con__prie {
+    width: 20%;
+    text-align: center;
+  }
+  .con__quantily {
+    width: 20%;
+    text-align: center;
+  }
+  .con__amount {
+    width: 20%;
+    text-align: center;
+  }
+}
+.product-note {
+  display: flex;
+  padding: 15px;
+  align-items: center;
+}
+.product-note p {
+  margin-right: 20px;
+  font-size: 20px;
+}
+.product-note input {
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  border: 1px solid #bbbaba;
+  box-shadow: 0px 0px 5px #bbbaba;
+  border-radius: 10px;
+  padding: 0px 10px 0px 10px;
+}
+.product-ship {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #3c7026;
+  background: rgba(31, 73, 26, 0.2);
+  padding: 0px 10px 0px 10px;
+}
+.ship-free {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #bbbaba;
+  align-items: center;
+}
+.free-icon {
+  display: flex;
+  align-items: center;
+}
+.ship-free p {
+  font-size: 14px;
+  color: #3c7026;
+  padding: 10px;
+}
+.free-icon p {
+  font-size: 14px;
+  color: #3c7026;
+}
+.ship-total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.ship-total p:first-child {
+  color: #aaa8a8;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.ship-total p:last-child {
+  color: #3c7026;
+  font-size: 20px;
+  font-weight: 600;
+}
+.payment-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.payment-icon {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.faClipboard {
+  font-size: 30px;
+  color: #13542c;
+  margin-right: 10px;
+}
+.total-amount,
+.ships-free,
+.total-payment {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+.total-payment p:last-child {
+  font-size: 20px;
+  color: rgb(173, 3, 3);
+  font-weight: 600;
+}
+.order_btn {
+  border: none;
+  padding: 10px 60px;
+  background: #3c7026;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+}

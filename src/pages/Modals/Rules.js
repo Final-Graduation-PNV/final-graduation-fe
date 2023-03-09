@@ -2,9 +2,10 @@ import "../../styles/Modal/Rules.scss";
 
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { shopBe } from "../../api/authAPI";
+import { gettUserId, setShopOnwer } from "../../utils/localStorageUtils";
 
 function Rules({ closeModal }) {
   const user_id = localStorage.getItem("user_id");
@@ -13,32 +14,17 @@ function Rules({ closeModal }) {
   const shopOnwer = localStorage.getItem("shopOnwer");
 
   const navigate = useNavigate();
-  const handleShopOnwer = () => {
-    axios.post(UrlShopOnwer,
-      {
-        user_id
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      }
-    )
-      .then(res => {
-        console.log("Ress:", res)
-        localStorage.setItem("shopOnwer", "true");
-        console.log("shopOnwer", shopOnwer)
-        // alert(res.data.message)
-        navigate("/home/shopOnnwer")
-      })
-      .catch(err => {
-        localStorage.setItem("shopOnwer", "true");
-        console.log("shopOnwer", shopOnwer)
-        console.log("Err:", err, "token_user:", token, "user_id", user_id)
-        alert(err.response.data.message)
+  const handleShopOnwer = async () => {
+    try {
+      const res = await shopBe(
+        gettUserId(res.data.id)
+      );
+      setShopOnwer("true")
+      navigate("/shopOnnwer")
+    } catch (error) {
+      console.log("Error:", error)
+    }
 
-      })
   }
   console.log("shopOnwer: ", typeof (shopOnwer))
   return (

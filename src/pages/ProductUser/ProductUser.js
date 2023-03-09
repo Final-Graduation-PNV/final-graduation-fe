@@ -24,8 +24,7 @@ const Product = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             }
-        }
-        )
+        })
             .then((res) => {
                 setCategories(res.data.categories);
 

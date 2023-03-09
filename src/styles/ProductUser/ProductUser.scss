@@ -18,7 +18,7 @@
 }
 .product-user {
   width: 100%;
-
+  font-family: "Open Sans", sans-serif;
   &__header {
     width: 100%;
   }
@@ -110,7 +110,7 @@
         &__filter {
           border: 1px solid #dddddd;
           padding: 0px 0px 0px 0px;
-          width: 1050px;
+          width: 1035px;
           height: 40px;
           border-radius: 5px;
           display: flex;

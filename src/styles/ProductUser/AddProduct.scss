@@ -24,6 +24,15 @@
     }
     &__price-quantity {
       display: flex;
+      &__price{
+        display: flex;
+        &-input{
+          margin-right: 20px;
+        & input {
+          width: 110px;
+        }
+        }
+      }
       &__input {
         margin-right: 20px;
         & input {

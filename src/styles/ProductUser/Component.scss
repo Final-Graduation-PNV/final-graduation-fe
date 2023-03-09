@@ -25,6 +25,11 @@
     font-weight: bold;
   }
 
+  &-err {
+    line-height: 0px;
+    margin: 0px;
+  }
+
   & input,
   & select {
     display: flex;
@@ -37,6 +42,7 @@
     font-size: 15px;
     line-height: 1.5;
   }
+
   & input::placeholder {
     font-size: 12px;
   }

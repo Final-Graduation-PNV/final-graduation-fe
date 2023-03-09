@@ -12,7 +12,7 @@ import account from "../assets/Image/account.png";
 import ProductCard from "../components/features/home/ProductCard";
 import useCarts from "../hooks/useCarts";
 import Header from "../layout/header/Header";
-import { default as AlertCart, default as Cart } from "./Modals/Cart";
+import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
 import CreatePM from "./Modals/CreateMP";
 
@@ -25,6 +25,7 @@ function HomePage() {
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
   const [ishowCart, setIsShowCart] = useState(false)
+  const { AlertCartError, AlertCartSuccess } = Cart();
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -57,10 +58,11 @@ function HomePage() {
   const handleAddCart = async (id) => {
     try {
       await addToCart(id, 1)
-      AlertCart()
+      AlertCartSuccess()
       refreshCart()
     } catch (e) {
-      console.log("error cart: ", e);
+      AlertCartError()
+      console.log("error cart: ", e.data.message);
     }
   }
 

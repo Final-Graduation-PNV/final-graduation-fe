@@ -26,7 +26,7 @@ function Header() {
         <div id="container-header">
           <div className="header-left">
             <div className="header-left__img">
-              <img src={logo} alt="Logo" style={{ width: 27, height: 45, marginRight: 30 }} />
+              <img src={logo} alt="Logo" style={{ width: 27, height: 45, marginRight: 30 }} onClick={() => { navigate("/") }} />
             </div>
             <div className="header-search">
               <FontAwesomeIcon icon={faSearch} />

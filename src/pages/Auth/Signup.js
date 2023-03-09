@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { signup } from '../../api/authAPI';
 import logo from "../../assets/Image/logo.png";
+import ConfirmOTP from "../Modals/ConfirmOTP";
 import ModalSigup from '../Modals/ModalSignup';
 
 function Signup() {
@@ -18,6 +19,7 @@ function Signup() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isShowOTP, setIsShowOTP] = useState(false)
 
   const initialErrors = Object.freeze({
     name: "",
@@ -43,7 +45,8 @@ function Signup() {
         address,
         city
       );
-      navigate("/")
+      setIsShowOTP(true)
+      // navigate("/")
       console.log("Sign up: ", res)
     }
     catch (err) {
@@ -59,6 +62,7 @@ function Signup() {
   return (
 
     <div id="container">
+      {isShowOTP && <ConfirmOTP closeModal={setIsShowOTP} />}
       {isModalOpen && <ModalSigup closeModal={setIsModalOpen} />}
       <div className="signup">
         <div className="signup__left">

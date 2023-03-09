@@ -4,43 +4,31 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../../api/cartAPI";
 import useCarts from "../../../hooks/useCarts";
+import AlertCart from "../../../pages/Modals/Cart";
 import ProductReview from "./ProductReview";
 
 const ProductDetail = ({ product }) => {
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts();
 
-  const [quantity, setQuantity] = useState(product.quantity);
-  console.log("Quantity: ", quantity);
-  // console.log(quantity);
-  // console.log("ID", product.id);
+  const [quantity, setQuantity] = useState(1);
 
-  // const id = product.id;
-
-  const increaseHandler = async (id) => {
-    try {
-      const res = addToCart(id, 1);
-      // setQuantity(res);
-      refreshCart();
-      console.log("Increase detail: ", res);
-    } catch (error) {
-      console.log("Error increase detail: ", error);
-    }
+  const increaseHandler = async () => {
+    const newQuantity = Math.min(quantity + 1, product.quantity);
+    setQuantity(newQuantity);
+    // addHandler({ quantity: newQuantity });
   };
 
-  const decreaseHandler = async (id) => {
-    try {
-      const res = addToCart(id, -1);
-      setQuantity(res);
-      console.log("Decrease detail: ", res);
-    } catch (error) {
-      console.log("Error decrease detail", error);
-    }
+  const decreaseHandler = async () => {
+    const newQuantity = Math.max(quantity - 1, 1);
+    setQuantity(newQuantity);
+    // addHandler({ quantity: newQuantity });
   };
 
-  const handleAddCart = async (id) => {
+  const handleAddCart = async () => {
     try {
-      await addToCart(id, 1);
+      await addToCart(product.id, quantity);
+      AlertCart();
       refreshCart();
     } catch (e) {
       console.log("error cart: ", e);
@@ -70,14 +58,14 @@ const ProductDetail = ({ product }) => {
         <div className="text-quantily-detail">
           <div
             className="quantily-detail__minus"
-            onClick={() => decreaseHandler(product.id)}
+            onClick={() => decreaseHandler()}
           >
             -
           </div>
           <div className="quantily-detail__number">{quantity}</div>
           <div
             className="quantily-detail__plus"
-            onClick={() => increaseHandler(product.id)}
+            onClick={() => increaseHandler()}
           >
             +
           </div>
@@ -89,7 +77,7 @@ const ProductDetail = ({ product }) => {
           <button
             className="btn-cart"
             onClick={() => {
-              handleAddCart(product.id);
+              handleAddCart();
             }}
           >
             Add to cart

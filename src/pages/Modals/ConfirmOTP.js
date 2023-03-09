@@ -24,6 +24,8 @@ const ConfirmOTP = () => {
     return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 
+  
+
   return (
     <div className="modalBackground-cofirmOTP">
       <div className="modalcontainer-confirmOTP">
@@ -36,6 +38,9 @@ const ConfirmOTP = () => {
           <div className="countSeconds">{formatTime(seconds)}</div>
           <div className="inputConfirm">
             <input placeholder="Enter otp code..." />
+          </div>
+          <div className="btn-sendOTP">
+            <button className="btn_sendOTP">Send OTP again</button>
           </div>
           <div className="btn-confirmOPT">
             <button className="btn-confirmOPT__cancel">Cancel</button>

@@ -5,44 +5,38 @@ import { deleteCartById, updateCart } from "../../../api/cartAPI";
 import useCarts from "../../../hooks/useCarts";
 
 const CartTableRow = ({ product }) => {
-  const { refreshCart, getQuantity } = useCarts();
+  const { refreshCart } = useCarts();
   const [quantity, setQuantity] = useState(product.cart_quantity);
+  const [isQuantityOverLimit, setIsQuantityOverLimit] = useState(false);
 
   const deleteHandler = async (id) => {
     await deleteCartById(id);
     refreshCart();
   };
 
-  console.log(product);
-  console.log("Get quantity: ", getQuantity([product.cart_id]));
-  // console.log("product _cart quantity", product.cart_quantity);
-  const test_quantity = product.cart_quantity;
-
-  console.log("test quantity before: ", test_quantity);
   const increaseHandler = async () => {
+    isQuantityOverLimit || setIsQuantityOverLimit(false);
     const newQuantity = quantity + 1;
-    // console.log("test quatity after: ", quantily);
 
-    setQuantity(newQuantity);
-    updatehandler({ quantity: newQuantity });
-    // console.log("new quatity decrease + 1: ", newQuantity);
+    try {
+      await updatehandler({ quantity: newQuantity });
+      setQuantity(newQuantity);
+    } catch ({ response }) {
+      setIsQuantityOverLimit(true);
+      setQuantity(quantity);
+    }
   };
 
   const decreaseHandler = async () => {
+    isQuantityOverLimit && setIsQuantityOverLimit(false);
     const newQuantity = Math.max(quantity - 1, 1);
     setQuantity(newQuantity);
     updatehandler({ quantity: newQuantity });
-    // console.log("new quatity increase - 1: ", newQuantity);
   };
 
   const updatehandler = async ({ quantity }) => {
-    try {
-      const res = await updateCart(product.cart_id, quantity);
-      refreshCart();
-      // console.log("update cart successfuly: ", res);
-    } catch (err) {
-      console.log("err update cart ", err);
-    }
+    await updateCart(product.cart_id, quantity);
+    refreshCart();
   };
 
   return (
@@ -54,16 +48,24 @@ const CartTableRow = ({ product }) => {
       <div className="addCart-top__price">
         {new Intl.NumberFormat().format(product.price * 1000)} vnđ
       </div>
-      <div className="text-quantily-cart">
-        <div className="quantily-cart__minus" onClick={() => decreaseHandler()}>
-          -
+      <div className="quantity-cart-container">
+        <div className="text-quantily-cart">
+          <div
+            className="quantily-cart__minus"
+            onClick={() => decreaseHandler()}
+          >
+            -
+          </div>
+          <div className="quantily-cart__number">{quantity}</div>
+          <div
+            className="quantily-cart__plus"
+            onClick={() => increaseHandler(product.cart_quantity)}
+          >
+            +
+          </div>
         </div>
-        <div className="quantily-cart__number">{quantity}</div>
-        <div
-          className="quantily-cart__plus"
-          onClick={() => increaseHandler(product.cart_quantity)}
-        >
-          +
+        <div className={`error ${isQuantityOverLimit ? "active" : ""}`}>
+          Over limit!
         </div>
       </div>
       <div className="addCart-top__totalPrice">

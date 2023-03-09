@@ -1,3 +1,4 @@
+
 import "../styles/HomePage.scss";
 
 import { faBasketball, faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +12,7 @@ import account from "../assets/Image/account.png";
 import ProductCard from "../components/features/home/ProductCard";
 import useCarts from "../hooks/useCarts";
 import Header from "../layout/header/Header";
+import { default as AlertCart, default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
 import CreatePM from "./Modals/CreateMP";
 
@@ -22,6 +24,7 @@ function HomePage() {
   const shopOnwer = localStorage.getItem('shopOnwer');
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
+  const [ishowCart, setIsShowCart] = useState(false)
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -44,7 +47,6 @@ function HomePage() {
       if (event.key === 'Enter') {
         const res = await searchProduct(search);
         setProducts(res.data.products)
-        console.log("search: ", res)
       }
     }
     catch (err) {
@@ -52,20 +54,11 @@ function HomePage() {
     }
   }
 
-  // const handleSearchCategories = async() => {
-  //   try {
-  //     const res = searchCategories(value, );
-  //   }
-  //   catch(err){
-  //     console.log("Err search categories and city:", err)
-  //   }
-  // }
-
   const handleAddCart = async (id) => {
     try {
       await addToCart(id, 1)
+      AlertCart()
       refreshCart()
-
     } catch (e) {
       console.log("error cart: ", e);
     }
@@ -76,6 +69,7 @@ function HomePage() {
     <>
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
+      {ishowCart && <Cart />}
       {
         products ? (
           <div className="container-homepage">

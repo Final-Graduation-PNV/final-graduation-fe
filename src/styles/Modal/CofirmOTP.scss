@@ -11,7 +11,7 @@
 }
 .modalcontainer-confirmOTP {
   width: 400px;
-  height: 250px;
+  height: 290px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35);
@@ -80,4 +80,18 @@
   font-weight: 600;
   color: #fff;
   border: none;
+}
+.btn-sendOTP {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.btn_sendOTP {
+  border: none;
+  background-color: #fff;
+  color: #3c7026;
+  margin: 0px auto;
+  font-style: italic;
+  font-size: 13px;
+  cursor: pointer;
 }

@@ -36,6 +36,7 @@ function Auth() {
           )
           : (
             <>
+              {/* <Route path="comfirmOtp" element={<ConfirmOTP />} /> */}
               <Route path="logout" element={<Logout />} />
               <Route path="sign-up" element={<Signup />} />
               <Route path="sign-in" index element={<Signin />} />

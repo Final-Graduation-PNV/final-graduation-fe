@@ -27,7 +27,6 @@ function Cart() {
     <div className="container-addtocar">
 
       <Header />
-
       <div className="con-addToCart">
         <div className="addToCart">
           <RouteCart />

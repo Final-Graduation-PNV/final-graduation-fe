@@ -29,7 +29,7 @@ export const gettUserId = () => {
 }
 
 export const setUserId = (value) => {
-  return localStorage.setItem(USERID_KEY, value)
+  localStorage.setItem(USERID_KEY, value)
 }
 
 export const removeToken = () => {

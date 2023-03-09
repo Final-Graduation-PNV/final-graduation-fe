@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-import { signup } from '../../api/authAPI';
+import { sendEmailOTP, signup } from '../../api/authAPI';
 import logo from "../../assets/Image/logo.png";
+import { setUserId } from "../../utils/localStorageUtils";
 import ConfirmOTP from "../Modals/ConfirmOTP";
 import ModalSigup from '../Modals/ModalSignup';
 
@@ -42,12 +43,9 @@ function Signup() {
         email,
         password,
         password_confirmation,
-        address,
-        city
       );
+      setUserId(res.data.user.id)
       setIsShowOTP(true)
-      // navigate("/")
-      console.log("Sign up: ", res)
     }
     catch (err) {
       setErrors(err.data.errors)
@@ -59,10 +57,11 @@ function Signup() {
     setErrors(initialErrors)
   }
 
+
   return (
 
     <div id="container">
-      {isShowOTP && <ConfirmOTP closeModal={setIsShowOTP} />}
+      {isShowOTP && <ConfirmOTP  closeModal={setIsShowOTP}  email = {email} />}
       {isModalOpen && <ModalSigup closeModal={setIsModalOpen} />}
       <div className="signup">
         <div className="signup__left">

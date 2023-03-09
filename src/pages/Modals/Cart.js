@@ -22,8 +22,19 @@ const Cart = () => {
     })
   }
 
+  const AlertSendSuccess = () => {
+    Swal.fire({
+      position: 'center',
+      fontSize: 18,
+      color: "#3c7026",
+      icon: 'success',
+      title: 'The OTP verification code has been sent to your Email. Please enter...',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
   return {
-    AlertCartError, AlertCartSuccess
+    AlertCartError, AlertCartSuccess, AlertSendSuccess
   }
 }
 export default Cart

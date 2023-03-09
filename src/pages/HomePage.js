@@ -24,7 +24,6 @@ function HomePage() {
   const shopOnwer = localStorage.getItem('shopOnwer');
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
-  const [ishowCart, setIsShowCart] = useState(false)
   const { AlertCartError, AlertCartSuccess } = Cart();
 
   useEffect(() => {
@@ -71,7 +70,6 @@ function HomePage() {
     <>
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
-      {ishowCart && <Cart />}
       {
         products ? (
           <div className="container-homepage">

@@ -21,8 +21,8 @@ function Header() {
 
   return (
     <>
-      {isLogout && <Logout closeModal={setIsLogout} />}
       <div className="header">
+        {isLogout && <Logout closeModal={setIsLogout} />}
         <div id="container-header">
           <div className="header-left">
             <div className="header-left__img">
@@ -42,7 +42,6 @@ function Header() {
             <div className="header-right-account">
               <div className="detail-top__cart">
                 <div className="top__cart-icon" >
-
                   <FontAwesomeIcon className="faCartShopping" icon={faCartShopping} onClick={() => navigate('/cart')} />
                   <a>{cart.length}</a>
                 </div>
@@ -75,7 +74,7 @@ function Header() {
               <div>
                 <FontAwesomeIcon className="faFacebookMessenger" icon={faFacebookMessenger} />
                 <FontAwesomeIcon className="faBell" icon={faBell} />
-                <img src={account} alt="account" style={{ width: 40, height: 40, borderRadius: 50 }} onClick={() => { setIsLogout(true) }} />
+                <img className="acount__" src={account} alt="account" style={{ width: 40, height: 40, borderRadius: 50, cursor: "pointer" }} onClick={() => { setIsLogout(true) }} />
               </div>
             </div>
 

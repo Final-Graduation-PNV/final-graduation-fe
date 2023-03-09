@@ -20,5 +20,5 @@ export const deleteAllCart = async () => {
 }
 
 export const updateCart = async (id, quantity) => {
-  return await http.patch(`${CART_API_URL}/${id}`, { quantity })
+  return await http.patch(`${CART_API_URL}/${id}`, { quantity: quantity })
 }

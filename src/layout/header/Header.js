@@ -13,9 +13,6 @@ import logo from "../../assets/Image/logo.png";
 import useCarts from "../../hooks/useCarts";
 import Logout from "../../pages/Modals/Logout";
 
-
-
-
 function Header() {
 
   const [isLogout, setIsLogout] = useState(false);

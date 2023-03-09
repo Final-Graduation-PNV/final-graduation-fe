@@ -11,12 +11,9 @@ import RouteCart from "../../components/features/cart/RouteCart"
 import useCarts from "../../hooks/useCarts"
 import Header from "../../layout/header/Header"
 
-
 function Cart() {
   const { cart, refreshCart, getCart, loadCartToggle, getTotal } = useCarts();
   const navigate = useNavigate()
-
-
 
   useEffect(() => {
     getCart()

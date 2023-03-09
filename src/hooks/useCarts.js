@@ -11,6 +11,7 @@ const useCarts = () => {
 
   const refreshCart = () => dispatch(loadCart())
   const setCart = (cart) => dispatch(setCartList(cart))
+
   const getCart = async () => {
     try {
       const res = await getCartApi()
@@ -27,12 +28,17 @@ const useCarts = () => {
     }, 0)
   }
 
+  const getQuantity = () => {
+    return cart.map(ele => {
+      return [ele.cart_quantity]
+    })
+  }
   return {
     cart,
     setCart,
     refreshCart,
     loadCartToggle: load,
-    getCart, getTotal
+    getCart, getTotal, getQuantity
   }
 }
 

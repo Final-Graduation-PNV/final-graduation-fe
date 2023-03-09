@@ -79,11 +79,6 @@ function Signup() {
             <p className='signup__right--title'>Sign Up</p>
             <input type="text" className="name" name="Name" placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
             {errors.name && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.name}</div>}
-            <input type="text" className="address" name="address" placeholder='Address' value={address} onChange={(e) => { setAddress(e.target.value) }} />
-            {errors.address && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.address}</div>}
-            <input type="text" className="city" name="city" placeholder='City' value={city} onChange={(e) => { setCity(e.target.value) }} />
-            {errors.city && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.city}</div>}
-            {errors.message && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.message}</div>}
             <input type="text" className="email" name="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
             {errors.email && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.email}</div>}
             <input type="password" className="password" name="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />

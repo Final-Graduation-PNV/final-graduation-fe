@@ -1,27 +1,40 @@
 import { faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../../api/cartAPI";
+import useCarts from "../../../hooks/useCarts";
 import ProductReview from "./ProductReview";
 
-const ProductDetail = ({
-  product,
-  quan,
-  quantity,
-}) => {
+const ProductDetail = ({ product }) => {
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(1);
+  const { setCart, refreshCart, getCart, loadCartToggle } = useCarts();
 
-  const increaseHandler = (quan) => {
-    if (quan == quantity) {
-      return quantity;
-    } else {
-      setQuantity(quantity + 1);
+  const [quantity, setQuantity] = useState(product.quantity);
+  console.log("Quantity: ", quantity);
+  // console.log(quantity);
+  // console.log("ID", product.id);
+
+  // const id = product.id;
+
+  const increaseHandler = async (id) => {
+    try {
+      const res = addToCart(id, 1);
+      // setQuantity(res);
+      refreshCart();
+      console.log("Increase detail: ", res);
+    } catch (error) {
+      console.log("Error increase detail: ", error);
     }
   };
 
-  const decreaseHandler = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+  const decreaseHandler = async (id) => {
+    try {
+      const res = addToCart(id, -1);
+      setQuantity(res);
+      console.log("Decrease detail: ", res);
+    } catch (error) {
+      console.log("Error decrease detail", error);
     }
   };
 
@@ -31,15 +44,6 @@ const ProductDetail = ({
       refreshCart();
     } catch (e) {
       console.log("error cart: ", e);
-    }
-  };
-
-  const handleQuantity = async () => {
-    try {
-      const res = await addToCart(id, quantity);
-      console.log("change quantity:", res);
-    } catch (err) {
-      console.log("Err change quantity: ", err);
     }
   };
 
@@ -63,20 +67,17 @@ const ProductDetail = ({
             </p>
           </div>
         </div>
-        <div className="text-quantily-detail" onClick={handleQuantity}>
-          <div className="quantily-detail__minus" onClick={decreaseHandler}>
+        <div className="text-quantily-detail">
+          <div
+            className="quantily-detail__minus"
+            onClick={() => decreaseHandler(product.id)}
+          >
             -
           </div>
-          <div
-            className="quantily-detail__number"
-            value={quan}
-            onChange={(e) => e.target.value}
-          >
-            {quan}
-          </div>
+          <div className="quantily-detail__number">{quantity}</div>
           <div
             className="quantily-detail__plus"
-            onClick={() => increaseHandler(product.quantity)}
+            onClick={() => increaseHandler(product.id)}
           >
             +
           </div>

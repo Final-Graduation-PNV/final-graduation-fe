@@ -151,8 +151,8 @@ const Product = () => {
                                 products ? (
                                     <div className="product-user__body__right-menu__list">
                                         {products.map((product) => (
-                                            <div>
-                                                <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
+                                            <div key={product.id}>
+                                                <ProductInfo  data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
                                                 <hr />
                                             </div>
                                         ))

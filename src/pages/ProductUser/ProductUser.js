@@ -8,6 +8,9 @@ import HeaderShopOwner from "../../components/HeaderShopOwner";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import ProductInfo from "./ProductInfo";
+// import swal from "sweetalert";
+
+
 const Product = () => {
     const [products, setProducts] = useState([]);
     const [toggle, setToggle] = useState(false);
@@ -19,7 +22,6 @@ const Product = () => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         axios.get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/categories", {
-
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -75,9 +77,10 @@ const Product = () => {
                 )
                 .then(function (response) {
                     console.log(response);
-
                     setToggle(!toggle)
                 })
+            // swal("Delete product successfully!", "", "success");
+
         }
     }
     const handlerInput = (e) => {
@@ -94,8 +97,8 @@ const Product = () => {
 
     return (
         <>
-            {modalAddProduct && <AddProduct toggle={setToggle} categories={categories} closeModal={setModalAddProduct} />}
-            {modalEditProduct && <EditProduct toggle={setToggle} categories={categories} key={editData.id} data={editData} closeModal={setModalEditProduct} />}
+            {modalAddProduct && <AddProduct setToggle={setToggle} toggle={toggle} categories={categories} closeModal={setModalAddProduct} />}
+            {modalEditProduct && <EditProduct setToggle={setToggle} toggle={toggle} categories={categories} key={editData.id} data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
                 <div className="product-user__body">
@@ -123,8 +126,8 @@ const Product = () => {
                             <div className="product-user__body__right-menu__head">
                                 <div className="product-user__body__right-menu__head__filter">
                                     <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
-                                    <input name="filter"
-                                        placeholder="Filter"
+                                    <input name="search"
+                                        placeholder="Search"
                                         onChange={handlerInput}
                                         type="text"
                                         className="product-user__body__right-menu__head__filter-input"

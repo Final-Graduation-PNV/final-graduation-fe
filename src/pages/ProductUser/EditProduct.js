@@ -4,8 +4,10 @@ import FormInput from "../../components/FormInput";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+// import swal from "sweetalert";
 
-function EditProduct({ toggle, data, closeModal, categories }) {
+
+function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
   const [product, setProduct] = useState({
@@ -16,6 +18,18 @@ function EditProduct({ toggle, data, closeModal, categories }) {
     description: data.description,
     quantity: data.quantity,
   });
+  const initialErrors = Object.freeze({
+    name: "",
+    price: "",
+    description: "",
+    quantity: ""
+  })
+
+  const [errors, setErrors] = useState(initialErrors);
+
+  const resetErrors = () => {
+    setErrors(initialErrors)
+  }
 
   const handlerInput = (e) => {
     const { name, value } = e.target;
@@ -59,14 +73,17 @@ function EditProduct({ toggle, data, closeModal, categories }) {
                 'Authorization': `Bearer ${token}`,
               }
             }
-          ).then(function () {
-            toggle(true);
+          ).then((response) => {
+            setToggle(!toggle);
             closeModal(false);
             onRedirect();
+            // swal("Edit product successfully!", "", "success");
           })
-            .catch(function (error) {
-              console.log("Er product shop onwer", error);
-            });
+          .catch(({response}) => {
+            setErrors(response.data.errors)
+            console.log("Err sign in", errors)
+          });
+
         });
     } else {
       const token = localStorage.getItem("token")
@@ -86,14 +103,17 @@ function EditProduct({ toggle, data, closeModal, categories }) {
           }
         }
       )
-        .then(function () {
-          toggle(true);
-          closeModal(false);
-          onRedirect();
-        })
-        .catch(function (error) {
-          console.log("Er product shop onwer", error);
-        });
+      .then((response) => {
+        setToggle(!toggle);
+        closeModal(false);
+        onRedirect();
+        // swal("Add new product successfully!", "", "success");
+      })
+      .catch(({response}) => {
+        setErrors(response.data.errors)
+        console.log("Err sign in", errors)
+      });
+
     }
 
   };
@@ -109,6 +129,8 @@ function EditProduct({ toggle, data, closeModal, categories }) {
           value={product.name}
           onChange={handlerInput}
           type="text"
+          error={errors.name}
+
         />
         <div className="edit-product__form__image">
           <img className="product-info-img" src={product.image} alt="" />
@@ -128,6 +150,8 @@ function EditProduct({ toggle, data, closeModal, categories }) {
             value={product.price}
             onChange={handlerInput}
             type="number"
+            error={errors.price}
+
           />
           <FormInput
             className="edit-product__form__price-quantity__input"
@@ -136,6 +160,8 @@ function EditProduct({ toggle, data, closeModal, categories }) {
             value={product.quantity}
             onChange={handlerInput}
             type="number"
+            error={errors.quantity}
+
           />
         </div>
 

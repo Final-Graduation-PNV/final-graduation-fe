@@ -4,8 +4,9 @@ import axios from "axios";
 import { useState } from "react";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import FormInput from "../../components/FormInput";
+// import swal from "sweetalert";
 
-function AddProduct({ toggle, closeModal, categories }) {
+function AddProduct({ toggle, setToggle, closeModal, categories }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
   const [product, setProduct] = useState({
@@ -13,11 +14,22 @@ function AddProduct({ toggle, closeModal, categories }) {
     price: "",
     description: "",
     quantity: "",
-    category_id: "",
+    category_id: categories[0].id,
     shop_id: localStorage.getItem("user_id")
   });
 
+  const initialErrors = Object.freeze({
+    name: "",
+    price: "",
+    description: "",
+    quantity: ""
+  })
 
+  const [errors, setErrors] = useState(initialErrors);
+
+  const resetErrors = () => {
+    setErrors(initialErrors)
+  }
   const handlerInput = (e) => {
     const { name, value } = e.target;
     console.log(product);
@@ -35,6 +47,8 @@ function AddProduct({ toggle, closeModal, categories }) {
   };
 
   const handleSubmitForm = async () => {
+    resetErrors()
+
     const formData = new FormData()
     formData.append('file', img)
     formData.append("upload_preset", "gl32w86e")
@@ -59,14 +73,17 @@ function AddProduct({ toggle, closeModal, categories }) {
             }
           }
         )
-          .then(function (response) {
-            toggle(true);
+          .then((response) => {
+            setToggle(!toggle);
             closeModal(false);
             onRedirect();
+            // swal("Add new product successfully!", "", "success");
           })
-          .catch(function (error) {
-            console.log("Er product shop onwer", error);
+          .catch(({response}) => {
+            setErrors(response.data.errors)
+            console.log("Err sign in", errors)
           });
+
       });
   };
 
@@ -86,6 +103,7 @@ function AddProduct({ toggle, closeModal, categories }) {
               onChange={handlerInput}
               placeholder="Product name"
               type="text"
+              error={errors.name}
             />
             <FormInput
               name="image"
@@ -95,15 +113,20 @@ function AddProduct({ toggle, closeModal, categories }) {
               type="file"
             />
             <div className="add-product__form__price-quantity">
-              <FormInput
-                className="add-product__form__price-quantity__input"
-                name="price"
-                title="Product Price"
-                placeholder="Product price"
-                value={product.price}
-                onChange={handlerInput}
-                type="number"
-              />
+              <div className="add-product__form__price-quantity__price">
+                <FormInput
+                  className="add-product__form__price-quantity__price-input"
+                  name="price"
+                  title="Product Price"
+                  placeholder="Product price"
+                  value={product.price}
+                  onChange={handlerInput}
+                  type="number"
+                  error={errors.price}
+                /> 
+                <label>.000 VND</label>
+              </div>
+
               <FormInput
                 className="add-product__form__price-quantity__input"
                 name="quantity"
@@ -112,17 +135,9 @@ function AddProduct({ toggle, closeModal, categories }) {
                 value={product.quantity}
                 onChange={handlerInput}
                 type="number"
+                error={errors.quantity}
               />
             </div>
-
-            {/* <FormInput
-          name="price"
-          title="Product Price"
-          value={product.price}
-          onChange={handlerInput}
-          placeholder="Product price"
-          type="number"
-        /> */}
             <div className="add-product__form__select-type">
               <label>Product Type</label>
               <select name="category_id" title="Category" onChange={handlerInput} type="select">
@@ -138,14 +153,6 @@ function AddProduct({ toggle, closeModal, categories }) {
               <textarea rows="4" cols="58" name="description" value={product.description} onChange={handlerInput} placeholder="Product description">
               </textarea>
             </div>
-            {/* <FormInput
-          name="quantity"
-          title="Product Quantity"
-          value={product.quantity}
-          onChange={handlerInput}
-          placeholder="Product quantity"
-          type="number"
-        /> */}
             <div className="add-product__form__submit-button">
               <ButtonSubmit className="add-product__form__submit-button__add-new" type="submit" onClick={handleSubmitForm} title="Add new" />
             </div>

@@ -17,8 +17,6 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setConfirmPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isShowOTP, setIsShowOTP] = useState(false)
 
@@ -32,7 +30,6 @@ function Signup() {
   })
 
   const [errors, setErrors] = useState(initialErrors);
-  const navigate = useNavigate()
 
   const handleSignup = async (e) => {
     resetErrors()

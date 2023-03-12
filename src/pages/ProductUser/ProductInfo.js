@@ -21,6 +21,7 @@ export default function ProductInfo({ data, onDelete, closeModal, setEditData })
           <FontAwesomeIcon className="product-info__iconTrash" icon={faTrashCan} onClick={() => onDelete(data.id)} />
         </div>
       </div>
+      <hr/>
     </>
   );
 }

@@ -4,13 +4,16 @@ import FormInput from "../../components/FormInput";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-// import swal from "sweetalert";
+import { updateShopProduct } from "../../api/shopOnnwerAPI";
 
 
 function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
+  const [imgFile, setImgFile] = useState("");
+
   const [product, setProduct] = useState({
+    id: data.id,
     name: data.name,
     image: data.image,
     price: data.price,
@@ -47,8 +50,18 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
     tooggle();
 
   };
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImgFile(event.target.files[0]);
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        setImg(e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
-  console.log("hinh", img)
+  
   const handleSubmitForm = async () => {
     if (img !== "") {
       const formData = new FormData()
@@ -57,62 +70,79 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
       formData.append("cloud_name", "dx88ipscr")
       await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
         .then((res) => {
-          const token = localStorage.getItem("token")
-          axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
-            {
-              name: product.name,
-              price: product.price,
-              description: product.description,
-              category_id: product.category_id,
-              image: res.data.secure_url,
-              quantity: product.quantity,
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-              }
-            }
-          ).then((response) => {
+          product.image = res.data.secure_url;
+          try {
+            const res = updateShopProduct( product);
             setToggle(!toggle);
             closeModal(false);
             onRedirect();
-            // swal("Edit product successfully!", "", "success");
-          })
-          .catch(({response}) => {
-            setErrors(response.data.errors)
-            console.log("Err sign in", errors)
-          });
+          } catch (err) {
+            setErrors(err.data.errors)
+            console.log("Err get shop categories: ", err)
+          }
+          // axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
+          //   {
+          //     name: product.name,
+          //     price: product.price,
+          //     description: product.description,
+          //     category_id: product.category_id,
+          //     image: res.data.secure_url,
+          //     quantity: product.quantity,
+          //   },
+          //   {
+          //     headers: {
+          //       'Content-Type': 'application/json',
+          //       'Authorization': `Bearer ${token}`,
+          //     }
+          //   }
+          // ).then((response) => {
+          //   setToggle(!toggle);
+          //   closeModal(false);
+          //   onRedirect();
+          //   // swal("Edit product successfully!", "", "success");
+          // })
+          // .catch(({response}) => {
+          //   setErrors(response.data.errors)
+          //   console.log("Err sign in", errors)
+          // });
 
         });
     } else {
-      const token = localStorage.getItem("token")
-      axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
-        {
-          name: product.name,
-          price: product.price,
-          description: product.description,
-          category_id: product.category_id,
-          image: product.image,
-          quantity: product.quantity,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          }
-        }
-      )
-      .then((response) => {
+      try {
+        const res = updateShopProduct(product);
         setToggle(!toggle);
         closeModal(false);
         onRedirect();
-        // swal("Add new product successfully!", "", "success");
-      })
-      .catch(({response}) => {
-        setErrors(response.data.errors)
-        console.log("Err sign in", errors)
-      });
+      } catch (err) {
+        setErrors(err.data.errors)
+        console.log("Err get shop categories: ", err)
+      }
+      // axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
+      //   {
+      //     name: product.name,
+      //     price: product.price,
+      //     description: product.description,
+      //     category_id: product.category_id,
+      //     image: product.image,
+      //     quantity: product.quantity,
+      //   },
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'Authorization': `Bearer ${token}`,
+      //     }
+      //   }
+      // )
+      // .then((response) => {
+      //   setToggle(!toggle);
+      //   closeModal(false);
+      //   onRedirect();
+      //   // swal("Add new product successfully!", "", "success");
+      // })
+      // .catch(({response}) => {
+      //   setErrors(response.data.errors)
+      //   console.log("Err sign in", errors)
+      // });
 
     }
 
@@ -133,11 +163,11 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
 
         />
         <div className="edit-product__form__image">
-          <img className="product-info-img" src={product.image} alt="" />
+          <img className="product-info-img" src={img} alt="" />
           <FormInput
             name="image"
             title="Product Image"
-            onChange={(e) => setImg(e.target.files[0])}
+            onChange={onImageChange}
             className="dit-product__form__image-input"
             type="file"
           />

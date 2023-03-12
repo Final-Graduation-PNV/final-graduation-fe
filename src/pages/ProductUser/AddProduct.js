@@ -4,14 +4,18 @@ import axios from "axios";
 import { useState } from "react";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import FormInput from "../../components/FormInput";
+import { addNewProduct } from "../../api/shopOnnwerAPI";
 // import swal from "sweetalert";
 
 function AddProduct({ toggle, setToggle, closeModal, categories }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
+  const [imgFile, setImgFile] = useState("");
+
   const [product, setProduct] = useState({
     name: "",
     price: "",
+    image: "",
     description: "",
     quantity: "",
     category_id: categories[0].id,
@@ -38,6 +42,7 @@ function AddProduct({ toggle, setToggle, closeModal, categories }) {
       [name]: value,
     });
   };
+
   const tooggle = () => {
     setModal(!modal);
   };
@@ -48,44 +53,63 @@ function AddProduct({ toggle, setToggle, closeModal, categories }) {
 
   const handleSubmitForm = async () => {
     resetErrors()
-
     const formData = new FormData()
-    formData.append('file', img)
+    formData.append('file', imgFile)
     formData.append("upload_preset", "gl32w86e")
     formData.append("cloud_name", "dx88ipscr")
     await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
       .then((res) => {
-        const token = localStorage.getItem("token")
-        axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
-          {
-            name: product.name,
-            price: product.price,
-            description: product.description,
-            image: res.data.secure_url,
-            quantity: product.quantity,
-            category_id: product.category_id,
-            shop_id: product.shop_id
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            }
-          }
-        )
-          .then((response) => {
-            setToggle(!toggle);
-            closeModal(false);
-            onRedirect();
-            // swal("Add new product successfully!", "", "success");
-          })
-          .catch(({response}) => {
-            setErrors(response.data.errors)
-            console.log("Err sign in", errors)
-          });
+        product.image = res.data.secure_url;
+        try {
+          const res = addNewProduct(product);
+          setToggle(!toggle);
+          closeModal(false);
+          onRedirect();
+        } catch (err) {
+          setErrors(err.data.errors)
+          console.log("Err get shop categories: ", err)
+        }
+        // axios.post("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products",
+        //   {
+        //     name: product.name,
+        //     price: product.price,
+        //     description: product.description,
+        //     image: product.image,
+        //     quantity: product.quantity,
+        //     category_id: product.category_id,
+        //     shop_id: product.shop_id
+        //   },
+        //   {
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //       'Authorization': `Bearer ${token}`,
+        //     }
+        //   }
+        // )
+        //   .then((response) => {
+        //     setToggle(!toggle);
+        //     closeModal(false);
+        //     onRedirect();
+        //     // swal("Add new product successfully!", "", "success");
+        //   })
+        //   .catch(({response}) => {
+        //     setErrors(response.data.errors)
+        //     console.log("Err sign in", errors)
+        //   });
 
       });
   };
+
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImgFile(event.target.files[0]);
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        setImg(e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
   return (
     <><div className="add-product">
@@ -105,11 +129,16 @@ function AddProduct({ toggle, setToggle, closeModal, categories }) {
               type="text"
               error={errors.name}
             />
+            <div> <img style={{
+              resizeMode: 'cover',
+              height: 100,
+              width: 200,
+            }} src={img ? img : "/image/default.jpg"} /></div>
             <FormInput
               name="image"
               title="Product Image"
               value={product.image}
-              onChange={(e) => setImg(e.target.files[0])}
+              onChange={onImageChange}
               type="file"
             />
             <div className="add-product__form__price-quantity">
@@ -123,7 +152,7 @@ function AddProduct({ toggle, setToggle, closeModal, categories }) {
                   onChange={handlerInput}
                   type="number"
                   error={errors.price}
-                /> 
+                />
                 <label>.000 VND</label>
               </div>
 

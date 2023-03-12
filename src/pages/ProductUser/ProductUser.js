@@ -1,15 +1,13 @@
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { getShopProducts, getShopCategories, deleteShopProduct } from '../../api/shopOnnwerAPI';
 import ButtonSubmit from "../../components/ButtonSubmit";
 import HeaderShopOwner from "../../components/HeaderShopOwner";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import ProductInfo from "./ProductInfo";
-// import swal from "sweetalert";
-
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -19,70 +17,43 @@ const Product = () => {
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        axios.get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/categories", {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            }
-        })
-            .then((res) => {
-                setCategories(res.data.categories);
-
-            })
-            .catch(err => {
-                console.log("Err get product: ", err)
-            })
-    }, [toggle]);
-
-    useEffect(() => {
-
-        const shop_id = localStorage.getItem("user_id");
-        const token = localStorage.getItem("token");
-
-        console.log("user id:", shop_id);
-        console.log("User token", token)
-        axios.get("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products", {
-            // params: { shop_id },
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
+    useEffect(() => {  //Get categories for shop owners
+        const getCategories = async () => {
+            try {
+                const res = await getShopCategories()
+                setCategories(res.data.categories)
+            } catch (err) {
+                console.log("Err get shop categories: ", err)
             }
         }
-        )
-            .then((res) => {
-                setProducts(res.data.products);
+        getCategories()
+    }, [toggle])
 
-            })
-            .catch(err => {
-                console.log("Err get product: ", err)
-            })
-    }, [toggle]);
+    useEffect(() => {   //Get products for shop owners
+        const getShopPage = async () => {
+            try {
+                const res = await getShopProducts()
+                setProducts(res.data.products)
+            } catch (err) {
+                console.log("Err get shop products: ", err)
+            }
+        }
+        getShopPage()
+    }, [toggle])
 
-    const deleteHandle = async (id) => {
-
+    const deleteHandle = async (id) => {  //Delete product for shop owners
         var isConfirmed = window.confirm("Are you sure for deleting?")
         if (isConfirmed) {
-            const token = localStorage.getItem("token");
-
-            axios
-                .delete("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + id,
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`,
-                        }
-                    }
-                )
-                .then(function (response) {
-                    console.log(response);
-                    setToggle(!toggle)
-                })
-            // swal("Delete product successfully!", "", "success");
-
+            try {
+                const res = await deleteShopProduct(id)
+                setToggle(!toggle)
+            } catch (err) {
+                console.log("Err get shop products: ", err)
+            }
         }
     }
+
+
     const handlerInput = (e) => {
         const { name, value } = e.target;
         console.log(products);
@@ -91,9 +62,6 @@ const Product = () => {
             [name]: value,
         });
     };
-    const handleSearch = (e) => {
-        axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/search/`)
-    }
 
     return (
         <>
@@ -149,11 +117,8 @@ const Product = () => {
                             {
                                 products ? (
                                     <div className="product-user__body__right-menu__list">
-                                        {products.map((product) => (
-                                            <div key={product.id}>
-                                                <ProductInfo  data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
-                                                <hr />
-                                            </div>
+                                        {products.map((product) => (                                    
+                                            <ProductInfo key={product.id}  data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
                                         ))
                                         }
                                     </div>

@@ -7,20 +7,21 @@ import React, { useState } from "react";
 
 import map from "../../assets/Image/map.png";
 
-function ChangePs({ closeModal }) {
+function ChangePs({ closeModal, handleResult }) {
   const [city, setCity] = useState("")
   const token = localStorage.getItem("token");
-
+  const productName = localStorage.getItem("selectedProduct")
+  console.log("handle result: ", handleResult)
   const handleSearch = () => {
-    axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search?city=${city}`, {
+    axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=${city}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
     })
       .then(res => {
-        console.log(res);
-
+        closeModal(false);
+        handleResult(res.data.products);
       })
       .catch(err => console.log(err))
   }
@@ -49,7 +50,6 @@ function ChangePs({ closeModal }) {
           <div className="changePs-btn">
             <button className="changePs-btn__search" onClick={handleSearch}>Search</button>
           </div>
-
           {/* //  <button className="btn__checkEmail" onClick={() => closeModal(false)}><Link className="checkEmail" to="/Sin">Check your email</Link></button> */}
         </div>
       </div>

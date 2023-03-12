@@ -14,6 +14,6 @@ export const searchProduct = async (searchUser) => {
   return await http.get(`${SEARCH_PRODUCT_API_URL}/key?key=${searchUser}`);
 }
 
-export const searchCategories = async (city, cate) => {
+export const searchCateCity = async (city, cate) => {
   return await http.get(`${SEARCH_PRODUCT_API_URL}/city-cate?category=${cate}&city=${city}`)
 }

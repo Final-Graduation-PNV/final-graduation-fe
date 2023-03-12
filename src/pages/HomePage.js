@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import cartProduct from "../../src/assets/Image/cartProduct.png";
 import { addToCart } from "../api/cartAPI";
 import { getData, searchProduct } from "../api/productsAPI";
 import account from "../assets/Image/account.png";
+import Categories from "../components/features/home/Categories";
 import ProductCard from "../components/features/home/ProductCard";
 import useCarts from "../hooks/useCarts";
+import useProducts from "../hooks/useProducts";
 import Header from "../layout/header/Header";
 import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
@@ -25,6 +28,8 @@ function HomePage() {
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
   const { AlertCartError, AlertCartSuccess } = Cart();
+  const { loadProductToggle } = useProducts()
+
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -36,11 +41,15 @@ function HomePage() {
       }
     }
     getHomPage()
-  }, [])
+  }, [loadProductToggle])
 
   useEffect(() => {
     getCart()
   }, [loadCartToggle])
+
+  const handleResultSearch = (res) => {
+    setProducts(res);
+  };
 
   const handleSearchProduct = async (event) => {
     try {
@@ -58,6 +67,7 @@ function HomePage() {
     try {
       await addToCart(id, 1)
       AlertCartSuccess()
+      console.log("aa to cart")
       refreshCart()
     } catch (e) {
       AlertCartError()
@@ -68,7 +78,7 @@ function HomePage() {
   return (
 
     <>
-      {isModalOpen && <ChangePs closeModal={setIsModalOpen} />}
+      {isModalOpen && <ChangePs closeModal={setIsModalOpen} handleResult={handleResultSearch} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
       {
         products ? (
@@ -113,21 +123,17 @@ function HomePage() {
                     Today's selection
                   </p>
                   <div className="categories">
-                    <select id="selectToday_id" className="selectToday_name">
-                      <option value="Flower">Plants</option>
-                      <option value="Indoors">Flowers</option>
-                      <option value="Outdoors">Indoor plants</option>
-                      <option value="Outdoors">Outdoor plants</option>
-                      <option value="Outdoors">Indoor flowers</option>
-                      <option value="Outdoors">Outdoor flowers</option>
-                    </select>
-                    <p className="position" onClick={() => setIsModalOpen(true)}>Da Nang <FontAwesomeIcon icon={faLocationDot} /></p>
+                    <Categories />
+                    <p className="position" onClick={() => setIsModalOpen(true)} >Da Nang <FontAwesomeIcon icon={faLocationDot} /></p>
                   </div>
 
                 </div>
                 <div className="homePage-product">
                   {
-                    products ? (products.map((pro) => <ProductCard key={pro.id} product={pro} onAddProduct={handleAddCart} />)) : (<div>No products</div>)
+                    products.length ? (products.map((pro) => <ProductCard key={pro.id} product={pro} onAddProduct={handleAddCart} />)) : (<div className="noProductHomePage">
+                      <img src={cartProduct} />
+                      <p>No products</p>
+                    </div>)
                   }
                 </div>
               </div>

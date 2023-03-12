@@ -18,7 +18,7 @@ const useCarts = () => {
       setCart(res.data.carts)
     }
     catch (e) {
-
+      console.log("Error carts: ", e)
     }
   }
 
@@ -33,6 +33,7 @@ const useCarts = () => {
       return [ele.cart_quantity]
     })
   }
+
   return {
     cart,
     setCart,

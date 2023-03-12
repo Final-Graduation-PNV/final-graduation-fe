@@ -11,13 +11,23 @@ import account from "../../assets/Image/account.png";
 import cartProduct from "../../assets/Image/cartProduct.png";
 import logo from "../../assets/Image/logo.png";
 import useCarts from "../../hooks/useCarts";
+import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
 
 function Header() {
 
   const [isLogout, setIsLogout] = useState(false);
   const navigate = useNavigate();
-  const { cart } = useCarts()
+  const { cart } = useCarts();
+  const { refreshProduct } = useProducts();
+
+
+  const refreshHomePage = () => {
+    refreshProduct()
+    console.log("refresh home page home: ")
+  }
+
+
 
   return (
     <>
@@ -26,7 +36,7 @@ function Header() {
         <div id="container-header">
           <div className="header-left">
             <div className="header-left__img">
-              <img src={logo} alt="Logo" style={{ width: 27, height: 45, marginRight: 30 }} onClick={() => { navigate("/") }} />
+              <img src={logo} alt="Logo" style={{ width: 27, height: 45, marginRight: 30 }} onClick={() => { refreshHomePage() }} />
             </div>
             <div className="header-search">
               <FontAwesomeIcon icon={faSearch} />
@@ -35,7 +45,7 @@ function Header() {
           </div>
           <div className="header-right">
             <div className="header-right-icon">
-              <Link to="/"><FontAwesomeIcon className="fa faShop" icon={faShop} /></Link>
+              <Link to="/"><FontAwesomeIcon className="fa faShop" icon={faShop} onClick={() => { refreshHomePage() }} /></Link>
               <FontAwesomeIcon className="fa faUserGroup" icon={faUserGroup} />
               <FontAwesomeIcon className="fa faBasketball" icon={faBasketball} />
             </div>

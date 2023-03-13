@@ -5,8 +5,8 @@ const SEARCH_API_URL = "shop/search";
 const SHOP_PRODUCTS = "shop/products";
 const SHOP_CATEGORIES = "shop/categories";
 
-export const searchProduct = async () => {
-  return await http.get(SEARCH_API_URL + "?name=")
+export const searchShopProduct = async (search) => {
+  return await http.get(`${SEARCH_API_URL}?name=${search}`)
 }
 
 export const getShopProducts = async () => {

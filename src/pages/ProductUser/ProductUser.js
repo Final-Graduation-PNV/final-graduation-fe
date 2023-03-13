@@ -8,6 +8,7 @@ import HeaderShopOwner from "../../components/HeaderShopOwner";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import ProductInfo from "./ProductInfo";
+import { searchShopProduct } from '../../api/shopOnnwerAPI';
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -16,7 +17,7 @@ const Product = () => {
     const [categories, setCategories] = useState([]);
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
-
+    const [search, setSearch] = useState("");
     useEffect(() => {  //Get categories for shop owners
         const getCategories = async () => {
             try {
@@ -40,6 +41,24 @@ const Product = () => {
         }
         getShopPage()
     }, [toggle])
+
+
+    const handleSearchProduct = async (event) => {
+        try {
+            if (event.key === 'Enter') {
+                const res = await searchShopProduct(search);
+                setProducts(res.data.product)
+                console.log("aaa",res.data.product)
+
+            }
+        }
+        catch (err) {
+            console.log("Err search product", err)
+            
+        }
+
+    }
+
 
     const deleteHandle = async (id) => {  //Delete product for shop owners
         var isConfirmed = window.confirm("Are you sure for deleting?")
@@ -66,7 +85,7 @@ const Product = () => {
     return (
         <>
             {modalAddProduct && <AddProduct setToggle={setToggle} toggle={toggle} categories={categories} closeModal={setModalAddProduct} />}
-            {modalEditProduct && <EditProduct setToggle={setToggle} toggle={toggle} categories={categories} key={editData.id} data={editData} closeModal={setModalEditProduct} />}
+            {modalEditProduct && <EditProduct setToggle={setToggle} toggle={toggle} categories={categories} data={editData} closeModal={setModalEditProduct} />}
             <div className="product-user">
                 <div className="product-user__header"><HeaderShopOwner /></div>
                 <div className="product-user__body">
@@ -94,14 +113,21 @@ const Product = () => {
                             <div className="product-user__body__right-menu__head">
                                 <div className="product-user__body__right-menu__head__filter">
                                     <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
-                                    <input name="search"
+                                    {/* <input name="search"
                                         placeholder="Search"
                                         onChange={handlerInput}
                                         type="text"
                                         className="product-user__body__right-menu__head__filter-input"
+                                    /> */}
+                                    <input
+                                        className="product-user__body__right-menu__head__filter-input"
+                                        onKeyPress={handleSearchProduct}
+                                        type="text"
+                                        placeholder="Search plan & flower"
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
                                     />
                                 </div>
-
                                 <ButtonSubmit className="product-user__body__right-menu__head__add-button" title="Add product" onClick={() => setModalAddProduct(true)} />
                             </div>
                             <div className="product-user__body__right-menu__title">
@@ -117,8 +143,8 @@ const Product = () => {
                             {
                                 products ? (
                                     <div className="product-user__body__right-menu__list">
-                                        {products.map((product) => (                                    
-                                            <ProductInfo key={product.id}  data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
+                                        {products.map((product) => (
+                                            <ProductInfo key={product.id} data={product} onDelete={deleteHandle} closeModal={setModalEditProduct} setEditData={setEditData} />
                                         ))
                                         }
                                     </div>

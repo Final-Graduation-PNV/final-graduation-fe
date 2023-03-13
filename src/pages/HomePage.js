@@ -62,6 +62,7 @@ function HomePage() {
       console.log("Err search user", err)
     }
   }
+  console.log(typeof(products))
 
   const handleAddCart = async (id) => {
     try {

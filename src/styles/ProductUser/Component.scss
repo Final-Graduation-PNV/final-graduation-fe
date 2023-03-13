@@ -15,6 +15,13 @@
   color: #3c7026;
 }
 
+.btn {
+  border-radius: 20px;
+  font-weight: bold;
+  border: 1px solid #3c7026;
+}
+
+
 .form-input {
   // margin-bottom:5px;
   text-align: left;
@@ -40,7 +47,7 @@
     outline: none;
     border-radius: 8px;
     font-size: 15px;
-    line-height: 1.5;
+    // line-height: 1.5;  
   }
 
   & input::placeholder {
@@ -50,4 +57,15 @@
   & select {
     background-color: transparent;
   }
+}
+
+.input-field {
+  padding-left:  10px;
+  border: 1px solid #dddddd;
+  outline: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.input-field::placeholder {
+  font-size: 12px;
 }

@@ -9,7 +9,7 @@
 
   &__form {
     width: 520px;
-    height: 547px;
+    height: 585px;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35);
@@ -17,47 +17,85 @@
     flex-direction: column;
     padding: 10px 20px 20px 20px;
     position: relative;
-    &__name {
-      & input {
-        width: 500px;
+
+    &-error {
+      height: 30px;
+    }
+
+    &-title {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    &__input-name {
+      width: 500px;
+      // height: 50px;
+      // background-color: #3c7026;
+    }
+
+    &__image {
+      width: 100%;
+      height: 150px;
+      display: flex;
+
+      & img {
+        border: 1px solid #dddddd;
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+      }
+
+      &-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
     }
+
+
     &__price-quantity {
       display: flex;
-      &__price{
-        display: flex;
-        &-input{
-          margin-right: 20px;
+      justify-content: space-between;
+
+      &__input-price {
         & input {
-          width: 110px;
+          width: 160px;
         }
+
+        & label {
+          font-size: 14px;
         }
       }
-      &__input {
-        margin-right: 20px;
+
+      &__input-quantity {
+        display: flex;
+        flex-direction: column;
+
         & input {
-          width: 230px;
+          width: 240px;
+          margin-right: 10px;
         }
       }
     }
+
     &__input-description {
-      margin-bottom: 10px;
       & label {
         font-weight: bold;
       }
-
       & textarea {
         padding: 5px 5px 5px 10px;
         border: 1px solid #dddddd;
         outline: none;
         border-radius: 8px;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 1.5;
       }
+
       & textarea::placeholder {
         font-size: 12px;
       }
     }
+
     &__button-cancel {
       position: absolute;
       width: 40px;
@@ -69,7 +107,7 @@
 
     &__select-type {
       text-align: left;
-      padding-bottom: 20px;
+      padding-bottom: 25px;
 
       & label {
         font-weight: bold;
@@ -93,11 +131,37 @@
     }
 
     &__submit-button {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 0px;
+
+      & button {
+        padding: 6px;
+        justify-content: center;
+        height: 30px;
+      }
 
       &__add-new {
-        width: 500px;
+        background-color: #3c7026;
+        width: 250px;
+        color: white;
+
+      }
+
+      &__add-new:hover {
+        border: 1px solid #3c7026;
+        background-color: rgb(255, 255, 255);
+        color: #3c7026;
+      }
+
+      &__cancel {
+        margin-left: 10px;
+        width: 100px;
       }
     }
   }
+}
+
+.input-data {
+  height: 30px;
 }

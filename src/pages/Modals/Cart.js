@@ -33,8 +33,16 @@ const Cart = () => {
       timer: 1500
     })
   }
+  const AlertPaymentError = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please enter your address!',
+      button: "Ok",
+    })
+  }
   return {
-    AlertCartError, AlertCartSuccess, AlertSendSuccess
+    AlertCartError, AlertCartSuccess, AlertSendSuccess, AlertPaymentError
   }
 }
 export default Cart

@@ -3,22 +3,47 @@ import "../../styles/Payment/payment.scss";
 import { faAngleRight, faClipboard, faLocationDot, faPen, faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
-import product from "../../assets/Image/product.png";
+import { Link } from "react-router-dom";
+import { payment } from "../../api/paymentAPI";
+import InforPersonRow from "../../components/features/payment/inforPersonRow";
+import PaymentRow from "../../components/features/payment/paymentRow";
+import usePayment from "../../hooks/usePayment";
 import Header from "../../layout/header/Header";
+import Cart from "../Modals/Cart";
 import ModalPM from "../Modals/ModalPM";
 import Thanks from "../Modals/Thankyou";
 
 function Payment() {
   const [isShow, setIsShow] = useState(false);
   const [thanks, setThanks] = useState(false);
-  const { id } = useParams();
-  console.log("id payment: ", id)
+  const { payments, totalPayment } = usePayment()
+  const [checked, setCheck] = useState([])
+  const { AlertPaymentError } = Cart();
+  console.log("check payment: ", checked)
+  const billhandler = async () => {
+
+    await payments.map(async (pro, ids) => {
+      if (
+        pro.user_name !== null &&
+        pro.user_phone !== null &&
+        pro.user_address !== null &&
+        pro.user_city !== null
+      ) {
+        setCheck(ids)
+        const res = await payment(checked, pro.user_name, pro.user_phone, pro.user_address, pro.user_city);
+        console.log("res bill handler: ", res)
+      } else {
+        setCheck(ids)
+        AlertPaymentError();
+
+      }
+    })
+
+  }
 
   return (
     <div className="container-payment">
-      {isShow && <ModalPM closeModal={setIsShow} />}
+      {isShow && <ModalPM closeModal={setIsShow} checked={checked} />}
       {thanks && <Thanks closeModal={setThanks} />}
       <div className="con-payment">
         <Header />
@@ -39,8 +64,15 @@ function Payment() {
                 <p>Delivery address</p>
               </div>
               <div className="location-person">
-                <p>Ngô Thị Tròn | (+84) 878 647 656</p>
-                <p>101B, Le Huu Trac, Son Tra, Danang, Vietnam</p>
+                {
+                  payments.map((pro, idx) => {
+                    if (idx === 0) {
+                      return (
+                        <InforPersonRow product={pro} key={idx} />
+                      )
+                    }
+                  })
+                }
               </div>
             </div>
             <FontAwesomeIcon className="faPen" icon={faPen} onClick={() => { setIsShow(true) }} />
@@ -52,42 +84,12 @@ function Payment() {
               <p className="top__quantily">Quantily</p>
               <p className="top__amount">Amount</p>
             </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
+
+            {
+              payments.map((pro, idx) =>
+                <PaymentRow product={pro} key={idx} />
+              )
+            }
             <div className="product-note">
               <p>Note:</p>
               <input type="text" className="note" name="note" placeholder='Note to seller' />
@@ -98,11 +100,11 @@ function Payment() {
                   <FontAwesomeIcon className="faTruckFast" icon={faTruckFast} />
                   <p>Shipping free:</p>
                 </div>
-                <p>20.000vnd</p>
+                <p>20,000 vnđ</p>
               </div>
               <div className="ship-total">
                 <p>Total amount:</p>
-                <p>1.260.000</p>
+                <p>{new Intl.NumberFormat().format(totalPayment())} vnđ</p>
               </div>
             </div>
             <div className="payment-details">
@@ -112,17 +114,19 @@ function Payment() {
               </div>
               <div className="total-amount">
                 <p>Total amount of product</p>
-                <p> 1.260.000 vnd </p>
+                <p> {new Intl.NumberFormat().format(totalPayment())} vnđ </p>
               </div>
               <div className="ships-free">
                 <p>Total amount of shipping free</p>
-                <p>20.000 vnd</p>
+                <p>20,000 vnđ</p>
               </div>
               <div className="total-payment">
                 <p>Total payment</p>
-                <p>220.000 vnd</p>
+                <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnd</p>
               </div>
-              <button className="order_btn" onClick={() => { setThanks(true) }}>Order</button>
+              {/* <button className="order_btn" onClick={() => { setThanks(true) }}>Order</button> */}
+              <button className="order_btn" onClick={() => { billhandler() }}>Order</button>
+
             </div>
           </div>
         </div>

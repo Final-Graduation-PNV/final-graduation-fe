@@ -49,12 +49,21 @@
 .location-person p {
   line-height: 0px;
 }
-.location-person p:first-child {
-  font-weight: 600;
-}
+// .location-person p:first-child {
+//   font-weight: 600;
+// }
 .location-person {
   display: flex;
-  align-items: center;
+  // flex-direction: column;
+}
+
+.infor-person {
+  display: flex;
+  font-weight: 600;
+}
+.infor-address {
+  display: flex;
+  margin-left: 20px;
 }
 .faLocationDot {
   width: 15px;
@@ -111,10 +120,6 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #bbbaba;
-  .img__product {
-    width: 68px;
-    height: auto;
-  }
   .product-imgName {
     width: 40%;
     display: flex;
@@ -230,4 +235,10 @@
   font-size: 18px;
   font-weight: 600;
   border-radius: 10px;
+}
+.con__img img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: 50% 0;
 }

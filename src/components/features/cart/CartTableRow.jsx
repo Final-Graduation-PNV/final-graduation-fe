@@ -4,7 +4,7 @@ import { useState } from "react";
 import { deleteCartById, updateCart } from "../../../api/cartAPI";
 import useCarts from "../../../hooks/useCarts";
 
-const CartTableRow = ({ product }) => {
+const CartTableRow = ({ product, setCheckedCart, checkedCart }) => {
   const { refreshCart } = useCarts();
   const [quantity, setQuantity] = useState(product.cart_quantity);
   const [isQuantityOverLimit, setIsQuantityOverLimit] = useState(false);
@@ -39,8 +39,22 @@ const CartTableRow = ({ product }) => {
     refreshCart();
   };
 
+  const checkHandler = (id) => {
+    const isChecked = checkedCart.includes(id);
+    if (isChecked) {
+      setCheckedCart(checkedCart.filter((item) => item !== id));
+    } else {
+      setCheckedCart((prev) => [...prev, id]);
+    }
+  };
+
   return (
     <div className="addCart-contaniner">
+      <input
+        type="checkbox"
+        checked={checkedCart.includes(product.cart_id)}
+        onChange={() => checkHandler(product.cart_id)}
+      />
       <div className="addCart-top__name">{product.name}</div>
       <div className="addCart-top__img">
         <img src={product.image} />

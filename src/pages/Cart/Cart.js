@@ -22,6 +22,7 @@ function Cart() {
   const [checked, setChecked] = useState([]);
   const dispatch = useDispatch();
 
+  // dispatch(setChecked(checked))
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -37,6 +38,7 @@ function Cart() {
     try {
       const res = await detalPayment(checked)
       navigate("/payment");
+      console.log("res card: ", res)
       dispatch(setPaymentList(res.data.paying));
     } catch (e) {
       console.log("Err payment: ", e)

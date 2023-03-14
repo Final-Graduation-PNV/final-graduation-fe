@@ -29,6 +29,7 @@ const paymentSlice = createSlice({
   }
 })
 
+export const addressSelector = (state) => state.payment.address
 export const paymentSelector = (state) => state.payment.list
 export const loadPaymentSelector = (state) => state.payment.load
 

@@ -4,7 +4,6 @@ import { faAngleRight, faClipboard, faLocationDot, faPen, faTruckFast } from "@f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { payment } from "../../api/paymentAPI";
 import InforPersonRow from "../../components/features/payment/inforPersonRow";
 import PaymentRow from "../../components/features/payment/paymentRow";
 import usePayment from "../../hooks/usePayment";
@@ -19,6 +18,8 @@ function Payment() {
   const { payments, totalPayment } = usePayment()
   const [checked, setCheck] = useState([])
   const { AlertPaymentError } = Cart();
+  const [note, setNote] = useState("")
+
   console.log("check payment: ", checked)
   const billhandler = async () => {
 
@@ -29,13 +30,12 @@ function Payment() {
         pro.user_address !== null &&
         pro.user_city !== null
       ) {
-        setCheck(ids)
-        const res = await payment(checked, pro.user_name, pro.user_phone, pro.user_address, pro.user_city);
-        console.log("res bill handler: ", res)
+        // setCheck(ids)
+        // const res = await payment(checked, pro.user_name, pro.user_phone, pro.user_address, pro.user_city, pro.cart_note);
+        // console.log("res bill handler: ", res)
       } else {
         setCheck(ids)
-        AlertPaymentError();
-
+        setIsShow(true)
       }
     })
 
@@ -43,7 +43,10 @@ function Payment() {
 
   return (
     <div className="container-payment">
-      {isShow && <ModalPM closeModal={setIsShow} checked={checked} />}
+     
+     { isShow && <ModalPM closeModal={setIsShow} checked={checked} note={note}/> }
+     
+
       {thanks && <Thanks closeModal={setThanks} />}
       <div className="con-payment">
         <Header />
@@ -91,7 +94,7 @@ function Payment() {
               )
             }
             <div className="product-note">
-              <p>Note:</p>
+              <p value={note} onChange={(e) => e.target.value}>Note:</p>
               <input type="text" className="note" name="note" placeholder='Note to seller' />
             </div>
             <div className="product-ship">
@@ -124,7 +127,7 @@ function Payment() {
                 <p>Total payment</p>
                 <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnd</p>
               </div>
-              {/* <button className="order_btn" onClick={() => { setThanks(true) }}>Order</button> */}
+              {/* <button className="order_btn">Order</button> */}
               <button className="order_btn" onClick={() => { billhandler() }}>Order</button>
 
             </div>

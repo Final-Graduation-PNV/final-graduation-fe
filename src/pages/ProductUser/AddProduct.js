@@ -48,18 +48,20 @@ function AddProduct({ toggle, setToggle, closeModal, categories }) {
     tooggle();
   };
 
-  const handleSubmitForm = async () => {
+  const handleSubmitForm = async (e) => {
     resetErrors()
+    e.preventDefault();
     const addPro = async () => {
       try {
-        addNewProduct(product);
+        const res = await addNewProduct(product);
         setToggle(!toggle);
         closeModal(false);
         onRedirect();
         console.log("chayj")
-      } catch (errors) {
-        setErrors(errors.data.errors)
-        console.log("Err get shop categories: ", errors)
+      } 
+      catch (err) {
+        setErrors(err.data.errors)
+        console.log("Err get shop categories: ", err.data.errors)
       }
     }
     if (img !== "") {

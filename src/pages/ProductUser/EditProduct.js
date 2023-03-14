@@ -61,20 +61,22 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
   }
 
   
-  const handleSubmitForm = async () => {
-    const updatePoduct = () => {
+  const handleSubmitForm = async (e) => {
+    const updatePoduct = async () => {
       try {
-        const res = updateShopProduct( product);
+        const res = await updateShopProduct( product);
         setToggle(!toggle);
         closeModal(false);
         onRedirect();
       } catch (err) {
         setErrors(err.data.errors)
-        console.log("Err get shop categories: ", err)
+        console.log("Err update shop product: ", err.data.errors)
       }
     }
 
     resetErrors()
+    e.preventDefault();
+
 
     if (img !== "") {
       const formData = new FormData()

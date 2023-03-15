@@ -1,14 +1,23 @@
-const InforPersonRow = ({ product }) => {
-  console.log("product name ", product.user_name);
+import ls from "localstorage-slim";
+
+const InforPersonRow = () => {
   return (
     <>
       <div className="infor-person">
-        <p className="infor-person__name">{product.user_name}</p>
-        <p className="infor-person__phone">{product.user_phone}</p>
+        <p className="infor-person__name">
+          {localStorage.getItem("user_name")}
+        </p>
+        <p className="infor-person__phone">
+          {ls.get("phone", { decrypt: true })}
+        </p>
       </div>
       <div className="infor-address">
-        <p className="infor-address__address">{product.user_address}</p>
-        <p className="infor-address__city">{product.user_city}</p>
+        <p className="infor-address__address">
+          {ls.get("address", { decrypt: true })}
+        </p>
+        <p className="infor-address__city">
+          {ls.get("city", { decrypt: true })}
+        </p>
       </div>
     </>
   );

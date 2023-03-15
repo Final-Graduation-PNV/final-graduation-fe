@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 import { deleteAllCart } from "../../api/cartAPI"
 
 import { useState } from "react"
-import { useDispatch } from "react-redux"
 import { detalPayment } from "../../api/paymentAPI"
 import cartProduct from "../../assets/Image/cartProduct.png"
 import CartTableRow from "../../components/features/cart/CartTableRow"
@@ -13,14 +12,29 @@ import HeaderTableCart from "../../components/features/cart/HeaderTableCart"
 import RouteCart from "../../components/features/cart/RouteCart"
 import useCarts from "../../hooks/useCarts"
 import Header from "../../layout/header/Header"
-import { setPaymentList } from "../../redux/slices/paymentSlice"
+// import { setPaymentList } from "../../redux/slices/paymentSlice"
 
-
+import ls from 'localstorage-slim'
 
 function Cart() {
   const { cart, refreshCart, getCart, loadCartToggle, getTotal } = useCarts();
   const [checked, setChecked] = useState([]);
-  const dispatch = useDispatch();
+
+  localStorage.setItem("checked", checked)
+  // localStorage.setItem("data", paying)
+  // console.log("paying: ", paying)
+  // Lấy chuỗi từ localStorage
+  // const localStorageData = localStorage.getItem("data");
+
+  // // Chuyển đổi chuỗi thành mảng các đối tượng
+  // const arrayData = localStorageData.split(',').map(item => JSON.parse(item));
+
+  // // Hiển thị mảng dữ liệu
+  // console.log(arrayData);
+
+
+
+  // const dispatch = useDispatch();
 
   // dispatch(setChecked(checked))
   const navigate = useNavigate()
@@ -38,12 +52,31 @@ function Cart() {
     try {
       const res = await detalPayment(checked)
       navigate("/payment");
-      console.log("res card: ", res)
-      dispatch(setPaymentList(res.data.paying));
+      if (res.data.paying) {
+        res.data.paying.map((pro, ids) => {
+          if (pro.user_name == null && pro.cart_note == null && pro.user_address == null && pro.user_city && pro.user_phone) {
+            console.log(pro)
+            const user = ls.set("name", pro.user_name, { encrypt: true });
+            const note = ls.set("note", pro.cart_note, { encrypt: true });
+            const address = ls.set("address", pro.user_address, { encrypt: true });
+            const city = ls.set("city", pro.user_city, { encrypt: true });
+            const phone = ls.set("phone", pro.user_phone, { encrypt: true });
+          }
+          else {
+            ls.get("city", { encrypt: true })
+            ls.get("phone", { encrypt: true })
+            ls.get("address", { encrypt: true })
+          }
+        })
+      }
+
+      console.log("res card2: ", res.data.paying)
+      ls.set("data", res.data.paying, { encrypt: true });
     } catch (e) {
       console.log("Err payment: ", e)
     }
   }
+
 
   return (
     <div className="container-addtocar">

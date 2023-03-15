@@ -11,11 +11,11 @@ const usePayment = () => {
   const dispatch = useDispatch();
   const load = useSelector(loadPaymentSelector);
   const payments = useSelector(paymentSelector);
-  const address = useDispatch(addressSelector);
+  const address = useSelector(addressSelector);
 
   const refreshPayment = () => dispatch(loadPayment());
   const setPayment = (product) => dispatch(setPaymentList(product));
-  const setAddress = (address) => dispatch(setAddress(address));
+  const setSpecificAddress = (address) => dispatch(setSpecificAddress(address));
   const setPhone = (phone) => dispatch(setPhone(phone));
   const setCity = (city) => dispatch(setCity(city));
 
@@ -26,12 +26,13 @@ const usePayment = () => {
   };
 
   return {
+    address,
     payments,
     loadProductToggle: load,
     refreshPayment,
     setPayment,
     totalPayment,
-    setAddress,
+    setSpecificAddress,
     setPhone,
     setCity,
   };

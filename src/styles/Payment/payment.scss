@@ -46,8 +46,18 @@
   color: #3c7026;
   font-size: 20px;
 }
-.location-person p {
+.location-person {
   line-height: 0px;
+  margin-left: 20px;
+}
+.infor-person__phone {
+  margin-left: 20px;
+}
+.infor-address__address {
+  margin-left: 5px;
+}
+.infor-address__city {
+  margin-left: 5px;
 }
 // .location-person p:first-child {
 //   font-weight: 600;
@@ -63,7 +73,6 @@
 }
 .infor-address {
   display: flex;
-  margin-left: 20px;
 }
 .faLocationDot {
   width: 15px;

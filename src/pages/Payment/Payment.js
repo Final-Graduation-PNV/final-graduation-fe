@@ -2,12 +2,14 @@ import "../../styles/Payment/payment.scss";
 
 import { faAngleRight, faClipboard, faLocationDot, faPen, faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ls from 'localstorage-slim';
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { payment } from "../../api/paymentAPI";
 import InforPersonRow from "../../components/features/payment/inforPersonRow";
 import PaymentRow from "../../components/features/payment/paymentRow";
-import usePayment from "../../hooks/usePayment";
 import Header from "../../layout/header/Header";
+import { getChecked_LC } from "../../utils/localStorageUtils";
 import Cart from "../Modals/Cart";
 import ModalPM from "../Modals/ModalPM";
 import Thanks from "../Modals/Thankyou";
@@ -15,38 +17,37 @@ import Thanks from "../Modals/Thankyou";
 function Payment() {
   const [isShow, setIsShow] = useState(false);
   const [thanks, setThanks] = useState(false);
-  const { payments, totalPayment } = usePayment()
-  const [checked, setCheck] = useState([])
-  const { AlertPaymentError } = Cart();
-  const [note, setNote] = useState("")
+  const [notes, setNotes] = useState("")
+  const phone = ls.get("phone", { decrypt: true });
+  const address = ls.get("address", { decrypt: true });
+  const city = ls.get("city", { decrypt: true });
+  const note = ls.get("note", { decrypt: true })
+  const { AlertPaymentSuccess } = Cart();
+  const totalPayment = () => {
+    return ls.get("data", { encrypt: true }).reduce((total, paymentEle) => {
+      return total + paymentEle.product_price * paymentEle.cart_quantity * 1000;
+    }, 0);
+  };
 
-  console.log("check payment: ", checked)
   const billhandler = async () => {
-
-    await payments.map(async (pro, ids) => {
-      if (
-        pro.user_name !== null &&
-        pro.user_phone !== null &&
-        pro.user_address !== null &&
-        pro.user_city !== null
-      ) {
-        // setCheck(ids)
-        // const res = await payment(checked, pro.user_name, pro.user_phone, pro.user_address, pro.user_city, pro.cart_note);
-        // console.log("res bill handler: ", res)
-      } else {
-        setCheck(ids)
-        setIsShow(true)
-      }
-    })
-
+    if (
+      phone !== null && phone !== "" &&
+      city !== null && city !== "" &&
+      address !== null && address !== ""
+    ) {
+      const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
+      AlertPaymentSuccess()
+    } else {
+      setIsShow(true)
+    }
   }
-
+  const edithanler = () => {
+    setIsShow(true)
+  }
+  const getDATA = ls.get('data', { decrypt: true });
   return (
     <div className="container-payment">
-     
-     { isShow && <ModalPM closeModal={setIsShow} checked={checked} note={note}/> }
-     
-
+      {isShow && <ModalPM closeModal={setIsShow} />}
       {thanks && <Thanks closeModal={setThanks} />}
       <div className="con-payment">
         <Header />
@@ -67,18 +68,10 @@ function Payment() {
                 <p>Delivery address</p>
               </div>
               <div className="location-person">
-                {
-                  payments.map((pro, idx) => {
-                    if (idx === 0) {
-                      return (
-                        <InforPersonRow product={pro} key={idx} />
-                      )
-                    }
-                  })
-                }
+                <InforPersonRow />
               </div>
             </div>
-            <FontAwesomeIcon className="faPen" icon={faPen} onClick={() => { setIsShow(true) }} />
+            <FontAwesomeIcon className="faPen" icon={faPen} onClick={() => { edithanler() }} />
           </div>
           <div className="product">
             <div className="product-top">
@@ -87,14 +80,13 @@ function Payment() {
               <p className="top__quantily">Quantily</p>
               <p className="top__amount">Amount</p>
             </div>
-
             {
-              payments.map((pro, idx) =>
+              getDATA.map((pro, idx) =>
                 <PaymentRow product={pro} key={idx} />
               )
             }
             <div className="product-note">
-              <p value={note} onChange={(e) => e.target.value}>Note:</p>
+              <p value={notes} onChange={(e) => setNotes(e.target.value)}>Note:</p>
               <input type="text" className="note" name="note" placeholder='Note to seller' />
             </div>
             <div className="product-ship">

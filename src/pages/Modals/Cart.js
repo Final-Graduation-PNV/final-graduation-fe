@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import "../../styles/Modal/Cart.scss";
 
 const Cart = () => {
+  const navigate = useNavigate()
   const AlertCartSuccess = () => {
     Swal.fire({
       position: 'center',
@@ -33,8 +35,27 @@ const Cart = () => {
       timer: 1500
     })
   }
+  const AlertPaymentSuccess = () => {
+    Swal.fire({
+      color: "#3c7026",
+      icon: 'success',
+      title: 'Check your email address to see bill detail.',
+      button: "Go To Homepage",
+    })
+      .then(function () {
+        navigate("/")
+      })
+  }
+  const AlertPaymentError = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please enter your address!',
+      button: "Ok",
+    })
+  }
   return {
-    AlertCartError, AlertCartSuccess, AlertSendSuccess
+    AlertCartError, AlertCartSuccess, AlertSendSuccess, AlertPaymentError, AlertPaymentSuccess
   }
 }
 export default Cart

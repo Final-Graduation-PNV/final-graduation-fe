@@ -34,6 +34,7 @@ function Logout({ closeModal }) {
             <p className="logout__name">{getUserName("user")} </p>
           </div>
           <Link to="profile"><p className="logout-profile">See all profiles</p></Link>
+          <Link to="profile"><p className="logout-profile">View my order </p></Link>
         </div>
         <div className="logout-icon">
           <p className="logout-icon__user"><FontAwesomeIcon className="faRightFromBracket" icon={faRightFromBracket} /></p>

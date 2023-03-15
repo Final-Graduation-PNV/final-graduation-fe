@@ -2,20 +2,49 @@ import "../../styles/Payment/payment.scss";
 
 import { faAngleRight, faClipboard, faLocationDot, faPen, faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ls from 'localstorage-slim';
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
-import product from "../../assets/Image/product.png";
+import { Link } from "react-router-dom";
+import { payment } from "../../api/paymentAPI";
+import InforPersonRow from "../../components/features/payment/inforPersonRow";
+import PaymentRow from "../../components/features/payment/paymentRow";
 import Header from "../../layout/header/Header";
+import { getChecked_LC } from "../../utils/localStorageUtils";
+import Cart from "../Modals/Cart";
 import ModalPM from "../Modals/ModalPM";
 import Thanks from "../Modals/Thankyou";
 
 function Payment() {
   const [isShow, setIsShow] = useState(false);
   const [thanks, setThanks] = useState(false);
-  const { id } = useParams();
-  console.log("id payment: ", id)
+  const [notes, setNotes] = useState("")
+  const phone = ls.get("phone", { decrypt: true });
+  const address = ls.get("address", { decrypt: true });
+  const city = ls.get("city", { decrypt: true });
+  const note = ls.get("note", { decrypt: true })
+  const { AlertPaymentSuccess } = Cart();
+  const totalPayment = () => {
+    return ls.get("data", { encrypt: true }).reduce((total, paymentEle) => {
+      return total + paymentEle.product_price * paymentEle.cart_quantity * 1000;
+    }, 0);
+  };
 
+  const billhandler = async () => {
+    if (
+      phone !== null && phone !== "" &&
+      city !== null && city !== "" &&
+      address !== null && address !== ""
+    ) {
+      const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
+      AlertPaymentSuccess()
+    } else {
+      setIsShow(true)
+    }
+  }
+  const edithanler = () => {
+    setIsShow(true)
+  }
+  const getDATA = ls.get('data', { decrypt: true });
   return (
     <div className="container-payment">
       {isShow && <ModalPM closeModal={setIsShow} />}
@@ -39,11 +68,10 @@ function Payment() {
                 <p>Delivery address</p>
               </div>
               <div className="location-person">
-                <p>Ngô Thị Tròn | (+84) 878 647 656</p>
-                <p>101B, Le Huu Trac, Son Tra, Danang, Vietnam</p>
+                <InforPersonRow />
               </div>
             </div>
-            <FontAwesomeIcon className="faPen" icon={faPen} onClick={() => { setIsShow(true) }} />
+            <FontAwesomeIcon className="faPen" icon={faPen} onClick={() => { edithanler() }} />
           </div>
           <div className="product">
             <div className="product-top">
@@ -52,44 +80,13 @@ function Payment() {
               <p className="top__quantily">Quantily</p>
               <p className="top__amount">Amount</p>
             </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
-            <div className="product-con">
-              <div className="product-imgName">
-                <p className="con__img"><img className="img__product" src={product} /></p>
-                <p className="con__name">Sago Palm</p>
-              </div>
-              <p className="con__prie">315.000 vnd  </p>
-              <p className="con__quantily">1</p>
-              <p className="con__amount">315.000 vnd</p>
-            </div>
+            {
+              getDATA.map((pro, idx) =>
+                <PaymentRow product={pro} key={idx} />
+              )
+            }
             <div className="product-note">
-              <p>Note:</p>
+              <p value={notes} onChange={(e) => setNotes(e.target.value)}>Note:</p>
               <input type="text" className="note" name="note" placeholder='Note to seller' />
             </div>
             <div className="product-ship">
@@ -98,11 +95,11 @@ function Payment() {
                   <FontAwesomeIcon className="faTruckFast" icon={faTruckFast} />
                   <p>Shipping free:</p>
                 </div>
-                <p>20.000vnd</p>
+                <p>20,000 vnđ</p>
               </div>
               <div className="ship-total">
                 <p>Total amount:</p>
-                <p>1.260.000</p>
+                <p>{new Intl.NumberFormat().format(totalPayment())} vnđ</p>
               </div>
             </div>
             <div className="payment-details">
@@ -112,17 +109,19 @@ function Payment() {
               </div>
               <div className="total-amount">
                 <p>Total amount of product</p>
-                <p> 1.260.000 vnd </p>
+                <p> {new Intl.NumberFormat().format(totalPayment())} vnđ </p>
               </div>
               <div className="ships-free">
                 <p>Total amount of shipping free</p>
-                <p>20.000 vnd</p>
+                <p>20,000 vnđ</p>
               </div>
               <div className="total-payment">
                 <p>Total payment</p>
-                <p>220.000 vnd</p>
+                <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnd</p>
               </div>
-              <button className="order_btn" onClick={() => { setThanks(true) }}>Order</button>
+              {/* <button className="order_btn">Order</button> */}
+              <button className="order_btn" onClick={() => { billhandler() }}>Order</button>
+
             </div>
           </div>
         </div>

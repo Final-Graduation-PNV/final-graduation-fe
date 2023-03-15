@@ -33,6 +33,7 @@ const ConfirmOTP = ({ closeModal, email }) => {
   }
 
   const cancelOTPhandler = async () => {
+    console.log("cancel sigin up", gettUserId())
     try {
       await logout(gettUserId());
       closeModal(false)
@@ -60,10 +61,27 @@ const ConfirmOTP = ({ closeModal, email }) => {
     }
   }
 
+  useEffect(() => {
+    const handleTabClose = event => {
+      event.preventDefault();
+
+      console.log('beforeunload event triggered');
+
+      return (event.returnValue =
+        'Are you sure you want to exit?');
+    };
+
+    window.addEventListener('beforeunload', handleTabClose);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleTabClose);
+    };
+  }, []);
+
   return (
     <div className="modalBackground-cofirmOTP">
       <div className="modalcontainer-confirmOTP">
-        <p className="confirmOTP__title">Comfirm OTP</p>
+        <p className="confirmOTP__title">Confirm OTP</p>
         <div className="content-confirmOTP">
           <div className="confirmOTP">
             <FontAwesomeIcon className="faEnvelopeCircleCheck" icon={faEnvelopeCircleCheck} />

@@ -3,7 +3,7 @@ import { categories } from "../../../api/Categories";
 const Categories = () => {
   const [category, setCategory] = useState([]);
   const [product, setProduct] = useState("plant");
-
+  console.log("First categoris: ");
   useEffect(() => {
     const getCate = async () => {
       try {

@@ -21,7 +21,7 @@ const useProducts = () => {
       setProduct(res.data.products);
     } catch (e) {
       console.log("Err of product home page", e);
-    }
+    } 
   };
 
   return {

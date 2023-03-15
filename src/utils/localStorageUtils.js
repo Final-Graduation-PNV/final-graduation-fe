@@ -2,6 +2,7 @@ const TOKEN_KEY = "token";
 const USERNAME_KEY = 'user_name';
 const SHOPONWER_KEY = 'shopOnwer';
 const USERID_KEY = 'user_id';
+const CHECKED_KEY = 'checked';
 
 export const getToken = () => {
   return localStorage.getItem(TOKEN_KEY)
@@ -48,5 +49,10 @@ export const removeUserId = () => {
   localStorage.removeItem(USERID_KEY)
 }
 
+export const getChecked_LC = () => {
+  return localStorage.getItem(CHECKED_KEY)
+}
 
-
+export const setChecked_LC = (value) => {
+  localStorage.setItem(CHECKED_KEY, value)
+}

@@ -66,9 +66,8 @@ function HomePage() {
 
   const handleAddCart = async (id) => {
     try {
-      await addToCart(id, 1)
+      const res = await addToCart(id, 1)
       AlertCartSuccess()
-      console.log("aa to cart")
       refreshCart()
     } catch (e) {
       AlertCartError()

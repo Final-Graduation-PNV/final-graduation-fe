@@ -7,12 +7,10 @@ import React, { useState } from "react";
 import validator from 'validator';
 
 function ModalPM({ closeModal }) {
-  // const { setName, setPhone, setCity, setAddress } = useState("")
   const [phone, setPhone] = useState("")
   const [city, setCity] = useState("")
   const [address, setAddress] = useState("")
   const [isValidPhone, setIsValidPhone] = useState(false);
-  console.log("address: ",)
   ls.set("city", city, { encrypt: true })
   ls.set("phone", phone, { encrypt: true })
   ls.set("address", address, { encrypt: true })
@@ -20,7 +18,7 @@ function ModalPM({ closeModal }) {
   const saveHandler = () => {
     if (phone !== null && phone !== "" &&
       city !== null && city !== "" &&
-      address !== null && address !== "") {
+      address !== null && address !== "" && isValidPhone == true) {
       closeModal(false)
     }
     else {
@@ -33,9 +31,6 @@ function ModalPM({ closeModal }) {
     ls.remove("address", address, { encrypt: true })
     closeModal(false)
   }
-
-
-  console.log("user name: ", phone, city, address)
 
   return (
     <>

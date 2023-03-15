@@ -60,7 +60,7 @@ const ConfirmOTP = ({ closeModal, email }) => {
       console.log("Err send email!")
     }
   }
-  
+
   useEffect(() => {
     const handleTabClose = event => {
       event.preventDefault();
@@ -81,7 +81,7 @@ const ConfirmOTP = ({ closeModal, email }) => {
   return (
     <div className="modalBackground-cofirmOTP">
       <div className="modalcontainer-confirmOTP">
-        <p className="confirmOTP__title">Comfirm OTP</p>
+        <p className="confirmOTP__title">Confirm OTP</p>
         <div className="content-confirmOTP">
           <div className="confirmOTP">
             <FontAwesomeIcon className="faEnvelopeCircleCheck" icon={faEnvelopeCircleCheck} />

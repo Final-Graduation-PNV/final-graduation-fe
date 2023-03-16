@@ -1,5 +1,7 @@
 // import ModalSigin from "./screens/Modals/ModalSignin";
 
+// import NoteSignupShop from "./pages/Modals/NoteSignupShop";
+
 // import Cart from "./pages/Modals/Car";
 
 // import ConfirmOTP from "./pages/Modals/ConfirmOTP";
@@ -12,7 +14,8 @@ function App() {
       <Auth />
       {/* <ModalSigin /> */}
       {/* <Cart /> */}
-
+      {/* <InforMarketPL /> */}
+      {/* <NoteSignupShop /> */}
     </>
   )
 }

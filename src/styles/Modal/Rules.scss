@@ -10,7 +10,7 @@
 }
 .modalContainer-Rules {
   width: 650px;
-  height: 680px;
+  height: 580px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35);
@@ -29,14 +29,15 @@
   cursor: pointer;
 }
 .Rules-text__tittle {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 0px;
 }
 .rules {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
   text-align: justify;
+  line-height: 14px;
 }
 .rules_one {
   font-size: 15px;

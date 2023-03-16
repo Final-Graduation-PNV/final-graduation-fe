@@ -1,0 +1,139 @@
+.inforBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+.inforContainer {
+  width: 600px;
+  height: 550px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  justify-content: space-between;
+}
+.infor-text {
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infor-phone {
+  display: flex;
+  flex-direction: column;
+}
+.infor-icon {
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+}
+.info-person {
+  display: flex;
+  justify-content: space-between;
+}
+.infor-gender {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infor-gender select {
+  width: 250px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #cdcccc;
+  margin-top: 10px;
+}
+.infor-text__gender {
+  font-size: 18px;
+  font-weight: 600;
+  height: 0px;
+  margin-top: -0px;
+}
+.infor-text__tittle {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 0px;
+}
+.infor-text__name,
+.infor-text__phone,
+.infor-city__city,
+.infor-despayment p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 0px;
+  display: flex;
+}
+.infor-despayment textarea {
+  width: 560px;
+  padding: 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
+}
+.infor-name {
+  display: flex;
+  flex-direction: column;
+}
+.infor-name__input,
+.infor-phone__input {
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
+}
+.infor-city select {
+  width: 600px;
+  padding: 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
+}
+
+.infor-des textarea {
+  width: 579px;
+  height: 113px;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
+}
+.infor-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.btn__cancel {
+  padding: 10px 40px 10px 40px;
+  background-color: #949895;
+  border: none;
+  color: #000000;
+  font-size: 20px;
+  border-radius: 10px;
+  line-height: 0px;
+  cursor: pointer;
+}
+
+.btn__save {
+  padding: 10px 40px 10px 40px;
+  background-color: #3c7026;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.infor-text-birth__input {
+  width: 578px;
+  padding: 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
+}
+.intor-text__birth {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 0px;
+}

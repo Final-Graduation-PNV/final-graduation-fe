@@ -4,33 +4,32 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../../api/cartAPI";
 import useCarts from "../../../hooks/useCarts";
-import AlertCart from "../../../pages/Modals/Cart";
+import Cart from "../../../pages/Modals/Cart";
 import ProductReview from "./ProductReview";
 
 const ProductDetail = ({ product }) => {
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts();
-
+  const { AlertCartError, AlertCartSuccess } = Cart();
   const [quantity, setQuantity] = useState(1);
 
   const increaseHandler = async () => {
     const newQuantity = Math.min(quantity + 1, product.quantity);
     setQuantity(newQuantity);
-    // addHandler({ quantity: newQuantity });
   };
 
   const decreaseHandler = async () => {
     const newQuantity = Math.max(quantity - 1, 1);
     setQuantity(newQuantity);
-    // addHandler({ quantity: newQuantity });
   };
 
   const handleAddCart = async () => {
     try {
       await addToCart(product.id, quantity);
-      AlertCart();
+      AlertCartSuccess();
       refreshCart();
     } catch (e) {
+      AlertCartError();
       console.log("error cart: ", e);
     }
   };
@@ -70,7 +69,7 @@ const ProductDetail = ({ product }) => {
             +
           </div>
         </div>
-        <div className="btn">
+        <div className="btn-detail">
           <button className="btn-buy" onClick={() => navigate(`/cart`)}>
             Buy now
           </button>

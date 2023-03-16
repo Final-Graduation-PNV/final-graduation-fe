@@ -14,6 +14,7 @@ import Categories from "../components/features/home/Categories";
 import ProductCard from "../components/features/home/ProductCard";
 import useCarts from "../hooks/useCarts";
 import useProducts from "../hooks/useProducts";
+import Footer from "../layout/footer/Footer";
 import Header from "../layout/header/Header";
 import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
@@ -62,7 +63,7 @@ function HomePage() {
       console.log("Err search user", err)
     }
   }
-  console.log(typeof(products))
+  console.log(typeof (products))
 
   const handleAddCart = async (id) => {
     try {
@@ -144,16 +145,7 @@ function HomePage() {
           <div>No products</div>
         )
       }
-      {/* <ReactPaginate
-        previousLabel="< previous"
-        nextLabel="next >"
-        breakLabel="..."
-        pageCount={15}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={3}
-        onPageChange={handlePageClick}
-        renderOnZeroPageCount={null}
-      /> */}
+      <Footer />
     </>
   )
 }

@@ -14,7 +14,7 @@ function CreatePM({ closeModal }) {
       {isShow && <Rules closeModal={setIsShow} />}
       <div className="modalContainer-createMp">
         <div className="modal-icon-createMp">
-          <FontAwesomeIcon icon={faClose} onClick={() => closeModal(false)} />
+          <FontAwesomeIcon className = "modal__icon" icon={faClose} onClick={() => closeModal(false)} />
         </div>
         <div className="createMp-text">
           <p className="createMp-text__tittle">Create your marketplace</p>

@@ -1,0 +1,59 @@
+.noteSignupBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+.noteSignup-icon {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.noteSignup-text__tittle {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 30px;
+  line-height: 0px;
+}
+.noteSignupContainer {
+  width: 380px;
+  height: 480px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: space-around;
+}
+
+.imglogoSignupShop {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  object-position: 100%;
+  margin: 0 auto;
+}
+.signupContent p {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: justify;
+}
+.signupContent i {
+  font-weight: 600;
+}
+.signupBnt button {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  background-color: #3c7026;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}

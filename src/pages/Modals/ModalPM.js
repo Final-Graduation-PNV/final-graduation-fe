@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ls from 'localstorage-slim';
 import React, { useState } from "react";
 import validator from 'validator';
+import CityList from "../../components/features/city/CityList";
 
 function ModalPM({ closeModal }) {
   const [phone, setPhone] = useState("")
@@ -66,19 +67,9 @@ function ModalPM({ closeModal }) {
             <div className="modal-city">
               <p className="modal-city__city" >Province/ City:</p>
               <select value={city ? city : ls.get("city", { encrypt: true })} onChange={(e) => setCity(e.target.value)}>
-                <option value="City">City</option>
-                <option value="Audi">Audi</option>
-                <option value="BMW">BMW</option>
-                <option value="Citroen">Citroen</option>
-                <option value="Ford">Ford</option>
-                <option value="Honda">Honda</option>
-                <option value="Jaguar">Jaguar</option>
-                <option value="Land Rover">Land Rover</option>
-                <option value="Mercedes">Mercedes</option>
-                <option value="Mini">Mini</option>
-                <option value="Nissan">Nissan</option>
-                <option value="Toyota">Toyota</option>
-                <option value="Volvo">Volvo</option>
+                {CityList.map((city, id) => (
+                  <option key={id} value={city.name}>{city.name}</option>
+                ))}
               </select>
             </div>
             {city.trim() === '' && (

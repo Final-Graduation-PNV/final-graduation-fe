@@ -4,7 +4,7 @@ import { faAngleRight, faClipboard, faLocationDot, faPen, faTruckFast } from "@f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ls from 'localstorage-slim';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { payment } from "../../api/paymentAPI";
 import InforPersonRow from "../../components/features/payment/inforPersonRow";
 import PaymentRow from "../../components/features/payment/paymentRow";
@@ -17,7 +17,8 @@ import Thanks from "../Modals/Thankyou";
 function Payment() {
   const [isShow, setIsShow] = useState(false);
   const [thanks, setThanks] = useState(false);
-  const [notes, setNotes] = useState("")
+  const [notes, setNotes] = useState("");
+  const navigate = useNavigate();
   const phone = ls.get("phone", { decrypt: true });
   const address = ls.get("address", { decrypt: true });
   const city = ls.get("city", { decrypt: true });
@@ -36,7 +37,8 @@ function Payment() {
       address !== null && address !== ""
     ) {
       const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
-      AlertPaymentSuccess()
+      AlertPaymentSuccess();
+      await (() => navigate("/"))
     } else {
       setIsShow(true)
     }

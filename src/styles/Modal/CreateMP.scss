@@ -23,6 +23,9 @@
   display: flex;
   flex-direction: row-reverse;
 }
+.modal__icon {
+  cursor: pointer;
+}
 .createMp-text__tittle {
   font-size: 24px;
   font-weight: 700;
@@ -44,6 +47,7 @@
   font-size: 18px;
   color: #000000;
   border-radius: 10px;
+  cursor: pointer;
 }
 .createMp-btn__yes {
   padding: 10px 70px;
@@ -52,6 +56,7 @@
   font-size: 18px;
   color: #fff;
   border-radius: 10px;
+  cursor: pointer;
 }
 .createMp-btn {
   display: flex;

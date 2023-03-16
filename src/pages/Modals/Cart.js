@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import "../../styles/Modal/Cart.scss";
 
 const Cart = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const AlertCartSuccess = () => {
     Swal.fire({
       position: 'center',
@@ -42,9 +41,7 @@ const Cart = () => {
       title: 'Check your email address to see bill detail.',
       button: "Go To Homepage",
     })
-      .then(function () {
-        navigate("/")
-      })
+   
   }
   const AlertPaymentError = () => {
     Swal.fire({

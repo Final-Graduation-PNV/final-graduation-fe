@@ -1,23 +1,94 @@
 .footer {
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    background-color: #76b66f;
-    &__menu {
-        &__title {
-            margin-left: 70px;
-        }
-        &__contents {
-            & ul {
-                margin-left: 30px;
-                & li {
-                    text-align: left;
-                    list-style: none;
-                }
-            }
-        }
-
-    }
-
+  height: 130px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #9ba17b;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1200px;
+  margin: 0px auto;
+}
+.footer-logo img {
+  width: 43.2px;
+  height: 80px;
+  margin-right: 30px;
+}
+.footer-more {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+}
+.footer-idea p,
+.footer-ordering p,
+.footer-Contact p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 0px;
+  margin-top: 20px;
+}
+.footer-idea-contributes input {
+  width: 200px;
+  padding: 10px;
+}
+.footer-idea-contributes button {
+  padding: 10px;
+  background-color: #3c7026;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+}
+.footer-idea-ordering {
+  display: flex;
+  justify-content: center;
+}
+.footer-idea-ordering img {
+  margin-right: 10px;
+}
+.footer-Contact p {
+  text-align: center;
+}
+.footer-idea-contact {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+}
+.icon-footer__faPhone {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #0ad629;
+  color: #fff;
+}
+.icon-footer__faEnvelope {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #0ad629;
+  color: #fff;
+}
+.icon-footer__faTwitter {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #0ad629;
+  color: #fff;
+}
+.icon-footer__faInstagram {
+  padding: 10px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #0ad629;
+  color: #fff;
+}
+.icon-footer__faFacebookF {
+  padding: 10px 13px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #0ad629;
+  color: #fff;
 }

@@ -1,0 +1,23 @@
+.footer {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: #76b66f;
+    &__menu {
+        &__title {
+            margin-left: 70px;
+        }
+        &__contents {
+            & ul {
+                margin-left: 30px;
+                & li {
+                    text-align: left;
+                    list-style: none;
+                }
+            }
+        }
+
+    }
+
+}

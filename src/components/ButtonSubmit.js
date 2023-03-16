@@ -2,7 +2,7 @@ const ButtonSubmit = ({ title, name, type = "text", className, onClick }) => {
     return (
       <>
         <button
-          className={`btn ${className}`}
+          className={`button-component ${className}`}
           type={type}
           name={name}
           onClick={onClick}

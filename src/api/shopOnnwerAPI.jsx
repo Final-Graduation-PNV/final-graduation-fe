@@ -3,7 +3,7 @@ import axios from "axios";
 
 const SEARCH_API_URL = "shop/search";
 const SHOP_PRODUCTS = "shop/products";
-const SHOP_CATEGORIES = "shop/categories";
+const SHOP_CATEGORIES = "categories";
 
 export const searchShopProduct = async (search) => {
   return await http.get(`${SEARCH_API_URL}?name=${search}`)

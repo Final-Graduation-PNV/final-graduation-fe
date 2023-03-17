@@ -1,7 +1,7 @@
 
 import "../styles/HomePage.scss";
 
-import { faBasketball, faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -90,10 +90,6 @@ function HomePage() {
                 <div className="navLeft-logo">
                   <img className="navLeft__logo" src={account} alt="account" style={{ width: 30, height: 30, borderRadius: 40 }} />
                   <p>Ngô Thị Tròn</p>
-                </div>
-                <div className="navLeft-network">
-                  <FontAwesomeIcon className="faBasketball-home" icon={faBasketball} />
-                  <p>Social network</p>
                 </div>
                 <div className="navLeft-Market">
                   <FontAwesomeIcon className="faShop-home" icon={faShop} />

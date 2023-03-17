@@ -1,3 +1,5 @@
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { categories } from "../../../api/Categories";
 const Categories = () => {
@@ -23,17 +25,20 @@ const Categories = () => {
   };
 
   return (
-    <select
-      className="selectToday_name"
-      defaultValue={category[0]?.id}
-      onChange={handleProductChange}
-    >
-      {category.map((cate) => (
-        <option key={cate.id} value={cate.name}>
-          {cate.name}
-        </option>
-      ))}
-    </select>
+    <>
+      <select
+        className="selectToday_name"
+        defaultValue={category[0]?.id}
+        onChange={handleProductChange}
+      >
+        {category.map((cate) => (
+          <option key={cate.id} value={cate.name}>
+            {cate.name}
+          </option>
+        ))}
+      </select>
+      <FontAwesomeIcon className="selet__faChevronDown" icon={faChevronDown} />
+    </>
   );
 };
 export default Categories;

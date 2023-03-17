@@ -1,11 +1,9 @@
 import "../../styles/Auth/Signup.scss";
 
-import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { sendEmailOTP, signup } from '../../api/authAPI';
+import { signup } from '../../api/authAPI';
 import logo from "../../assets/Image/logo.png";
 import { setUserId } from "../../utils/localStorageUtils";
 import ConfirmOTP from "../Modals/ConfirmOTP";
@@ -58,7 +56,7 @@ function Signup() {
   return (
 
     <div id="container">
-      {isShowOTP && <ConfirmOTP  closeModal={setIsShowOTP}  email = {email} />}
+      {isShowOTP && <ConfirmOTP closeModal={setIsShowOTP} email={email} />}
       {isModalOpen && <ModalSigup closeModal={setIsModalOpen} />}
       <div className="signup">
         <div className="signup__left">
@@ -78,24 +76,18 @@ function Signup() {
           <form action="" className='signup__right--form' >
             <p className='signup__right--title'>Sign Up</p>
             <input type="text" className="name" name="Name" placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-            {errors.name && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.name}</div>}
+            {errors.name && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.name}</div>}
             <input type="text" className="email" name="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-            {errors.email && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.email}</div>}
+            {errors.email && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.email}</div>}
             <input type="password" className="password" name="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-            {errors.password && <div style={{ color: "rgb(173, 3, 3)", textAlign: "center" }}>{errors.password}</div>}
+            {errors.password && <div style={{ color: "rgb(173, 3, 3)", textAlign: "center", fontSize: 13 }}>{errors.password}</div>}
             <input type="password" className="confirmPassword" name="confirmPassword" placeholder='Cofirm Password' value={password_confirmation} onChange={(e) => { setConfirmPassword(e.target.value) }} />
-            {errors.password_confirmation && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.password_confirmation}</div>}
+            {errors.password_confirmation && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.password_confirmation}</div>}
             <input type="submit" className="submit" value="Sign up" onClick={handleSignup} />
           </form>
-          <div className='signup__right--icon'>
-            <div className='faFacebookF'><FontAwesomeIcon icon={faFacebookF} className='faFacebookF_icon' /><p>Facebook</p></div>
-            <div className="faGoogle"><FontAwesomeIcon icon={faGoogle} className='faGoogle_icon' /><p>Google</p></div>
-            <div className="faTwitter"><FontAwesomeIcon icon={faTwitter} className='faTwitter_icon' /><p>Twitter</p></div>
-          </div>
           <p className='no__account'>Don't you have an? <Link to="/sign-in">Sign in</Link> now</p>
         </div>
       </div>
-
     </div>
   )
 }

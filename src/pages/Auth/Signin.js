@@ -1,7 +1,5 @@
 import "../../styles/Auth/Signin.scss";
 
-import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
@@ -58,7 +56,6 @@ function Signin() {
   return (
     <>
       <div id="container">
-        {/* {isModalOpen && <ModalSigin closeModal={setIsModalOpen} />} */}
         <div className='container-Signin'>
           <div className="signin">
             <div className="signin__left">
@@ -78,19 +75,13 @@ function Signin() {
               <form action="" className='signin__right--form'>
                 <p className='signin__right--title'>Sign In</p>
                 <input type="text" className="email" name="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                {errors.email && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.email}</div>}
+                {errors.email && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.email}</div>}
                 <input type="password" className="password" name="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                {errors.password && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.password}</div>}
-                {errors.error && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.error}</div>}
-                {errors.message && <div style={{ color: "rgb(173, 3, 3)" }}>{errors.message}</div>}
+                {errors.password && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.password}</div>}
+                {errors.error && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.error}</div>}
+                {errors.message && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.message}</div>}
                 <input type="submit" className="submit" value="Sign in" onClick={handleSigin} />
-                <a className="forgotpassword" href=''>Forgot password</a>
               </form>
-              <div className='signin__right--icon'>
-                <div className='faFacebookF'><FontAwesomeIcon icon={faFacebookF} className='faFacebookF_icon' /><p>Facebook</p></div>
-                <div className="faGoogle"><FontAwesomeIcon icon={faGoogle} className='faGoogle_icon' /><p>Google</p></div>
-                <div className="faTwitter"><FontAwesomeIcon icon={faTwitter} className='faTwitter_icon' /><p>Twitter</p></div>
-              </div>
               <p className='no__account'>Don't you have an? <Link to="/sign-up">Sign up</Link> now</p>
             </div>
           </div >

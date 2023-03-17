@@ -37,8 +37,7 @@ function Payment() {
       address !== null && address !== ""
     ) {
       const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
-      AlertPaymentSuccess();
-      await (() => navigate("/"))
+      await Promise.all([AlertPaymentSuccess(), navigate("/")]);
     } else {
       setIsShow(true)
     }

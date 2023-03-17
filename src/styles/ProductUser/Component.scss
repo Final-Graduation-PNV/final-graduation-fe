@@ -68,3 +68,15 @@
 .input-field::placeholder {
   font-size: 12px;
 }
+
+.slideshow{
+  width: 100%;
+  height: 400px;
+  &__content{
+   & img{
+    width: 100%;
+    height: 383px;
+    object-fit: cover;
+   } 
+  }
+}

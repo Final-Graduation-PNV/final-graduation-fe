@@ -19,9 +19,13 @@ const NoteSignupShop = ({ closeModal }) => {
           </div>
           <img src={logoSignupShop} className="imglogoSignupShop" />
           <div className="signupContent">
-            <p>When you register to shop Onwer online, we will give you free for the first 60 days from the registration date.</p>
-            <p>After 60 days of free use. We will charge you <i>200k/month (VNĐ)</i> We will send you a confirmation email via your email. If you still want to shop Onwer yourself, please confirm our email.</p>
-            <p>Thank you for signing up!</p>
+            <p>You will get 2 months free to experience our services after registering an account to become a shop owner.
+            </p>
+            <p>After 2 months of using the service, if you still want to continue to maintain the service, you have to pay
+              <i> 200,000 VND per month </i>.</p>
+            <p className="p2month">Sign-up now to receive 2 months of free service
+            </p>
+            <p>Thank you</p>
           </div>
           <div className="signupBnt">
             <button onClick={() => { setIsShow(true) }}>Sign Up Now</button>

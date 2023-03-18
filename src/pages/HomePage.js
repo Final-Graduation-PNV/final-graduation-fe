@@ -89,7 +89,7 @@ function HomePage() {
               <div className="homepage-navLef">
                 <div className="navLeft-logo">
                   <img className="navLeft__logo" src={account} alt="account" style={{ width: 30, height: 30, borderRadius: 40 }} />
-                  <p>Ngô Thị Tròn</p>
+                  <p>{localStorage.getItem("user_name")}</p>
                 </div>
                 <div className="navLeft-Market">
                   <FontAwesomeIcon className="faShop-home" icon={faShop} />

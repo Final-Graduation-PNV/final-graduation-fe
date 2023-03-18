@@ -93,7 +93,7 @@ const Product = () => {
                         <div className="product-user__body__left-menu__avata">
                             <img className="product-user-img" src="/image/avata.png" alt="" />
                             <h3>Your market place</h3>
-                            <p>Ngô Thị Tròn</p>
+                            <p>{localStorage.getItem("user_name")}</p>
                         </div>
                         <div className="product-user__body__left-menu__menu">
                             <ul>

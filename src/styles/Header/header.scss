@@ -41,7 +41,6 @@
   }
 }
 .header-right {
-  width: 70.5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,7 +72,7 @@
 }
 .detail-top__cart {
   margin-top: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .detail-top__cart a {
   position: absolute;
@@ -133,7 +132,7 @@
     font-weight: 400;
     cursor: pointer;
   }
-  
+
   .carts__price {
     width: 100px;
     -webkit-line-clamp: 3;

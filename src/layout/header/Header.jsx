@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import account from "../../assets/Image/account.png";
 import cartProduct from "../../assets/Image/cartProduct.png";
-import logo from "../../assets/Image/logo.png";
+import logomain1 from "../../assets/Image/logomain1.png";
 import useCarts from "../../hooks/useCarts";
 import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
@@ -21,7 +21,7 @@ function Header() {
 
   const refreshHomePage = () => {
     refreshProduct();
-    console.log("refresh home page home: ");
+    navigate("/");
   };
 
   return (
@@ -32,7 +32,7 @@ function Header() {
           <div className="header-left">
             <div className="header-left__img">
               <img
-                src={logo}
+                src={logomain1}
                 alt="Logo"
                 style={{ width: 27, height: 45, marginRight: 30 }}
                 onClick={() => {

@@ -3,14 +3,14 @@ import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import cashpayment from "../../assets/Image/cashpayment.png";
-import logo from "../../assets/Image/logo.png";
+import logomain1 from "../../assets/Image/logomain1.png";
 import vnpay from "../../assets/Image/vnpay.png";
 const Footer = () => {
     return (
         <div className="footer">
             <div className="footer-top">
                 <div className="footer-logo">
-                    <img src={logo} />
+                    <img src={logomain1} />
                 </div>
                 <div className="footer-idea">
                     <p>Contribute ideas</p>
@@ -32,7 +32,7 @@ const Footer = () => {
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faPhone" icon={faPhone} /></a>
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faEnvelope" icon={faEnvelope} /></a>
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faTwitter" icon={faTwitter} /></a>
-                        <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faInstagram" icon={faInstagram} /></a>
+                        <a href="https://www.instagram.com/duyetjs/"><FontAwesomeIcon className="icon-footer__faInstagram" icon={faInstagram} /></a>
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faFacebookF" icon={faFacebookF} /></a>
                     </div >
                 </div >

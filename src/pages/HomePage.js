@@ -20,6 +20,7 @@ import Header from "../layout/header/Header";
 import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
 import CreatePM from "./Modals/CreateMP";
+import PayTwoMonth from "./Modals/PayTwoMonth";
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +31,8 @@ function HomePage() {
   const navigate = useNavigate();
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
   const { AlertCartError, AlertCartSuccess } = Cart();
-  const { loadProductToggle } = useProducts()
+  const { loadProductToggle } = useProducts();
+  const [isPeriod, setPeriod] = useState(false);
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -81,12 +83,12 @@ function HomePage() {
       const res = await periodShop();
       console.log("console periodShop: ", res.data.valid_account[0].message)
       if (res.data.valid_account[0].message == "Your account has not expired!") {
-        navigate("shopOnnwer")
-        console.log("ok")
-      }else{
-          
+        setPeriod(true);
+        // navigate("shopOnnwer")
+        // console.log("ok")
+      } else {
+        setPeriod(true);
       }
-
     } catch (error) {
       console.log("Error shop onwer: ", error)
     }
@@ -94,6 +96,7 @@ function HomePage() {
 
   return (
     <>
+      {isPeriod && <PayTwoMonth closeModal={setPeriod} />}
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} handleResult={handleResultSearch} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
       {
@@ -135,10 +138,9 @@ function HomePage() {
                     Today's selection
                   </p>
                   <div className="categories">
-                    <Categories />
-                    <p className="position" onClick={() => setIsModalOpen(true)} >Da Nang <FontAwesomeIcon icon={faLocationDot} /></p>
+                    <Categories handleResult={handleResultSearch} />
+                    <p className="position" onClick={() => setIsModalOpen(true)} >{!localStorage.getItem("cityCate") ? "Da Nang" : localStorage.getItem("cityCate")} <FontAwesomeIcon icon={faLocationDot} /></p>
                   </div>
-
                 </div>
                 <div className="homePage-product">
                   {

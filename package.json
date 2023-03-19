@@ -1,6 +1,7 @@
 {
   "name": "pflower",
   "version": "0.1.0",
+  "homepage": "https://decoplantsflowers-f381a.firebaseapp.com",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",

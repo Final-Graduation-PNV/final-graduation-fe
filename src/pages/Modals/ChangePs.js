@@ -12,6 +12,7 @@ function ChangePs({ closeModal, handleResult }) {
   const token = localStorage.getItem("token");
   const productName = localStorage.getItem("selectedProduct")
   console.log("handle result: ", handleResult)
+  localStorage.setItem("cityCate", city)
   const handleSearch = () => {
     axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=${city}`, {
       headers: {

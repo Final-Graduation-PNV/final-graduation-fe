@@ -7,7 +7,12 @@
 // import ConfirmOTP from "./pages/Modals/ConfirmOTP";
 
 import Auth from "./navigations/Auth";
+import ShopMap from "./pages/Map/Map";
+import GoogleApiWrapper from "./pages/Map/GoogleMap";
+import MapShop from "./pages/Map/GoogleMap";
+
 function App() {
+
   return (
     <>
       {/* <ConfirmOTP /> */}
@@ -16,6 +21,9 @@ function App() {
       {/* <Cart /> */}
       {/* <InforMarketPL /> */}
       {/* <NoteSignupShop /> */}
+      {/* <ShopMap/> */}
+      {/* <MapShop/> */}
+      {/* <GoogleApiWrapper/> */}
     </>
   )
 }

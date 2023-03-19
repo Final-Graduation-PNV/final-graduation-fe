@@ -1,7 +1,7 @@
 import "../../pages/Modals/Logout";
 import "../../styles/Header/header.scss";
 
-import { faCartShopping, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch, faMap } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -42,11 +42,15 @@ function Header() {
             </div>
             <div className="header-search">
               <FontAwesomeIcon icon={faSearch} />
-              <input
+              {/* <input
                 type="text"
                 className="search"
                 placeholder="Search plan & flower"
-              />
+              /> */}
+              <FontAwesomeIcon
+              icon={faMap}
+              onClick={() => navigate("/searchMap")}
+            />
             </div>
           </div>
           <div className="header-right">

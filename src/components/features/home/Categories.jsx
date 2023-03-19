@@ -30,7 +30,7 @@ const Categories = ({ handleResult }) => {
   const handleSearch = () => {
     axios
       .get(
-        `http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=Da Nang`,
+        `http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,8 +39,6 @@ const Categories = ({ handleResult }) => {
         }
       )
       .then((res) => {
-        console.log(productName);
-        console.log("res search: ", res);
         handleResult(res.data.products);
       })
       .catch((err) => console.log(err));

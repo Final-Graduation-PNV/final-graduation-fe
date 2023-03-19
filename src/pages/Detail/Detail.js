@@ -24,7 +24,6 @@ function Detail() {
     const getDetail = async () => {
       try {
         const res = await getDataDetail(id);
-        console.log(res);
         setDetailProduct(res.data.product)
       }
       catch (err) {

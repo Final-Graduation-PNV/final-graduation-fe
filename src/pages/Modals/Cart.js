@@ -41,7 +41,7 @@ const Cart = () => {
       title: 'Check your email address to see bill detail.',
       button: "Go To Homepage",
     })
-   
+
   }
   const AlertPaymentError = () => {
     Swal.fire({
@@ -51,8 +51,14 @@ const Cart = () => {
       button: "Ok",
     })
   }
+  const AlertcartPayment = () => {
+    Swal.fire({
+      text: 'You have not selected any items for checkout',
+      button: "Ok",
+    })
+  }
   return {
-    AlertCartError, AlertCartSuccess, AlertSendSuccess, AlertPaymentError, AlertPaymentSuccess
+    AlertCartError, AlertcartPayment, AlertCartSuccess, AlertSendSuccess, AlertPaymentError, AlertPaymentSuccess
   }
 }
 export default Cart

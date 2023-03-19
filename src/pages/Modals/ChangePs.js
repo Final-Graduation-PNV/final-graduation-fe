@@ -21,10 +21,12 @@ function ChangePs({ closeModal, handleResult }) {
       }
     })
       .then(res => {
+        console.log("res chang ps: ", res)
         closeModal(false);
         handleResult(res.data.products);
       })
       .catch(err => console.log(err))
+
   }
 
   return (

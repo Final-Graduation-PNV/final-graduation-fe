@@ -15,13 +15,13 @@
     font-weight: 700;
     border-radius: 8px;
     text-transform: uppercase;
-    border: 1px solid #015C92;
-    background-color: #015C92;
+    border: 1px solid #3c7026;
+    background-color: #3c7026;
 }
 .dashbord-header-btn:hover {
-    color: #015C92;
-    border: 1px solid #015C92;
-    background-color: #F0F2F5;
+    color: #3c7026;
+    border: 1px solid #3c7026;
+    background-color: rgb(255, 255, 255);;
 }
 .dashbord-header-right {
     display: flex;

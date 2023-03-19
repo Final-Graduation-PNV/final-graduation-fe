@@ -29,7 +29,7 @@ function SideBar({ menu }) {
             <div className='sidebar-container'>
                 <div className='sidebar-logo-container'>
                     <img
-                        src='/image/logo.png'
+                        src='/image/logo.jpg'
                         alt="logo" />
                 </div>
 

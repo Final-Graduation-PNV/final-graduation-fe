@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import cartProduct from "../../src/assets/Image/cartProduct.png";
 import { addToCart } from "../api/cartAPI";
 import { getData, searchProduct } from "../api/productsAPI";
+import { periodShop } from "../api/shopOnnwerAPI";
 import account from "../assets/Image/account.png";
 import Categories from "../components/features/home/Categories";
 import ProductCard from "../components/features/home/ProductCard";
@@ -30,7 +31,6 @@ function HomePage() {
   const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
   const { AlertCartError, AlertCartSuccess } = Cart();
   const { loadProductToggle } = useProducts()
-
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -63,7 +63,6 @@ function HomePage() {
       console.log("Err search user", err)
     }
   }
-  console.log(typeof (products))
 
   const handleAddCart = async (id) => {
     try {
@@ -76,8 +75,24 @@ function HomePage() {
     }
   }
 
-  return (
+  const checkPeriodhandler = async () => {
 
+    try {
+      const res = await periodShop();
+      console.log("console periodShop: ", res.data.valid_account[0].message)
+      if (res.data.valid_account[0].message == "Your account has not expired!") {
+        navigate("shopOnnwer")
+        console.log("ok")
+      }else{
+          
+      }
+
+    } catch (error) {
+      console.log("Error shop onwer: ", error)
+    }
+  }
+
+  return (
     <>
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} handleResult={handleResultSearch} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
@@ -95,7 +110,7 @@ function HomePage() {
                   <FontAwesomeIcon className="faShop-home" icon={faShop} />
                   {
                     shopOnwer === "true"
-                      ? <p onClick={() => navigate("shopOnnwer")}>Your marketplace</p>
+                      ? <p onClick={() => checkPeriodhandler()}>Your marketplace</p>
                       : <p onClick={() => setIsCreateMp(true)}>Create your marketplace</p>
                   }
                 </div>

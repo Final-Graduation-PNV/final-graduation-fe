@@ -5,7 +5,6 @@ import { categories } from "../../../api/Categories";
 const Categories = () => {
   const [category, setCategory] = useState([]);
   const [product, setProduct] = useState("plant");
-  console.log("First categoris: ");
   useEffect(() => {
     const getCate = async () => {
       try {
@@ -30,6 +29,7 @@ const Categories = () => {
         className="selectToday_name"
         defaultValue={category[0]?.id}
         onChange={handleProductChange}
+        // onClick={handleProductChange}
       >
         {category.map((cate) => (
           <option key={cate.id} value={cate.name}>

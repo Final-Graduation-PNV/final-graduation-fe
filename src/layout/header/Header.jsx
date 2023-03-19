@@ -21,7 +21,7 @@ function Header() {
 
   const refreshHomePage = () => {
     refreshProduct();
-    console.log("refresh home page home: ");
+    navigate("/");
   };
 
   return (
@@ -45,7 +45,7 @@ function Header() {
               <input
                 type="text"
                 className="search"
-                placeholder="Search plan & flower"
+                placeholder="Search shop address"
               />
             </div>
           </div>

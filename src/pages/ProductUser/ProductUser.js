@@ -112,13 +112,13 @@ const Product = () => {
 
                             <div className="product-user__body__right-menu__head">
                                 <div className="product-user__body__right-menu__head__filter">
-                                    <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
-                                    {/* <input name="search"
+                                  {/* <input name="search"
                                         placeholder="Search"
                                         onChange={handlerInput}
                                         type="text"
                                         className="product-user__body__right-menu__head__filter-input"
-                                    /> */}
+                                    /> */}           <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
+                           
                                     <input
                                         className="product-user__body__right-menu__head__filter-input"
                                         onKeyPress={handleSearchProduct}

@@ -32,7 +32,7 @@ const Footer = () => {
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faPhone" icon={faPhone} /></a>
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faEnvelope" icon={faEnvelope} /></a>
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faTwitter" icon={faTwitter} /></a>
-                        <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faInstagram" icon={faInstagram} /></a>
+                        <a href="https://www.instagram.com/duyetjs/"><FontAwesomeIcon className="icon-footer__faInstagram" icon={faInstagram} /></a>
                         <a href="https://www.facebook.com/"><FontAwesomeIcon className="icon-footer__faFacebookF" icon={faFacebookF} /></a>
                     </div >
                 </div >

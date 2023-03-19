@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import { signup } from '../../api/authAPI';
-import logo from "../../assets/Image/logo.png";
+import logomain1 from "../../assets/Image/logomain1.png";
 import { setUserId } from "../../utils/localStorageUtils";
 import ConfirmOTP from "../Modals/ConfirmOTP";
 import ModalSigup from '../Modals/ModalSignup';
@@ -52,7 +52,6 @@ function Signup() {
     setErrors(initialErrors)
   }
 
-
   return (
 
     <div id="container">
@@ -61,14 +60,14 @@ function Signup() {
       <div className="signup">
         <div className="signup__left">
           <div className="signup__left--logo">
-            <img src={logo} alt="" style={{ width: 100, height: 200 }} />
+            <img src={logomain1} alt="" style={{ width: "auto", height: 200 }} />
           </div>
           <div className="signup__left--text">
             <p className="signup__left--text-tittle">
               Welcome to Plant &amp; Flower
             </p>
             <p className="signup__left--text-desc">
-              Please to meet you! Wish you have health and success
+              Pleased to meet you! Wish you have health and success
             </p>
           </div>
         </div>

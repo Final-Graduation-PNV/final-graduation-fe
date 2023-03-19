@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 
 import { signin } from '../../api/authAPI';
-import logo from "../../assets/Image/logo.png";
+import logomain1 from "../../assets/Image/logomain1.png";
 import { setLoggedIn } from '../../redux/slices/authSlice';
 import { setShopOnwer, setToken, setUserId, setUserName } from '../../utils/localStorageUtils';
 
@@ -60,14 +60,14 @@ function Signin() {
           <div className="signin">
             <div className="signin__left">
               <div className="signin__left--logo">
-                <img src={logo} alt="" style={{ width: 100, height: 200 }} />
+                <img src={logomain1} alt="" style={{ width: 'auto', height: 200 }} />
               </div>
               <div className="signin__left--text">
                 <p className="signin__left--text-tittle">
                   Welcome to Plant &amp; Flower
                 </p>
                 <p className="signin__left--text-desc">
-                  Please to meet you! Wish you have health and success
+                  Pleased to meet you! Wish you have health and success
                 </p>
               </div>
             </div>

@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import map from "../../assets/Image/map.png";
 
 function ChangePs({ closeModal, handleResult }) {
-  const [city, setCity] = useState("")
+  const [city, setCity] = useState("");
   const token = localStorage.getItem("token");
   const productName = localStorage.getItem("selectedProduct")
   console.log("handle result: ", handleResult)

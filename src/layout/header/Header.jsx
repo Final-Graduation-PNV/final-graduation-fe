@@ -41,16 +41,16 @@ function Header() {
               />
             </div>
             <div className="header-search">
-              <FontAwesomeIcon icon={faSearch} />
-              {/* <input
+              <FontAwesomeIcon onClick={() => navigate("/searchMap")} icon={faSearch} />
+              <input
                 type="text"
                 className="search"
                 placeholder="Search plan & flower"
-              /> */}
-              <FontAwesomeIcon
+              />
+              {/* <FontAwesomeIcon
               icon={faMap}
-              onClick={() => navigate("/searchMap")}
-            />
+              
+            /> */}
             </div>
           </div>
           <div className="header-right">

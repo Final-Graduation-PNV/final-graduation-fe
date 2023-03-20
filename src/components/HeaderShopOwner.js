@@ -6,7 +6,7 @@ import {  faSearch} from "@fortawesome/free-solid-svg-icons";
 export default function HeaderShopOwner() {
     return (
         <div className="header-shopOwner">
-            <div className="header-shopOwner__logo"><img className="header-shopOwner__logo__image"src="/image/logo.png" alt=""/></div>
+            <div className="header-shopOwner__logo"><img className="header-shopOwner__logo__image"src="/image/logo.jpg" alt=""/></div>
             <div className="header-shopOwner__search">
                 <FontAwesomeIcon icon={faSearch} />
                 <input type="text" className="header-shopOwner__search__input" placeholder="Search your products"></input>

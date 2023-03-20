@@ -1,4 +1,5 @@
 import "../../styles/Modal/ModalPM.scss";
+import Geocode from "react-geocode";
 
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +8,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CityList from "../../components/features/city/CityList";
 import "../../styles/Modal/InforMarketPl.scss";
+Geocode.setApiKey("AIzaSyAZ_eQK1VY8vuw0YVCn2DCbEqv5KCe2Vh4");
+
 function InforMarketPL({ closeModal }) {
 
   const user_id = localStorage.getItem("user_id");
@@ -27,10 +30,27 @@ function InforMarketPL({ closeModal }) {
     address: "",
     citiesL: ""
   })
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const handleSubmit = (add) => {
+    // event.preventDefault();
+    Geocode.fromAddress(add).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setLatitude(lat);
+        setLongitude(lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+  console.log("địa chỉ nha:", latitude, longitude)
   const [error, setError] = useState(initialError)
 
   const shopOnwerhanler = () => {
     resetErrors()
+    handleSubmit(address);
     axios.post(UrlShopOnwer,
       {
         user_id,
@@ -38,7 +58,9 @@ function InforMarketPL({ closeModal }) {
         birth,
         gender,
         address,
-        city
+        city,
+        latitude,
+        longitude
       },
       {
         headers: {

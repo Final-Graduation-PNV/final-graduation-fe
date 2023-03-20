@@ -7,7 +7,6 @@ import Cart from "../pages/Cart/Cart";
 import Detail from "../pages/Detail/Detail";
 import HomePage from "../pages/HomePage";
 import ShopMap from "../pages/Map/Map";
-import SearchCity from "../pages/Map/SearchCity";
 import Logout from "../pages/Modals/Logout";
 import Payment from "../pages/Payment/Payment";
 import Product from "../pages/ProductUser/ProductUser";
@@ -34,7 +33,6 @@ function Auth() {
               <Route path="/EditProfile" element={<EditProfile />} />
               <Route path="/shopOnnwer" element={<Product />} />
               <Route path="/searchMap" element={<ShopMap/>} />
-              
               <Route path="*" element={<HomePage />} />
             </>
           )

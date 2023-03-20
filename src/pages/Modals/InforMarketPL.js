@@ -22,16 +22,20 @@ function InforMarketPL({ closeModal }) {
   const [gender, setGender] = useState("")
   const [city, setCity] = useState("")
   const [address, setAddress] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [longitude, setLongitude] = useState("")
 
   const initialError = Object.freeze({
     phone: "",
     birth: "",
     gender: "",
     address: "",
-    citiesL: ""
+    citiesL: "",
+    latitude: "",
+    longitude: ""
+
   })
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+
   const handleSubmit = (add) => {
     // event.preventDefault();
     Geocode.fromAddress(add).then(

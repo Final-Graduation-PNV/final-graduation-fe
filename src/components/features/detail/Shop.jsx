@@ -6,7 +6,7 @@ const Shop = ({ product }) => {
   return (
     <div className="shop">
       <div className="shopowner">
-        <img className="shop__img" src={product.image} />
+        <img className="shop__img" src={product.image}  alt=""/>
         <div className="shopowner-ger">
           <p className="shopower__name">{product.shop_name}</p>
           <p className="shopower__location">

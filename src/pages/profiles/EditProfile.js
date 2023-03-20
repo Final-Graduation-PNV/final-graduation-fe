@@ -21,7 +21,7 @@ function EditProfile() {
             <div className="editProfile-info">
               <div className="editProfile-account">
                 <div className="editProfile-info__img">
-                  <img src={account} style={{ width: 100, height: 100 }} />
+                  <img src={account} style={{ width: 100, height: 100 }} alt="product image" />
                 </div>
                 <div className="editProfile-info-text">
                   <p className="editProfile-info-text__name">Ngô Thị Tròn</p>

@@ -11,7 +11,7 @@ function ChangePs({ closeModal, handleResult }) {
   const [city, setCity] = useState("");
   const token = localStorage.getItem("token");
   const productName = localStorage.getItem("selectedProduct")
-  console.log("handle result: ", handleResult)
+
   localStorage.setItem("cityCate", city)
   const handleSearch = () => {
     axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=${city}`, {
@@ -21,7 +21,6 @@ function ChangePs({ closeModal, handleResult }) {
       }
     })
       .then(res => {
-        console.log("res chang ps: ", res)
         closeModal(false);
         handleResult(res.data.products);
       })
@@ -48,12 +47,11 @@ function ChangePs({ closeModal, handleResult }) {
             </select>
           </div>
           <div className="changePs__img">
-            <img src={map} />
+            <img src={map} alt=""/>
           </div>
           <div className="changePs-btn">
             <button className="changePs-btn__search" onClick={handleSearch}>Search</button>
           </div>
-          {/* //  <button className="btn__checkEmail" onClick={() => closeModal(false)}><Link className="checkEmail" to="/Sin">Check your email</Link></button> */}
         </div>
       </div>
     </div>

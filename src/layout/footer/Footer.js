@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer">
             <div className="footer-top">
                 <div className="footer-logo">
-                    <img src={logomain1} />
+                    <img src={logomain1} alt="" />
                 </div>
                 <div className="footer-idea">
                     <p>Contribute ideas</p>
@@ -22,8 +22,8 @@ const Footer = () => {
                 <div className="footer-ordering">
                     <p>Payment methods</p>
                     <div className="footer-idea-ordering">
-                        <img src={cashpayment} />
-                        <img src={vnpay} />
+                        <img src={cashpayment} alt="" />
+                        <img src={vnpay} alt="" />
                     </div>
                 </div>
                 <div className="footer-Contact">

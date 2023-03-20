@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import "../../styles/Modal/Thankyou.scss"
 
-function Thanks({ closeModal }) {
+function Thanks() {
   const navigate = useNavigate()
 
   return (

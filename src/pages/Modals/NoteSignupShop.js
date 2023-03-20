@@ -17,7 +17,7 @@ const NoteSignupShop = ({ closeModal }) => {
           <div className="noteSignup-text">
             <p className="noteSignup-text__tittle">A few things to note</p>
           </div>
-          <img src={logoSignupShop} className="imglogoSignupShop" />
+          <img src={logoSignupShop} className="imglogoSignupShop" alt=""/>
           <div className="signupContent">
             <p>You will get 2 months free to experience our services after registering an account to become a shop owner.
             </p>

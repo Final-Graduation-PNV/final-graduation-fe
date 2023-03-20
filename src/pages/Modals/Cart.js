@@ -2,7 +2,6 @@ import Swal from 'sweetalert2';
 import "../../styles/Modal/Cart.scss";
 
 const Cart = () => {
-  // const navigate = useNavigate()
   const AlertCartSuccess = () => {
     Swal.fire({
       position: 'center',

@@ -87,32 +87,6 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
         .then((res) => {
           product.image = res.data.secure_url;
           updatePoduct();
-          // axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/shop/products/" + data.id,
-          //   {
-          //     name: product.name,
-          //     price: product.price,
-          //     description: product.description,
-          //     category_id: product.category_id,
-          //     image: res.data.secure_url,
-          //     quantity: product.quantity,
-          //   },
-          //   {
-          //     headers: {
-          //       'Content-Type': 'application/json',
-          //       'Authorization': `Bearer ${token}`,
-          //     }
-          //   }
-          // ).then((response) => {
-          //   setToggle(!toggle);
-          //   closeModal(false);
-          //   onRedirect();
-          //   // swal("Edit product successfully!", "", "success");
-          // })
-          // .catch(({response}) => {
-          //   setErrors(response.data.errors)
-          //   console.log("Err sign in", errors)
-          // });
-
         });
     } else {
       updatePoduct();
@@ -127,7 +101,7 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
             <label className="add-product__form-title">Product image</label>
             <input name="image" type="file" onChange={onImageChange} />
           </div>
-          <img src={img? img : product.image} />
+          <img src={img? img : product.image} alt="product image"/>
         </div>
         <div>
           <label className="add-product__form-title">Product name</label>

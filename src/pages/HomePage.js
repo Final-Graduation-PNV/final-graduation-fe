@@ -29,7 +29,7 @@ function HomePage() {
   const [search, setSearch] = useState("");
   const shopOnwer = localStorage.getItem('shopOnwer');
   const navigate = useNavigate();
-  const { setCart, refreshCart, getCart, loadCartToggle } = useCarts()
+  const { refreshCart, getCart, loadCartToggle } = useCarts()
   const { AlertCartError, AlertCartSuccess } = Cart();
   const { loadProductToggle } = useProducts();
   const [isPeriod, setPeriod] = useState(false);
@@ -68,7 +68,7 @@ function HomePage() {
 
   const handleAddCart = async (id) => {
     try {
-      const res = await addToCart(id, 1)
+      await addToCart(id, 1)
       AlertCartSuccess()
       refreshCart()
     } catch (e) {
@@ -143,7 +143,7 @@ function HomePage() {
                 <div className="homePage-product">
                   {
                     products.length ? (products.map((pro) => <ProductCard key={pro.id} product={pro} onAddProduct={handleAddCart} />)) : (<div className="noProductHomePage">
-                      <img src={cartProduct} />
+                      <img src={cartProduct} alt="image product"/>
                       <p>No products</p>
                     </div>)
                   }

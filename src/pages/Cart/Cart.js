@@ -27,7 +27,7 @@ function Cartpayment() {
   }, [loadCartToggle])
 
   const deleteAllHandler = async () => {
-    const res = await deleteAllCart()
+    await deleteAllCart()
     refreshCart()
   }
 
@@ -37,14 +37,13 @@ function Cartpayment() {
       if (checked.length !== 0) {
         navigate("/payment");
         if (res.data.paying) {
-          res.data.paying.map((pro, ids) => {
+          res.data.paying.map((pro) => {
             if (pro.user_name == null && pro.cart_note == null && pro.user_address == null && pro.user_city && pro.user_phone) {
-              console.log(pro)
-              const user = ls.set("name", pro.user_name, { encrypt: true });
-              const note = ls.set("note", pro.cart_note, { encrypt: true });
-              const address = ls.set("address", pro.user_address, { encrypt: true });
-              const city = ls.set("city", pro.user_city, { encrypt: true });
-              const phone = ls.set("phone", pro.user_phone, { encrypt: true });
+              ls.set("name", pro.user_name, { encrypt: true });
+              ls.set("note", pro.cart_note, { encrypt: true });
+              ls.set("address", pro.user_address, { encrypt: true });
+              ls.set("city", pro.user_city, { encrypt: true });
+              ls.set("phone", pro.user_phone, { encrypt: true });
             }
             else {
               ls.get("city", { encrypt: true })
@@ -81,7 +80,7 @@ function Cartpayment() {
               ))
             ) : (
               <div className="noCart">
-                <img src={cartProduct} />
+                <img src={cartProduct} alt="" />
                 <p>Your shopping cart is empty</p>
               </div>
             )

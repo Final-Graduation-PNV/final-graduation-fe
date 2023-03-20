@@ -5,7 +5,7 @@ const PaymentRow = ({ product }) => {
     <div className="product-con">
       <div className="product-imgName">
         <p className="con__img">
-          <img className="img__product" src={product.product_image} />
+          <img className="img__product" src={product.product_image}  alt=""/>
         </p>
         <p className="con__name">{product.product_name}</p>
       </div>

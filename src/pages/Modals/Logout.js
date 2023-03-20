@@ -20,7 +20,6 @@ function Logout({ closeModal }) {
     removeUserId()
     dispatch(setLoggedIn(false))
   }
-  console.log(removeToken)
 
   return (
     <div className="modalBackground-logout">
@@ -30,7 +29,7 @@ function Logout({ closeModal }) {
         </div>
         <div className="logout__account-gernal">
           <div className="logout-account">
-            <img className="logout__img" src={account} />
+            <img className="logout__img" src={account} alt=""/>
             <p className="logout__name">{getUserName("user")} </p>
           </div>
           <Link to="profile"><p className="logout-profile">See all profiles</p></Link>

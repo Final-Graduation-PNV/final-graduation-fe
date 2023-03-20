@@ -27,7 +27,7 @@ function SeeShop() {
           <div className="shoppeOnwer">
             <div className="shop">
               <div className="shopowner">
-                <img className="shop__img" src={shopImage} />
+                <img className="shop__img" src={shopImage} alt="image shop" />
                 <div className="shopowner-ger">
                   <p className="shopower__name">Gardenshop21</p>
                   <p className="shopower__location"><FontAwesomeIcon icon={faLocationDot} /> Da Nang</p>
@@ -47,25 +47,25 @@ function SeeShop() {
             </div>
             <div className="seeshop-product">
               <div className="product">
-                <Link to="detail"><img className="product__img" src={product} /></Link>
+                <Link to="detail"><img className="product__img" src={product} alt="product image" /></Link>
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
               <div className="product">
-                <img className="product__img" src={product1} />
+                <img className="product__img" src={product1} alt="product image" />
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
               <div className="product">
-                <img className="product__img" src={product} />
+                <img className="product__img" src={product} alt="product image" />
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
               <div className="product">
-                <img className="product__img" src={product} />
+                <img className="product__img" src={product} alt="product image" />
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
@@ -81,31 +81,30 @@ function SeeShop() {
             </div>
             <div className="seeshop-product">
               <div className="product">
-                <Link to="detail"><img className="product__img" src={product} /></Link>
+                <Link to="detail"><img className="product__img" src={product} alt="product image" /></Link>
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
               <div className="product">
-                <img className="product__img" src={product1} />
+                <img className="product__img" src={product1} alt="product image" />
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
               <div className="product">
-                <img className="product__img" src={product} />
+                <img className="product__img" src={product} alt="product image" />
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
               <div className="product">
-                <img className="product__img" src={product} />
+                <img className="product__img" src={product} alt="product image" />
                 <p className="product__name">Sago Palm</p>
                 <p className="product__price">315.000 vnd</p>
                 <button className="add-product_btn">Add to cart</button>
               </div>
             </div>
-
           </div>
         </div>
       </div>

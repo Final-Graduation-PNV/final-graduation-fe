@@ -9,7 +9,7 @@ import ProductReview from "./ProductReview";
 
 const ProductDetail = ({ product }) => {
   const navigate = useNavigate();
-  const { setCart, refreshCart, getCart, loadCartToggle } = useCarts();
+  const {  refreshCart } = useCarts();
   const { AlertCartError, AlertCartSuccess } = Cart();
   const [quantity, setQuantity] = useState(1);
 

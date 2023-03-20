@@ -5,7 +5,7 @@ const ProductCard = ({ product, onAddProduct }) => {
   return (
     <div className="product">
       <Link to={`detail/${product.id}`}>
-        <img className="product__imgHP" src={product.image} />
+        <img className="product__imgHP" src={product.image}  alt="" />
       </Link>
       <Link to={`detail/${product.id}`}>
         <p

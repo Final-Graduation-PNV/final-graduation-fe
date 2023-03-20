@@ -101,7 +101,7 @@ function Header() {
                     </div>
                   ) : (
                     <div className="noCart-product">
-                      <img src={cartProduct} />
+                      <img src={cartProduct} alt=""/>
                       <p>No Products Yet</p>
                     </div>
                   )}

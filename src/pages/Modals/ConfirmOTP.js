@@ -33,7 +33,6 @@ const ConfirmOTP = ({ closeModal, email }) => {
   }
 
   const cancelOTPhandler = async () => {
-    console.log("cancel sigin up", gettUserId())
     try {
       await logout(gettUserId());
       closeModal(false)
@@ -53,9 +52,8 @@ const ConfirmOTP = ({ closeModal, email }) => {
 
   const sendEmailOTPhandler = async () => {
     try {
-      const res = await sendEmailOTP(email);
+      await sendEmailOTP(email);
       AlertSendSuccess()
-      console.log("Send email successfully! ", res)
     } catch (error) {
       console.log("Err send email!")
     }
@@ -64,9 +62,6 @@ const ConfirmOTP = ({ closeModal, email }) => {
   useEffect(() => {
     const handleTabClose = event => {
       event.preventDefault();
-
-      console.log('beforeunload event triggered');
-
       return (event.returnValue =
         'Are you sure you want to exit?');
     };

@@ -36,7 +36,6 @@ function Signin() {
       setShopOnwer(res.data.shopOwner)
       dispatch(setLoggedIn(true))
       navigate("/")
-      console.log("login: ", res)
     }
     catch (err) {
       console.log("Err sign in: ", err)
@@ -86,7 +85,6 @@ function Signin() {
             </div>
           </div >
         </div>
-
       </div >
     </>
 

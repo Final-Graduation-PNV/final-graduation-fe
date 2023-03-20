@@ -22,7 +22,7 @@ function Profile() {
             <div className="profile-info">
               <div className="profile-account">
                 <div className="profile-info__img">
-                  <img src={account} style={{ width: 100, height: 100, borderRadius: 50 }} />
+                  <img src={account} style={{ width: 100, height: 100, borderRadius: 50 }} alt="Account image"/>
                 </div>
                 <div className="profile-info-text">
                   <p className="profile-info-text__name">Ngô Thị Tròn</p>

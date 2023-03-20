@@ -53,7 +53,6 @@ function Signup() {
   }
 
   return (
-
     <div id="container">
       {isShowOTP && <ConfirmOTP closeModal={setIsShowOTP} email={email} />}
       {isModalOpen && <ModalSigup closeModal={setIsModalOpen} />}

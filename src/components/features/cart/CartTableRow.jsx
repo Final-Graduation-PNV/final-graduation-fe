@@ -57,7 +57,7 @@ const CartTableRow = ({ product, setCheckedCart, checkedCart }) => {
       />
       <div className="addCart-top__name">{product.name}</div>
       <div className="addCart-top__img">
-        <img src={product.image} />
+        <img src={product.image} alt="image cart"/>
       </div>
       <div className="addCart-top__price">
         {new Intl.NumberFormat().format(product.price * 1000)} vnđ

@@ -23,7 +23,9 @@ function Payment() {
   const address = ls.get("address", { decrypt: true });
   const city = ls.get("city", { decrypt: true });
   const note = ls.get("note", { decrypt: true })
+  const getDATA = ls.get('data', { decrypt: true });
   const { AlertPaymentSuccess } = Cart();
+
   const totalPayment = () => {
     return ls.get("data", { encrypt: true }).reduce((total, paymentEle) => {
       return total + paymentEle.product_price * paymentEle.cart_quantity * 1000;
@@ -45,7 +47,7 @@ function Payment() {
   const edithanler = () => {
     setIsShow(true)
   }
-  const getDATA = ls.get('data', { decrypt: true });
+ 
   return (
     <div className="container-payment">
       {isShow && <ModalPM closeModal={setIsShow} />}
@@ -121,7 +123,6 @@ function Payment() {
                 <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnd</p>
               </div>
               <button className="order_btn" onClick={() => { billhandler() }}>Order</button>
-
             </div>
           </div>
         </div>

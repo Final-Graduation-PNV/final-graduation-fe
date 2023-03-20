@@ -16,7 +16,7 @@ import { deleteCategory, getAdminCategories } from '../../../api/admin';
 
 
 
-function Categories({ openModal, toggle, setToggle }) {
+function Categories({ openAddModal, openEditModal ,setEditData, toggle, setToggle }) {
     const [search, setSearch] = useState('');
     const [orders, setOrders] = useState(all_orders);
     const [page, setPage] = useState(1);
@@ -75,10 +75,15 @@ function Categories({ openModal, toggle, setToggle }) {
         setOrders(sliceData(all_orders, new_page, 5));
     }
 
+    const handlerEdit = (editdata) => {
+        setEditData(editdata)
+        openEditModal(true)
+        console.log("data",editdata)
+    }
     return (
         <div className='dashboard-content'>
             <DashboardHeader
-                btnText="New Category" onClick={() => openModal(true)} />
+                btnText="New Category" onClick={() => openAddModal(true)} />
 
             <div className='dashboard-content-container'>
                 <div className='dashboard-content-header'>
@@ -112,7 +117,7 @@ function Categories({ openModal, toggle, setToggle }) {
                                     <td><span>{category.name}</span></td>
                                     <td><span>{category.created_at}</span></td>
                                     <td><span>{category.updated_at}</span></td>
-                                    <td><span><FontAwesomeIcon icon={faPen} onClick='' /></span></td>
+                                    <td><span><FontAwesomeIcon icon={faPen} onClick={() => handlerEdit(category)}/></span></td>
                                     <td><span><FontAwesomeIcon onClick={() => deleteHandle(category.id)} icon={faTrash} /></span></td>
                                 </tr>
                             ))}

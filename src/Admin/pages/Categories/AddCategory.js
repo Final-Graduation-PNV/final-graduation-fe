@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './styles.scss';
 
 
-function AddCategory({ toggle, closeModal }) {
+function AddCategory({ toggle,setToggle, closeModal }) {
     const [category, setCategory] = useState([]);
 
     const handleChange = (e) => {
@@ -30,7 +30,7 @@ function AddCategory({ toggle, closeModal }) {
         )
             .then(function (response) {
                 console.log(response);
-                toggle(!true);
+                setToggle(!toggle);
                 closeModal(false);
             })
             .catch(function (error) {

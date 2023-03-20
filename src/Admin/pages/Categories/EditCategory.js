@@ -6,8 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './styles.scss';
 
 
-function EditCategory({ data, toggle, closeModal }) {
-    const [category, setCategory] = useState([data]);
+function EditCategory({ data, toggle,setToggle, closeModal }) {
+    const [category, setCategory] = useState({
+        name: data.name,
+        id: data.id,
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -15,12 +18,12 @@ function EditCategory({ data, toggle, closeModal }) {
             ...category,
             [name]: value,
         });
-        console.log("category: ", category.category);
+        console.log("category: ", category.name);
 
     };
     const handleSubmit = () => {
         const token = localStorage.getItem("token")
-        axios.put("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/admin/categories", { name: category.category },
+        axios.patch("http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/admin/categories/"+data.id, { name: category.name },
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,7 +33,8 @@ function EditCategory({ data, toggle, closeModal }) {
         )
             .then(function (response) {
                 console.log(response);
-                toggle(!true);
+                setToggle(!toggle);
+
                 closeModal(false);
             })
             .catch(function (error) {
@@ -48,9 +52,9 @@ function EditCategory({ data, toggle, closeModal }) {
                     </div>
                     <input className='add-category__form__input'
                         type='text'
-                        name='category'
+                        name='name'
                         placeholder='Category'
-                        value={category.data}
+                        value={category.name}
                         onChange={handleChange}
                         required="required"
                     />

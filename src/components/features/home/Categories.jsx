@@ -1,10 +1,13 @@
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { categories } from "../../../api/Categories";
-const Categories = () => {
+const Categories = ({ handleResult }) => {
   const [category, setCategory] = useState([]);
   const [product, setProduct] = useState("plant");
+  const token = localStorage.getItem("token");
+  const productName = localStorage.getItem("selectedProduct");
   useEffect(() => {
     const getCate = async () => {
       try {
@@ -21,6 +24,24 @@ const Categories = () => {
     const selectedProduct = e.target.value;
     setProduct(selectedProduct);
     localStorage.setItem("selectedProduct", selectedProduct);
+    handleSearch();
+  };
+
+  const handleSearch = () => {
+    axios
+      .get(
+        `http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        handleResult(res.data.products);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -29,7 +50,7 @@ const Categories = () => {
         className="selectToday_name"
         defaultValue={category[0]?.id}
         onChange={handleProductChange}
-        // onClick={handleProductChange}
+        // onClick={handleSearch}
       >
         {category.map((cate) => (
           <option key={cate.id} value={cate.name}>

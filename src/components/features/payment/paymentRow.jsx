@@ -1,7 +1,6 @@
 import React from "react";
 
 const PaymentRow = ({ product }) => {
-  console.log("product payment row: ", product);
   return (
     <div className="product-con">
       <div className="product-imgName">

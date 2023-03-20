@@ -5,6 +5,8 @@ const SEARCH_API_URL = "shop/search";
 const SHOP_PRODUCTS = "shop/products";
 const SHOP_CATEGORIES = "categories";
 const SHOP_PERIOD_API_URL = "shop/check";
+const SHOP_VNPAY_CREATE_API_URL = "shop/vnpay/create";
+
 export const searchShopProduct = async (search) => {
   return await http.get(`${SEARCH_API_URL}?name=${search}`);
 };
@@ -53,4 +55,8 @@ export const getImageLink = async (file) => {
 
 export const periodShop = async () => {
   return await http.get(SHOP_PERIOD_API_URL);
+};
+
+export const vnPayCreate = async () => {
+  return await http.get(SHOP_VNPAY_CREATE_API_URL);
 };

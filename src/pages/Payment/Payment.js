@@ -120,15 +120,12 @@ function Payment() {
                 <p>Total payment</p>
                 <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnd</p>
               </div>
-              {/* <button className="order_btn">Order</button> */}
               <button className="order_btn" onClick={() => { billhandler() }}>Order</button>
 
             </div>
           </div>
         </div>
       </div>
-
-      {/* {isShow && <ModalPM closeModal={setIsShow} />} */}
     </div>
   )
 }

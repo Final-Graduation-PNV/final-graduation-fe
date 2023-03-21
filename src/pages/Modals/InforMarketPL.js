@@ -1,5 +1,5 @@
-import "../../styles/Modal/ModalPM.scss";
 import Geocode from "react-geocode";
+import "../../styles/Modal/ModalPM.scss";
 
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +14,7 @@ function InforMarketPL({ closeModal }) {
 
   const user_id = localStorage.getItem("user_id");
   const token = localStorage.getItem("token")
-  const UrlShopOnwer = "http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/be-shop";
+  const UrlShopOnwer = "http://ec2-54-67-114-9.us-west-1.compute.amazonaws.com/api/user/be-shop";
   const navigate = useNavigate();
 
   const [birth, setBirth] = useState()

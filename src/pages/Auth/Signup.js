@@ -39,8 +39,10 @@ function Signup() {
         password,
         password_confirmation,
       );
+      console.log("Sign up: ", res)
       setUserId(res.data.user.id)
       setIsShowOTP(true)
+
     }
     catch (err) {
       setErrors(err.data.errors)

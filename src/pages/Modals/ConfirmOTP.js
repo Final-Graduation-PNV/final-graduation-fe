@@ -46,6 +46,7 @@ const ConfirmOTP = ({ closeModal, email }) => {
       await verifyOTP(gettUserId(), otp)
       navigate("/")
     } catch (error) {
+      console.log("id:", gettUserId(), "otp:", otp)
       console.log("Error confirm otp: ", error)
     }
   }

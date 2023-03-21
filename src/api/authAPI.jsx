@@ -2,9 +2,9 @@ import http from "./http";
 
 const SIGNIN_API_URL = "login";
 const SIGNUP_API_URL = "register";
-const RESEND_OTP_API_URL = "resend-otp";
-const VERIFY_OTP_API_URL = "email/verify-otp";
-const LOGOUT_OTP_API_URL = "email/logout-otp";
+const RESEND_OTP_API_URL = "users/resend-otp";
+const VERIFY_OTP_API_URL = "users";
+const LOGOUT_OTP_API_URL = "users";
 const SIGNUP_BESHOP_API_URL = "user/be-shop";
 
 export const signin = async (email, password) => {
@@ -28,11 +28,11 @@ export const sendEmailOTP = async (email) => {
 };
 
 export const verifyOTP = async (id, otp) => {
-  return await http.post(`${VERIFY_OTP_API_URL}/${id}`, { otp });
+  return await http.post(`${VERIFY_OTP_API_URL}/${id}/verify`, { otp });
 };
 
 export const logout = async (id) => {
-  return await http.post(`${LOGOUT_OTP_API_URL}/${id}`);
+  return await http.post(`${LOGOUT_OTP_API_URL}/${id}/cancel`);
 };
 
 export const shopBe = async (id) => {

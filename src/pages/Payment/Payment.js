@@ -25,6 +25,7 @@ function Payment() {
   const city = ls.get("city", { decrypt: true });
   const note = ls.get("note", { decrypt: true })
   const getDATA = ls.get('data', { decrypt: true });
+  console.log("phone: ", phone, "Address: ", address, "City: ", city, "Note:", note)
   const { AlertPaymentSuccess } = Cart();
 
   const totalPayment = () => {
@@ -41,6 +42,7 @@ function Payment() {
     ) {
       const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
       await Promise.all([AlertPaymentSuccess(), navigate("/")]);
+      console.log("res payment:", res)
     } else {
       setIsShow(true)
     }

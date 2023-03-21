@@ -71,11 +71,6 @@ const handleSearch = () => {
             </div>
           </div>
           <div className="header-right">
-            {/* <div className="header-right-icon">
-              <Link to="/"><FontAwesomeIcon className="fa faShop" icon={faShop} onClick={() => { refreshHomePage() }} /></Link>
-              <FontAwesomeIcon className="fa faUserGroup" icon={faUserGroup} />
-              <FontAwesomeIcon className="fa faBasketball" icon={faBasketball} />
-            </div> */}
             <div className="header-right-account">
               <div className="detail-top__cart">
                 <div className="top__cart-icon">

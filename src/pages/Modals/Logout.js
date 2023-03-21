@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import ls from 'localstorage-slim';
 import { Link } from "react-router-dom";
 import account from "../../assets/Image/account.png";
 import { setLoggedIn } from "../../redux/slices/authSlice";
@@ -18,6 +19,12 @@ function Logout({ closeModal }) {
     removeUserName()
     removeShopOnwer()
     removeUserId()
+    ls.remove("data", { encrypt: true });
+    ls.remove("note", { encrypt: true });
+    ls.remove("address", { encrypt: true });
+    ls.remove("city", { encrypt: true });
+    ls.remove("phone", { encrypt: true });
+    localStorage.removeItem("checked")
     dispatch(setLoggedIn(false))
   }
 
@@ -29,7 +36,7 @@ function Logout({ closeModal }) {
         </div>
         <div className="logout__account-gernal">
           <div className="logout-account">
-            <img className="logout__img" src={account} alt=""/>
+            <img className="logout__img" src={account} alt="" />
             <p className="logout__name">{getUserName("user")} </p>
           </div>
           <Link to="profile"><p className="logout-profile">See all profiles</p></Link>

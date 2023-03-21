@@ -35,6 +35,7 @@ function Cartpayment() {
   const paymentHandler = async () => {
     try {
       const res = await detalPayment(checked)
+      console.log("handler payment:", res)
       if (checked.length !== 0) {
         navigate("/payment");
         if (res.data.paying) {
@@ -90,7 +91,6 @@ function Cartpayment() {
           < div className="purchase">
             <div className="purchase-dete">
               <div className="purchase__dete">
-                <input type="checkbox" />Select All
                 <button onClick={deleteAllHandler}>Delete All</button>
               </div>
             </div>

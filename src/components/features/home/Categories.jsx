@@ -24,7 +24,6 @@ const Categories = ({ handleResult }) => {
     const selectedProduct = e.target.value;
     setProduct(selectedProduct);
     localStorage.setItem("selectedProduct", selectedProduct);
-    handleSearch();
   };
 
   const handleSearch = () => {
@@ -50,7 +49,7 @@ const Categories = ({ handleResult }) => {
         className="selectToday_name"
         defaultValue={category[0]?.id}
         onChange={handleProductChange}
-        // onClick={handleSearch}
+        onClick={() => handleSearch()}
       >
         {category.map((cate) => (
           <option key={cate.id} value={cate.name}>

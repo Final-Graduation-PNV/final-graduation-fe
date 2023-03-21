@@ -12,13 +12,27 @@ import logomain1 from "../../assets/Image/logomain1.png";
 import useCarts from "../../hooks/useCarts";
 import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
+import Geocode from "react-geocode";
 
 function Header() {
   const [isLogout, setIsLogout] = useState(false);
   const navigate = useNavigate();
   const { cart } = useCarts();
   const { refreshProduct } = useProducts();
+  const [searchLocation, setSearchLocation]  = useState({
+    lat: "",
+    lng: ""
+  })
+  const [searchAddress, setSearchAddress] = useState("")
 
+const onAddressChange = (e) => {
+  setSearchAddress(e.target.value);
+  console.log("address;", searchAddress)
+}
+
+const handleSearch = () => {
+
+}
   const refreshHomePage = () => {
     refreshProduct();
     navigate("/");
@@ -45,7 +59,10 @@ function Header() {
               <input
                 type="text"
                 className="search"
-                placeholder="Search plan & flower"
+                name="searchAddress"
+                value={searchAddress}
+                placeholder="Search shop address"
+                onChange={onAddressChange}
               />
               {/* <FontAwesomeIcon
               icon={faMap}

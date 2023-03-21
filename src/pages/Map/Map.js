@@ -115,10 +115,10 @@ function ShopMap() {
             <div className="shop-map__google-map" style={{ height: '100vh', width: '100%' }}            >
                 {currentLocation.lat && currentLocation.lng ? (
                     <GoogleMapReact
-                        bootstrapURLKeys={{ key: 'AIzaSyAZ_eQK1VY8vuw0YVCn2DCbEqv5KCe2Vh4' }}
+                        bootstrapURLKeys={{ key: 'AIzaSyBnz2gvBIM3N89kMVI4YJT8oOGZT31NACU' }}
                         defaultCenter={currentLocation}
                         defaultZoom={16}
-                        onClick={handleMapClick}
+                        // onClick={handleMapClick}
                     >
                         <AnyReactComponent
                             lat={currentLocation.lat}

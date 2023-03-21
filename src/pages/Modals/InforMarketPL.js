@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CityList from "../../components/features/city/CityList";
 import "../../styles/Modal/InforMarketPl.scss";
-Geocode.setApiKey("AIzaSyAZ_eQK1VY8vuw0YVCn2DCbEqv5KCe2Vh4");
+Geocode.setApiKey("AIzaSyBnz2gvBIM3N89kMVI4YJT8oOGZT31NACU");
 
 function InforMarketPL({ closeModal }) {
 

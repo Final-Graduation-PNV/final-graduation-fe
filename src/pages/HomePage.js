@@ -20,10 +20,13 @@ import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
 import CreatePM from "./Modals/CreateMP";
 import PayTwoMonth from "./Modals/PayTwoMonth";
+import SearchShop from "./Modals/SearchShop";
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreateMp, setIsCreateMp] = useState(false);
+  const [modalSearchShop, setModalSearchShop] = useState(false);
+
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const shopOnwer = localStorage.getItem('shopOnwer');
@@ -31,6 +34,11 @@ function HomePage() {
   const { AlertCartError, AlertCartSuccess } = Cart();
   const { loadProductToggle } = useProducts();
   const [isPeriod, setPeriod] = useState(false);
+  const [searchAddress, setSearchAddress] = useState("");
+  const [searchLocation, setSearchLocation] = useState({
+    lat: "",
+    lng: ""
+  })
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -96,10 +104,11 @@ function HomePage() {
       {isPeriod && <PayTwoMonth closeModal={setPeriod} />}
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} handleResult={handleResultSearch} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
+      {modalSearchShop && <SearchShop closeModal={setModalSearchShop} searchLocation={searchLocation} setSearchLocation={setSearchLocation} searchAddress={searchAddress} setSearchAddress={setSearchAddress}/>}
       {
         products ? (
           <div className="container-homepage">
-            <Header />
+            <Header openModal={setModalSearchShop} isModal={modalSearchShop}searchAddress={searchAddress} setSearchAddress={setSearchAddress} searchLocation={searchLocation} setSearchLocation={setSearchLocation}/>
             <div className="homePage">
               <div className="homepage-navLef">
                 <div className="navLeft-logo">

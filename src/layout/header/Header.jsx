@@ -3,7 +3,8 @@ import "../../styles/Header/header.scss";
 
 import { faCartShopping, faSearch, faMap } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 import account from "../../assets/Image/account.png";
@@ -13,17 +14,17 @@ import useCarts from "../../hooks/useCarts";
 import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
 import Geocode from "react-geocode";
+Geocode.setApiKey("AIzaSyAsUqfmF2hquaeaLJi6qk7tP0KsHx7GKV8");
 
-function Header() {
+
+function Header({searchAddress ,isModal, setSearchAddress, searchLocation, setSearchLocation, openModal}) {
   const [isLogout, setIsLogout] = useState(false);
   const navigate = useNavigate();
   const { cart } = useCarts();
   const { refreshProduct } = useProducts();
-  const [searchLocation, setSearchLocation]  = useState({
-    lat: "",
-    lng: ""
-  })
-  const [searchAddress, setSearchAddress] = useState("")
+  // const [searchAddress, setSearchAddress] = useState(searchAddress);
+
+
 
 const onAddressChange = (e) => {
   setSearchAddress(e.target.value);
@@ -31,12 +32,43 @@ const onAddressChange = (e) => {
 }
 
 const handleSearch = () => {
+  Geocode.fromAddress(searchAddress).then(
+    (response) => {
+      const { lat, lng } = response.results[0].geometry.location;
+      searchLocation.lat = lat;
+      searchLocation.lng = lng;
+      if (isModal){
+        openModal(false);
+      }
+      openModal(true);
+      // setLongitude(lng);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+  openModal(true);
 
+  console.log("locationnn:", searchLocation.lat, searchLocation.lng)
 }
   const refreshHomePage = () => {
     refreshProduct();
     navigate("/");
   };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          searchLocation.lat = position.coords.latitude;
+          searchLocation.lng = position.coords.longitude;
+
+            // setCurrentLocation({
+            //     lat: position.coords.latitude,
+            //     lng: position.coords.longitude,
+            // });
+        });
+    }
+}, []);
 
   return (
     <>
@@ -55,7 +87,7 @@ const handleSearch = () => {
               />
             </div>
             <div className="header-search">
-              <FontAwesomeIcon onClick={() => navigate("/searchMap")} icon={faSearch} />
+              <FontAwesomeIcon onClick={handleSearch} icon={faSearch} />
               <input
                 type="text"
                 className="search"

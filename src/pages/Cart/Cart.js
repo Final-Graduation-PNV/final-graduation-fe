@@ -12,6 +12,7 @@ import CartTableRow from "../../components/features/cart/CartTableRow"
 import HeaderTableCart from "../../components/features/cart/HeaderTableCart"
 import RouteCart from "../../components/features/cart/RouteCart"
 import useCarts from "../../hooks/useCarts"
+import Footer from "../../layout/footer/Footer"
 import Header from "../../layout/header/Header"
 import Cart from "../Modals/Cart"
 
@@ -103,6 +104,7 @@ function Cartpayment() {
           </div>
         </div>
       </div>
+      <Footer />
     </div >
 
   )

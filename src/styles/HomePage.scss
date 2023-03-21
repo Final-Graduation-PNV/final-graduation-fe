@@ -5,7 +5,7 @@
   justify-content: space-between;
   margin: 70px auto;
   height: 100%;
-  width: 1200px;
+  width: 1000px;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -16,8 +16,11 @@
   font-weight: 600;
   margin-left: 10px;
 }
+.homepage-navLef {
+  width: 20%;
+}
 .homepage-navRight {
-  width: 70%;
+  width: 80%;
   .navRigth-Top {
     display: flex;
     align-items: center;
@@ -50,10 +53,11 @@
   margin-bottom: 20px;
   flex-wrap: wrap;
   .product {
-    width: 139px;
+    width: 130px;
     padding: 20px 30px;
-    border: 1px black solid;
-    box-shadow: 2px 2px #888888;
+    // border: 1px black solid;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    // box-shadow: 2px 2px #888888;
     border-radius: 10px;
     margin-left: 3px;
     margin-right: 6px;
@@ -111,19 +115,17 @@
   font-size: 13px;
   font-weight: 600;
 }
-.navRigth-Top__search {
+.navRigth-Top__search__home {
   display: flex;
   align-items: center;
-  border: 1px black solid;
+  border: 1px #e5e5e5 solid;
   padding: 5px 10px;
   border-radius: 20px;
-  background-color: #e5e5e5;
   .search {
     border: none;
     outline: none;
     padding: 5px;
     margin-left: 10px;
-    background-color: #e5e5e5;
   }
   .faSearch {
     padding: 5px;
@@ -136,12 +138,15 @@
 }
 .selectToday_name {
   font-size: 13px;
-  padding: 10px 20px;
-  border: 1px black solid;
-  background-color: #cccbcb;
-  border: none;
+  padding: 4px 50px 4px 18px;
+  border: 1px #cccbcb solid;
+  width: 155px;
   border-radius: 20px;
   margin-right: -25px;
+}
+.selet__faChevronDown {
+  margin-right: 30px;
+  font-size: 8px;
 }
 
 .selectToday_name option {
@@ -167,4 +172,34 @@
   font-size: 17px;
   margin: 0px auto;
   height: 500px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .homePage {
+    width: 60%;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  .homepage-navRight {
+    flex-wrap: wrap;
+  }
+  .homepage-navRight {
+    width: 100%;
+  }
+  .homepage-navLef {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .navLeft-logo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .homePage-product {
+    width: 100%;
+
+    justify-content: center;
+  }
 }

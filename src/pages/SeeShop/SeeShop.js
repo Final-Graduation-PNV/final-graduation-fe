@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import product from "../../assets/Image/product.png";
 import product1 from "../../assets/Image/product1.png";
 import shopImage from "../../assets/Image/shopImage.png";
+import Footer from "../../layout/footer/Footer";
 import Header from "../../layout/header/Header";
 
 function SeeShop() {
@@ -108,7 +109,7 @@ function SeeShop() {
           </div>
         </div>
       </div>
-
+      <Footer />
     </div>
   )
 }

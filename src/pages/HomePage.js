@@ -4,7 +4,6 @@ import "../styles/HomePage.scss";
 import { faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import cartProduct from "../../src/assets/Image/cartProduct.png";
 import { addToCart } from "../api/cartAPI";
@@ -28,7 +27,6 @@ function HomePage() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const shopOnwer = localStorage.getItem('shopOnwer');
-  const navigate = useNavigate();
   const { refreshCart, getCart, loadCartToggle } = useCarts()
   const { AlertCartError, AlertCartSuccess } = Cart();
   const { loadProductToggle } = useProducts();
@@ -82,8 +80,8 @@ function HomePage() {
     try {
       const res = await periodShop();
       if (res.data.valid_account[0].message == "Your account has not expired!") {
-        // setPeriod(true);
-        navigate("shopOnnwer")
+        setPeriod(true);
+        // navigate("shopOnnwer")
       } else {
         setPeriod(true);
       }
@@ -119,7 +117,7 @@ function HomePage() {
               <div className="homepage-navRight">
                 <div className="navRigth-Top">
                   <p className="navRigth-Top__des" >Marketplace</p>
-                  <div className="navRigth-Top__search">
+                  <div className="navRigth-Top__search__home">
                     <FontAwesomeIcon className="faSearch" icon={faSearch} onClick={handleSearchProduct} />
                     <input
                       onKeyPress={handleSearchProduct}
@@ -143,7 +141,7 @@ function HomePage() {
                 <div className="homePage-product">
                   {
                     products.length ? (products.map((pro) => <ProductCard key={pro.id} product={pro} onAddProduct={handleAddCart} />)) : (<div className="noProductHomePage">
-                      <img src={cartProduct} alt="image product"/>
+                      <img src={cartProduct} alt="image product" />
                       <p>No products</p>
                     </div>)
                   }

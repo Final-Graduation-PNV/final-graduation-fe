@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { payment } from "../../api/paymentAPI";
 import InforPersonRow from "../../components/features/payment/inforPersonRow";
 import PaymentRow from "../../components/features/payment/paymentRow";
+import Footer from "../../layout/footer/Footer";
 import Header from "../../layout/header/Header";
 import { getChecked_LC } from "../../utils/localStorageUtils";
 import Cart from "../Modals/Cart";
@@ -47,7 +48,7 @@ function Payment() {
   const edithanler = () => {
     setIsShow(true)
   }
- 
+
   return (
     <div className="container-payment">
       {isShow && <ModalPM closeModal={setIsShow} />}
@@ -126,8 +127,11 @@ function Payment() {
             </div>
           </div>
         </div>
+
       </div>
+      <Footer />
     </div>
+
   )
 }
 export default Payment

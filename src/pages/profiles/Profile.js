@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 import account from "../../assets/Image/account.png";
+import Footer from "../../layout/footer/Footer";
 import Header from "../../layout/header/Header";
 
 function Profile() {
@@ -22,7 +23,7 @@ function Profile() {
             <div className="profile-info">
               <div className="profile-account">
                 <div className="profile-info__img">
-                  <img src={account} style={{ width: 100, height: 100, borderRadius: 50 }} alt="Account image"/>
+                  <img src={account} style={{ width: 100, height: 100, borderRadius: 50 }} alt="Account image" />
                 </div>
                 <div className="profile-info-text">
                   <p className="profile-info-text__name">Ngô Thị Tròn</p>
@@ -52,6 +53,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
 
   )

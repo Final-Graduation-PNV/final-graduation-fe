@@ -10,6 +10,7 @@ import RouteDetail from "../../components/features/detail/RouteDetail"
 import Shop from "../../components/features/detail/Shop"
 
 import useCarts from "../../hooks/useCarts"
+import Footer from "../../layout/footer/Footer"
 import Header from "../../layout/header/Header"
 
 
@@ -65,6 +66,7 @@ function Detail() {
               })
             }
           </div>
+          <Footer />
         </div >
       )
       : (

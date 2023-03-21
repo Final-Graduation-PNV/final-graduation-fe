@@ -4,6 +4,7 @@ import "../../styles/Profile/EditProfile.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import account from "../../assets/Image/account.png";
+import Footer from "../../layout/footer/Footer";
 import Header from "../../layout/header/Header";
 
 function EditProfile() {
@@ -56,6 +57,7 @@ function EditProfile() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
 
 

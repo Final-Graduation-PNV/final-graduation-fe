@@ -32,7 +32,7 @@ function Header({
 
   const onAddressChange = (e) => {
     setSearchAddress(e.target.value);
-    console.log("address;", searchAddress);
+    // console.log("address;", searchAddress);
   };
 
   const handleSearch = () => {
@@ -40,11 +40,6 @@ function Header({
       navigator.geolocation.getCurrentPosition((position) => {
         searchLocation.lat = position.coords.latitude;
         searchLocation.lng = position.coords.longitude;
-
-        // setCurrentLocation({
-        //     lat: position.coords.latitude,
-        //     lng: position.coords.longitude,
-        // });
       });
     }
     if(searchAddress != ""){

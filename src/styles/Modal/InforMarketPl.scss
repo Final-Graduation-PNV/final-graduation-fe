@@ -10,7 +10,7 @@
 }
 .inforContainer {
   width: 600px;
-  height: 550px;
+  height: 630px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35);
@@ -20,7 +20,7 @@
   justify-content: space-between;
 }
 .infor-text {
-  height: 550px;
+  height: 630px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -79,6 +79,12 @@
 .infor-name {
   display: flex;
   flex-direction: column;
+}
+.infor-nameshop__input {
+  width: 575px;
+  padding: 10px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
 }
 .infor-name__input,
 .infor-phone__input {

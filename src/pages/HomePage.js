@@ -7,16 +7,17 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import cartProduct from "../../src/assets/Image/cartProduct.png";
+import profile from "../../src/assets/Image/profile.png";
 import { addToCart } from "../api/cartAPI";
 import { getData, searchProduct } from "../api/productsAPI";
 import { periodShop } from "../api/shopOnnwerAPI";
-import account from "../assets/Image/account.png";
 import Categories from "../components/features/home/Categories";
 import ProductCard from "../components/features/home/ProductCard";
 import useCarts from "../hooks/useCarts";
 import useProducts from "../hooks/useProducts";
 import Footer from "../layout/footer/Footer";
 import Header from "../layout/header/Header";
+import { getImageUser } from "../utils/localStorageUtils";
 import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
 import CreatePM from "./Modals/CreateMP";
@@ -67,6 +68,7 @@ function HomePage() {
       if (event.key === 'Enter') {
         const res = await searchProduct(search);
         setProducts(res.data.products)
+
       }
     }
     catch (err) {
@@ -113,7 +115,7 @@ function HomePage() {
             <div className="homePage">
               <div className="homepage-navLef">
                 <div className="navLeft-logo">
-                  <img className="navLeft__logo" src={account} alt="account" style={{ width: 30, height: 30, borderRadius: 40 }} />
+                  <img className="navLeft__logo" src={getImageUser() == null ? profile : getImageUser()} alt="account" style={{ width: 30, height: 30, borderRadius: 40 }} />
                   <p>{localStorage.getItem("user_name")}</p>
                 </div>
                 <div className="navLeft-Market">

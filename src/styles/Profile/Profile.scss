@@ -9,6 +9,15 @@
   align-items: center;
   background-color: #eeee;
 }
+.profile-location__title {
+  font-weight: 600;
+}
+.infor-text-birth__input {
+  width: 760px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #232121;
+}
 .profile__tittle {
   font-size: 30px;
   font-weight: 800;
@@ -22,7 +31,7 @@
   margin-top: 150px;
   .profile {
     width: 800px;
-    height: 370px;
+    height: 552px;
     background-color: $backgroundcolor__profile;
     border-radius: 10px;
     padding: 10px 20px;

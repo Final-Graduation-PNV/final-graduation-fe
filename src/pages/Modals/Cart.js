@@ -56,8 +56,28 @@ const Cart = () => {
       button: "Ok",
     })
   }
+  const AlertProfile = (e) => {
+    Swal.fire({
+      color: "#3c7026",
+      icon: 'success',
+      title: e,
+      button: "Ok",
+    })
+  }
+
+  const AlertForgotPassword = (e) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: e,
+      button: "Ok",
+    })
+  }
   return {
-    AlertCartError, AlertcartPayment, AlertCartSuccess, AlertSendSuccess, AlertPaymentError, AlertPaymentSuccess
+    AlertCartError, AlertcartPayment,
+    AlertCartSuccess, AlertSendSuccess,
+    AlertPaymentError, AlertPaymentSuccess,
+    AlertProfile, AlertForgotPassword
   }
 }
 export default Cart

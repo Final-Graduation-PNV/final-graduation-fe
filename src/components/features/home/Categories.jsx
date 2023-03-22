@@ -13,6 +13,7 @@ const Categories = ({ handleResult }) => {
       try {
         const res = await categories();
         setCategory(res.data.categories);
+        console.log("res categories: ", res);
       } catch (error) {
         console.log("Err categoris: ", error);
       }
@@ -29,7 +30,7 @@ const Categories = ({ handleResult }) => {
   const handleSearch = () => {
     axios
       .get(
-        `http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=`,
+        `https://codenguoi.site/api/user/products/search/city-cate?category=${productName}&city=`,
         {
           headers: {
             "Content-Type": "application/json",

@@ -9,20 +9,29 @@
   align-items: center;
   background-color: #eeee;
 }
+.editprofile-location__title {
+  font-weight: 600;
+}
+.editinfor-text-birth__input {
+  width: 760px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #232121;
+}
 .editProfile__tittle {
   font-size: 30px;
   font-weight: 800;
   display: flex;
 }
-.container-Editprofile {
+.container-editprofile {
   width: 843px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
+  margin-top: 150px;
   .editProfile {
     width: 800px;
-    height: 434px;
+    height: 552px;
     background-color: $backgroundcolor__profile;
     border-radius: 10px;
     padding: 10px 20px;
@@ -40,59 +49,80 @@
     border-radius: 20px;
     color: #3c7026;
   }
-  .editProfile-account {
+  .editprofile-account {
     display: flex;
     flex-direction: row;
+    align-items: center;
     border: black 1px;
-    .editProfile-info-text {
-      .editProfile-info-text__name {
-        margin-right: 50px;
-        font-size: 15px;
-        font-weight: $font-weight__midium;
-        margin-left: 20px;
-      }
-      .faEdit {
-        color: #3c7026;
-        font-weight: 800;
-        margin-right: 10px;
-      }
-      .editProfile-info-text__edit {
-        padding: 5px 10px 6px;
-        margin-left: 20px;
-        background-color: #949895;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-    }
   }
-  .editProfile-location {
+  .editProfile-info-text__name {
+    margin-right: 50px;
+    font-size: 15px;
+    font-weight: $font-weight__midium;
+    margin-left: 20px;
+    border: none;
+    outline: none;
+  }
+  .edit-cityProfile {
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 800px;
+    border: 1px solid #232121;
+  }
+  .faEdit {
+    color: #3c7026;
+    font-weight: 800;
+    margin-right: 10px;
+  }
+  .editProfile-info-text__edit {
+    padding: 5px 10px 6px;
+    margin-left: 20px;
+    background-color: #949895;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .editprofile-location {
     display: flex;
     flex-direction: column;
-    .editProfile-location__title {
+    .editprofile-location__title {
       display: flex;
       font-weight: $font-weight__midium;
     }
-    .editProfile-location__text {
+    .editprofile-location__text {
       padding: 10px 20px;
       border-radius: 10px;
       border: 1px solid #232121;
     }
   }
-  .editProfile-gener {
+  .editprofile-gener {
     display: flex;
     justify-content: space-between;
-    .editProfile-phone__text,
-    .editProfile-gender_name {
+    .editprofile-phone__text,
+    .editprofile-gender_name {
       padding: 10px 20px;
       border-radius: 10px;
       width: 350px;
       border: 1px solid #232121;
     }
   }
-  .editProfile-phone__title,
-  .editProfile-gender__title {
+  .editGenderProfile {
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 350px;
+    border: 1px solid #232121;
+  }
+  .editprofile-phone__title,
+  .editprofile-gender__title {
     display: flex;
     font-weight: $font-weight__midium;
+  }
+  .editProfile-info-text__icon {
+    display: flex;
+    align-items: center;
+  }
+  .edit_Fapen {
+    color: #3c7026;
+    cursor: pointer;
   }
   .btn-edit {
     display: flex;
@@ -101,15 +131,16 @@
     font-size: 15px;
     border-radius: 10px;
     font-weight: 600;
-    cursor: pointer;
     .btn-edit__cancel {
       padding: 8px 40px;
       background-color: #949895;
+      cursor: pointer;
     }
     .btn-edit__save {
       padding: 8px 40px;
       background-color: $button;
       color: $backgroundcolor;
+      cursor: pointer;
     }
   }
 }

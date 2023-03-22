@@ -3,19 +3,19 @@ import "../../styles/Header/header.scss";
 
 import { faCartShopping, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import Geocode from "react-geocode";
-import account from "../../assets/Image/account.png";
 import cartProduct from "../../assets/Image/cartProduct.png";
 import logomain1 from "../../assets/Image/logomain1.png";
+import profile from "../../assets/Image/profile.png";
 import useCarts from "../../hooks/useCarts";
 import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
+import { getImageUser } from "../../utils/localStorageUtils";
 Geocode.setApiKey("AIzaSyAsUqfmF2hquaeaLJi6qk7tP0KsHx7GKV8");
-
 function Header({
   searchAddress,
   isModal,
@@ -92,7 +92,7 @@ function Header({
                 className="search"
                 name="searchAddress"
                 value={searchAddress}
-                placeholder="Search shop address"
+                placeholder="Search for nearby shops"
                 onChange={onAddressChange}
               />
               {/* <FontAwesomeIcon
@@ -158,7 +158,7 @@ function Header({
                 <FontAwesomeIcon className="faBell" icon={faBell} /> */}
                 <img
                   className="acount__"
-                  src={account}
+                  src={getImageUser() == null ? profile : getImageUser()}
                   alt="account"
                   style={{
                     width: 40,
@@ -170,6 +170,7 @@ function Header({
                     setIsLogout(true);
                   }}
                 />
+                {console.log("get image user :", getImageUser())}
               </div>
             </div>
           </div>

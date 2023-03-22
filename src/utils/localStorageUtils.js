@@ -3,6 +3,7 @@ const USERNAME_KEY = 'user_name';
 const SHOPONWER_KEY = 'shopOnwer';
 const USERID_KEY = 'user_id';
 const CHECKED_KEY = 'checked';
+const IMAGE_USER_KEY = 'imgUser';
 
 export const getToken = () => {
   return localStorage.getItem(TOKEN_KEY)
@@ -55,4 +56,12 @@ export const getChecked_LC = () => {
 
 export const setChecked_LC = (value) => {
   localStorage.setItem(CHECKED_KEY, value)
+}
+
+export const setImageUser = (value) => {
+  localStorage.setItem(IMAGE_USER_KEY, value)
+}
+
+export const getImageUser = () => {
+  return localStorage.getItem(IMAGE_USER_KEY)
 }

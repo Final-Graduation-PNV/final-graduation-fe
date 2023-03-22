@@ -13,7 +13,7 @@ Geocode.setApiKey("AIzaSyAsUqfmF2hquaeaLJi6qk7tP0KsHx7GKV8");
 function InforMarketPL({ closeModal }) {
 
   const token = localStorage.getItem("token")
-  const UrlShopOnwer = "http://ec2-54-67-114-9.us-west-1.compute.amazonaws.com/api/user/be-shop";
+  const UrlShopOnwer = "https://codenguoi.site/api/user/be-shop";
   const navigate = useNavigate();
 
   const [name, setName] = useState("")
@@ -123,7 +123,7 @@ function InforMarketPL({ closeModal }) {
             </div>
             <div className="infor-birthDay">
               <p className="intor-text__birth">Date of birth :</p>
-              <input className="infor-text-birth__input" type="date" onChange={(e) => setBirth(e.target.value)} />
+              <input className="inforMK-text-birth__input" type="date" onChange={(e) => setBirth(e.target.value)} />
               {error.birth && <span style={{ color: 'red', fontSize: 12 }}>{error.birth}</span>}
             </div>
             <div className="infor-city">

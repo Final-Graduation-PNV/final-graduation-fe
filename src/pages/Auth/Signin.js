@@ -8,11 +8,14 @@ import { signin } from '../../api/authAPI';
 import logomain1 from "../../assets/Image/logomain1.png";
 import { setLoggedIn } from '../../redux/slices/authSlice';
 import { setShopOnwer, setToken, setUserId, setUserName } from '../../utils/localStorageUtils';
+import ForgotPassword from "../Modals/ForgotPassword";
 
 function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isShow, setIshow] = useState(false);
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -54,6 +57,7 @@ function Signin() {
   return (
     <>
       <div id="container">
+        {isShow && <ForgotPassword closeModal={setIshow} />}
         <div className='container-Signin'>
           <div className="signin">
             <div className="signin__left">
@@ -79,6 +83,7 @@ function Signin() {
                 {errors.error && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.error}</div>}
                 {errors.message && <div style={{ color: "rgb(173, 3, 3)", fontSize: 13 }}>{errors.message}</div>}
                 <input type="submit" className="submit" value="Sign in" onClick={handleSigin} />
+                <p className="forgotpassword" onClick={() => { setIshow(true) }}>Forgot password</p>
               </form>
               <p className='no__account'>Don't you have an? <Link to="/sign-up">Sign up</Link> now</p>
             </div>

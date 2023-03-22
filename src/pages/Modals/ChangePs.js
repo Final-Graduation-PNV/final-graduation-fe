@@ -14,7 +14,7 @@ function ChangePs({ closeModal, handleResult }) {
 
   localStorage.setItem("cityCate", city)
   const handleSearch = () => {
-    axios.get(`http://ec2-54-193-79-196.us-west-1.compute.amazonaws.com/api/user/products/search/city-cate?category=${productName}&city=${city}`, {
+    axios.get(`https://codenguoi.site/api/user/products/search/city-cate?category=${productName}&city=${city}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -47,7 +47,7 @@ function ChangePs({ closeModal, handleResult }) {
             </select>
           </div>
           <div className="changePs__img">
-            <img src={map} alt=""/>
+            <img src={map} alt="" />
           </div>
           <div className="changePs-btn">
             <button className="changePs-btn__search" onClick={handleSearch}>Search</button>

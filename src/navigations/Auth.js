@@ -29,7 +29,7 @@ function Auth() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/seeshop" element={<SeeShop />} />
-              <Route path="/profile" element={<Profile />} />
+              {/* <Route path="/profile" element={<Profile />} /> */}
               <Route path="/EditProfile" element={<EditProfile />} />
               <Route path="/shopOnnwer" element={<Product />} />
               <Route path="/searchMap" element={<ShopMap/>} />

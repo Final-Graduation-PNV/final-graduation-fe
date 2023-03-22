@@ -36,31 +36,6 @@ function Header({
   };
 
   const handleSearch = () => {
-    Geocode.fromAddress(searchAddress).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        searchLocation.lat = lat;
-        searchLocation.lng = lng;
-        if (isModal) {
-          openModal(false);
-        }
-        openModal(true);
-        // setLongitude(lng);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-    openModal(true);
-
-    console.log("locationnn:", searchLocation.lat, searchLocation.lng);
-  };
-  const refreshHomePage = () => {
-    refreshProduct();
-    navigate("/");
-  };
-
-  useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         searchLocation.lat = position.coords.latitude;
@@ -72,7 +47,32 @@ function Header({
         // });
       });
     }
-  }, []);
+    if(searchAddress != ""){
+      Geocode.fromAddress(searchAddress).then(
+        (response) => {
+          const { lat, lng } = response.results[0].geometry.location;
+          searchLocation.lat = lat;
+          searchLocation.lng = lng;
+          if (isModal) {
+            openModal(false);
+          }
+          openModal(true);
+          // setLongitude(lng);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+    
+    openModal(true);
+
+    console.log("locationnn:", searchLocation.lat, searchLocation.lng);
+  };
+  const refreshHomePage = () => {
+    refreshProduct();
+    navigate("/");
+  };
 
   return (
     <>

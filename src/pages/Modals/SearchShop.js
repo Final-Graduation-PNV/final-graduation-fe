@@ -46,6 +46,7 @@ function SearchShop({ closeModal, searchLocation, searchAddress, setSearchAddres
       });
   }, []);
 
+  // const handleClose
   return (
     <div className="shop-map" style={{ height: '100vh', width: '100%' }}>
       <div className="shop-map__modal">

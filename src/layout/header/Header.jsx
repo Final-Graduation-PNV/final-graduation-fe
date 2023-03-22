@@ -32,21 +32,36 @@ const onAddressChange = (e) => {
 }
 
 const handleSearch = () => {
-  Geocode.fromAddress(searchAddress).then(
-    (response) => {
-      const { lat, lng } = response.results[0].geometry.location;
-      searchLocation.lat = lat;
-      searchLocation.lng = lng;
-      if (isModal){
-        openModal(false);
+  if(searchAddress === ""){
+    Geocode.fromAddress(searchAddress).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        searchLocation.lat = lat;
+        searchLocation.lng = lng;
+        // if (isModal){
+        //   openModal(false);
+        // }
+        // openModal(true);
+        // setLongitude(lng);
+      },
+      (error) => {
+        console.error(error);
       }
-      openModal(true);
-      // setLongitude(lng);
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
+    );
+  } else {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        searchLocation.lat = position.coords.latitude;
+        searchLocation.lng = position.coords.longitude;
+
+          // setCurrentLocation({
+          //     lat: position.coords.latitude,
+          //     lng: position.coords.longitude,
+          // });
+      });
+  }
+  }
+
   openModal(true);
 
   console.log("locationnn:", searchLocation.lat, searchLocation.lng)
@@ -55,20 +70,6 @@ const handleSearch = () => {
     refreshProduct();
     navigate("/");
   };
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          searchLocation.lat = position.coords.latitude;
-          searchLocation.lng = position.coords.longitude;
-
-            // setCurrentLocation({
-            //     lat: position.coords.latitude,
-            //     lng: position.coords.longitude,
-            // });
-        });
-    }
-}, []);
 
   return (
     <>

@@ -46,6 +46,10 @@ function SearchShop({ closeModal, searchLocation, searchAddress, setSearchAddres
       });
   }, []);
 
+  const reset = () => {
+    setSearchAddress("")
+    closeModal(false)
+  }
   // const handleClose
   return (
     <div className="shop-map" style={{ height: '100vh', width: '100%' }}>
@@ -56,8 +60,8 @@ function SearchShop({ closeModal, searchLocation, searchAddress, setSearchAddres
                     <input type="text" value={searchValue} onChange={handleSearchChange} />
                     <button type="submit">Search</button>
                 </form>
-            </div> */}  
-        <FontAwesomeIcon onClick={() => closeModal(false)} style={{ fontSize: 25, color: 'blue' }} icon={faClose} />
+            </div> */}
+        <FontAwesomeIcon onClick={() => {reset()}} style={{ fontSize: 25, color: 'blue' }} icon={faClose} />
         <div className="shop-map__modal__google-map" style={{ height: '600px', width: '800px' }}            >
           {currentLocation.lat && currentLocation.lng ? (
             <GoogleMapReact

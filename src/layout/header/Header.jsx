@@ -35,34 +35,34 @@ function Header({
     // console.log("address;", searchAddress);
   };
 
-  const handleSearch = () => {
+  function getCurrentLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(function(position) {
         searchLocation.lat = position.coords.latitude;
         searchLocation.lng = position.coords.longitude;
       });
+    } else {
+      console.log("Trình duyệt của bạn không hỗ trợ định vị GPS.");
     }
-    if(searchAddress != ""){
+  }
+
+  const handleSearch = () => {
+    getCurrentLocation()
+    if(searchAddress !== ""){
       Geocode.fromAddress(searchAddress).then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location;
           searchLocation.lat = lat;
           searchLocation.lng = lng;
-          if (isModal) {
-            openModal(false);
-          }
-          openModal(true);
-          // setLongitude(lng);
         },
         (error) => {
           console.error(error);
         }
       );
     }
-    
+    console.log(" GPS.", searchLocation.lat, searchLocation.lng);
     openModal(true);
-
-    console.log("locationnn:", searchLocation.lat, searchLocation.lng);
+    console.log("d")
   };
   const refreshHomePage = () => {
     refreshProduct();

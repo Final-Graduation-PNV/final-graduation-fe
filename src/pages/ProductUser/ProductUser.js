@@ -2,13 +2,12 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { React, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { getShopProducts, getShopCategories, deleteShopProduct } from '../../api/shopOnnwerAPI';
+import { deleteShopProduct, getShopCategories, getShopProducts, searchShopProduct } from '../../api/shopOnnwerAPI';
 import ButtonSubmit from "../../components/ButtonSubmit";
 import HeaderShopOwner from "../../components/HeaderShopOwner";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import ProductInfo from "./ProductInfo";
-import { searchShopProduct } from '../../api/shopOnnwerAPI';
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -48,13 +47,13 @@ const Product = () => {
             if (event.key === 'Enter') {
                 const res = await searchShopProduct(search);
                 setProducts(res.data.product)
-                console.log("aaa",res.data.product)
+                console.log("aaa", res.data.product)
 
             }
         }
         catch (err) {
             console.log("Err search product", err)
-            
+
         }
 
     }
@@ -92,7 +91,6 @@ const Product = () => {
                     <div className="product-user__body__left-menu">
                         <div className="product-user__body__left-menu__avata">
                             <img className="product-user-img" src="/image/avata.png" alt="" />
-                            <h3>Your market place</h3>
                             <p>{localStorage.getItem("user_name")}</p>
                         </div>
                         <div className="product-user__body__left-menu__menu">
@@ -112,13 +110,13 @@ const Product = () => {
 
                             <div className="product-user__body__right-menu__head">
                                 <div className="product-user__body__right-menu__head__filter">
-                                  {/* <input name="search"
+                                    {/* <input name="search"
                                         placeholder="Search"
                                         onChange={handlerInput}
                                         type="text"
                                         className="product-user__body__right-menu__head__filter-input"
                                     /> */}           <FontAwesomeIcon className="product-user__body__right-menu__head__filter-icon" icon={faFilter} />
-                           
+
                                     <input
                                         className="product-user__body__right-menu__head__filter-input"
                                         onKeyPress={handleSearchProduct}

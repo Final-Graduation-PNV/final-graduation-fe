@@ -41,7 +41,7 @@ function Payment() {
       address !== null && address !== ""
     ) {
       const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
-      await Promise.all([AlertPaymentSuccess(), navigate("/")]);
+      await Promise.all([AlertPaymentSuccess(res.data.message), navigate("/")]);
       console.log("res payment:", res)
     } else {
       setIsShow(true)
@@ -92,7 +92,7 @@ function Payment() {
               )
             }
             <div className="product-note">
-              <p value={notes} onChange={(e) => setNotes(e.target.value)}>Note:</p>
+              <p defaultValue={notes} onChange={(e) => setNotes(e.target.value)}>Note:</p>
               <input type="text" className="note" name="note" placeholder='Note to seller' />
             </div>
             <div className="product-ship">

@@ -9,7 +9,7 @@ import ProductReview from "./ProductReview";
 
 const ProductDetail = ({ product }) => {
   const navigate = useNavigate();
-  const {  refreshCart } = useCarts();
+  const { refreshCart } = useCarts();
   const { AlertCartError, AlertCartSuccess } = Cart();
   const [quantity, setQuantity] = useState(1);
 
@@ -25,11 +25,11 @@ const ProductDetail = ({ product }) => {
 
   const handleAddCart = async () => {
     try {
-      await addToCart(product.id, quantity);
-      AlertCartSuccess();
+      const res = await addToCart(product.id, quantity);
+      AlertCartSuccess(res.data.message);
       refreshCart();
     } catch (e) {
-      AlertCartError();
+      AlertCartError(e.data.message);
       console.log("error cart: ", e);
     }
   };

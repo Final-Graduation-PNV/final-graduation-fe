@@ -9,7 +9,7 @@ export const getCarts = async () => {
 };
 
 export const addToCart = async (id, quantity) => {
-  return await http.post(`${ADDTOCART_API_URL}/${id}/cart`, { quantity });
+  return await http.post(`${ADDTOCART_API_URL}/${id}/carts`, { quantity });
 };
 
 export const deleteCartById = async (id) => {

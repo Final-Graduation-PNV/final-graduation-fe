@@ -5,6 +5,7 @@ import { faLocationDot, faSearch, faShop } from "@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 import cartProduct from "../../src/assets/Image/cartProduct.png";
 import { addToCart } from "../api/cartAPI";
 import { getData, searchProduct } from "../api/productsAPI";
@@ -39,6 +40,7 @@ function HomePage() {
     lat: "",
     lng: ""
   })
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getHomPage = async () => {
@@ -75,12 +77,11 @@ function HomePage() {
   const handleAddCart = async (id) => {
     try {
       const res = await addToCart(id, 1)
-      console.log("res add to cart: ", res)
-      AlertCartSuccess()
+      AlertCartSuccess(res.data.message)
       refreshCart()
     } catch (e) {
-      AlertCartError()
-      console.log("error cart: ", e.data.message);
+      AlertCartError(e.data.message)
+
     }
   }
 
@@ -89,8 +90,8 @@ function HomePage() {
     try {
       const res = await periodShop();
       if (res.data.valid_account[0].message == "Your account has not expired!") {
-        setPeriod(true);
-        // navigate("shopOnnwer")
+        // setPeriod(true);
+        navigate("/shopOnnwer")
       } else {
         setPeriod(true);
       }
@@ -104,11 +105,11 @@ function HomePage() {
       {isPeriod && <PayTwoMonth closeModal={setPeriod} />}
       {isModalOpen && <ChangePs closeModal={setIsModalOpen} handleResult={handleResultSearch} />}
       {isCreateMp && <CreatePM closeModal={setIsCreateMp} />}
-      {modalSearchShop && <SearchShop closeModal={setModalSearchShop} searchLocation={searchLocation} setSearchLocation={setSearchLocation} searchAddress={searchAddress} setSearchAddress={setSearchAddress}/>}
+      {modalSearchShop && <SearchShop closeModal={setModalSearchShop} searchLocation={searchLocation} setSearchLocation={setSearchLocation} searchAddress={searchAddress} setSearchAddress={setSearchAddress} />}
       {
         products ? (
           <div className="container-homepage">
-            <Header openModal={setModalSearchShop} isModal={modalSearchShop}searchAddress={searchAddress} setSearchAddress={setSearchAddress} searchLocation={searchLocation} setSearchLocation={setSearchLocation}/>
+            <Header openModal={setModalSearchShop} isModal={modalSearchShop} searchAddress={searchAddress} setSearchAddress={setSearchAddress} searchLocation={searchLocation} setSearchLocation={setSearchLocation} />
             <div className="homePage">
               <div className="homepage-navLef">
                 <div className="navLeft-logo">

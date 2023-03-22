@@ -19,7 +19,7 @@ function InforMarketPL({ closeModal }) {
   const [name, setName] = useState("")
   const [birth, setBirth] = useState()
   const [phone, setPhone] = useState("")
-  const [gender, setGender] = useState("Male")
+  const [gender, setGender] = useState("Other")
   const [city, setCity] = useState("Hà Nội")
   const [address, setAddress] = useState("")
   const [latitude, setLatitude] = useState(null)
@@ -112,6 +112,7 @@ function InforMarketPL({ closeModal }) {
               <div className="infor-gender">
                 <p className="infor-text__gender" >Gender:</p>
                 <select value={gender} onChange={(e) => { setGender(e.target.value) }}>
+                  <option value="Male">Other</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>

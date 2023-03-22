@@ -38,7 +38,6 @@ function Signin() {
       navigate("/")
     }
     catch (err) {
-      console.log("Err sign in: ", err)
       if (err.status == 422) {
         setErrors(err.data.errors)
       }

@@ -2,22 +2,22 @@ import Swal from 'sweetalert2';
 import "../../styles/Modal/Cart.scss";
 
 const Cart = () => {
-  const AlertCartSuccess = () => {
+  const AlertCartSuccess = (e) => {
     Swal.fire({
       position: 'center',
       fontSize: 18,
       color: "#3c7026",
       icon: 'success',
-      title: 'Item has been added to your shopping cart',
+      title: e,
       showConfirmButton: false,
       timer: 1500
     })
   }
-  const AlertCartError = () => {
+  const AlertCartError = (e) => {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Your cart! The quantity must be less or equal than product quantity!',
+      text: e,
       button: "Ok",
     })
   }

@@ -1,5 +1,13 @@
 {
   "projects": {
     "default": "decoplantsflowers-f381a"
+  },
+  "hosting": {
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }

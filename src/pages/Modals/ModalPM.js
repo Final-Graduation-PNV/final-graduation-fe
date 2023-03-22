@@ -9,7 +9,7 @@ import CityList from "../../components/features/city/CityList";
 
 function ModalPM({ closeModal }) {
   const [phone, setPhone] = useState("")
-  const [city, setCity] = useState("")
+  const [city, setCity] = useState("Hà Nội")
   const [address, setAddress] = useState("")
   const [isValidPhone, setIsValidPhone] = useState(false);
   ls.set("city", city, { encrypt: true })

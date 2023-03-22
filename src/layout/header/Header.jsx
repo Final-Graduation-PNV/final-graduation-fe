@@ -1,56 +1,60 @@
 import "../../pages/Modals/Logout";
 import "../../styles/Header/header.scss";
 
-import { faCartShopping, faSearch, faMap } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import Geocode from "react-geocode";
 import account from "../../assets/Image/account.png";
 import cartProduct from "../../assets/Image/cartProduct.png";
 import logomain1 from "../../assets/Image/logomain1.png";
 import useCarts from "../../hooks/useCarts";
 import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
-import Geocode from "react-geocode";
 Geocode.setApiKey("AIzaSyAsUqfmF2hquaeaLJi6qk7tP0KsHx7GKV8");
 
-
-function Header({searchAddress ,isModal, setSearchAddress, searchLocation, setSearchLocation, openModal}) {
+function Header({
+  searchAddress,
+  isModal,
+  setSearchAddress,
+  searchLocation,
+  setSearchLocation,
+  openModal,
+}) {
   const [isLogout, setIsLogout] = useState(false);
   const navigate = useNavigate();
   const { cart } = useCarts();
   const { refreshProduct } = useProducts();
   // const [searchAddress, setSearchAddress] = useState(searchAddress);
 
+  const onAddressChange = (e) => {
+    setSearchAddress(e.target.value);
+    console.log("address;", searchAddress);
+  };
 
-
-const onAddressChange = (e) => {
-  setSearchAddress(e.target.value);
-  console.log("address;", searchAddress)
-}
-
-const handleSearch = () => {
-  Geocode.fromAddress(searchAddress).then(
-    (response) => {
-      const { lat, lng } = response.results[0].geometry.location;
-      searchLocation.lat = lat;
-      searchLocation.lng = lng;
-      if (isModal){
-        openModal(false);
+  const handleSearch = () => {
+    Geocode.fromAddress(searchAddress).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        searchLocation.lat = lat;
+        searchLocation.lng = lng;
+        if (isModal) {
+          openModal(false);
+        }
+        openModal(true);
+        // setLongitude(lng);
+      },
+      (error) => {
+        console.error(error);
       }
-      openModal(true);
-      // setLongitude(lng);
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
-  openModal(true);
+    );
+    openModal(true);
 
-  console.log("locationnn:", searchLocation.lat, searchLocation.lng)
-}
+    console.log("locationnn:", searchLocation.lat, searchLocation.lng);
+  };
   const refreshHomePage = () => {
     refreshProduct();
     navigate("/");
@@ -58,17 +62,17 @@ const handleSearch = () => {
 
   useEffect(() => {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          searchLocation.lat = position.coords.latitude;
-          searchLocation.lng = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition((position) => {
+        searchLocation.lat = position.coords.latitude;
+        searchLocation.lng = position.coords.longitude;
 
-            // setCurrentLocation({
-            //     lat: position.coords.latitude,
-            //     lng: position.coords.longitude,
-            // });
-        });
+        // setCurrentLocation({
+        //     lat: position.coords.latitude,
+        //     lng: position.coords.longitude,
+        // });
+      });
     }
-}, []);
+  }, []);
 
   return (
     <>
@@ -145,7 +149,7 @@ const handleSearch = () => {
                     </div>
                   ) : (
                     <div className="noCart-product">
-                      <img src={cartProduct} alt=""/>
+                      <img src={cartProduct} alt="" />
                       <p>No Products Yet</p>
                     </div>
                   )}

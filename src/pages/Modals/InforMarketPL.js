@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CityList from "../../components/features/city/CityList";
 import "../../styles/Modal/InforMarketPl.scss";
-Geocode.setApiKey("AIzaSyBnz2gvBIM3N89kMVI4YJT8oOGZT31NACU");
+Geocode.setApiKey("AIzaSyAsUqfmF2hquaeaLJi6qk7tP0KsHx7GKV8");
 
 function InforMarketPL({ closeModal }) {
 
@@ -32,28 +32,30 @@ function InforMarketPL({ closeModal }) {
     gender: "",
     address: "",
     citiesL: "",
+    latitude: "",
+    longitude: "",
   })
 
   console.log("Name: ", name, " phone: ", phone, "birth: ", birth, "gender: ", gender, "Address: ", address, "city: ", city, "longitude: ", longitude, "latitude: ", latitude)
-  // const handleSubmit = (add) => {
-  //   // event.preventDefault();
-  //   Geocode.fromAddress(add).then(
-  //     (response) => {
-  //       const { lat, lng } = response.results[0].geometry.location;
-  //       setLatitude(lat);
-  //       setLongitude(lng);
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // };
+  const handleSubmit = (add) => {
+    // event.preventDefault();
+    Geocode.fromAddress(add).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setLatitude(lat);
+        setLongitude(lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
 
   const [error, setError] = useState(initialError)
 
   const shopOnwerhanler = () => {
     resetErrors()
-    // handleSubmit(address);
+    handleSubmit(address);
     axios.post(UrlShopOnwer,
       {
         name,

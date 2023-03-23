@@ -96,7 +96,7 @@ const Product = () => {
                 <div className="product-user__body">
                     <div className="product-user__body__left-menu">
                         <div className="product-user__body__left-menu__avata">
-                            <img className="product-user-img" src={getImageUser() == null ? "/image/logo.jpg" : getImageUser()} alt="" />
+                            <img className="product-user-img" src={getImageUser() == null ? "/image/avata.png" : getImageUser()} alt="" />
                             <p>{localStorage.getItem("user_name")}</p>
                         </div>
                         <div className="product-user__body__left-menu__menu">

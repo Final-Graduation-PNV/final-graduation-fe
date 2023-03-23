@@ -99,7 +99,7 @@ function Payment() {
               <div className="ship-free">
                 <div className="free-icon">
                   <FontAwesomeIcon className="faTruckFast" icon={faTruckFast} />
-                  <p>Shipping free:</p>
+                  <p>Shipping fee:</p>
                 </div>
                 <p>20,000 vnđ</p>
               </div>
@@ -118,12 +118,12 @@ function Payment() {
                 <p> {new Intl.NumberFormat().format(totalPayment())} vnđ </p>
               </div>
               <div className="ships-free">
-                <p>Total amount of shipping free</p>
+                <p>Total amount of shipping fee</p>
                 <p>20,000 vnđ</p>
               </div>
               <div className="total-payment">
                 <p>Total payment</p>
-                <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnd</p>
+                <p>{new Intl.NumberFormat().format(totalPayment() + 20000)} vnđ</p>
               </div>
               <button className="order_btn" onClick={() => { billhandler() }}>Order</button>
             </div>

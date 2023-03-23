@@ -12,7 +12,7 @@ export default function HeaderShopOwner() {
                 <input type="text" className="header-shopOwner__search__input" placeholder="Search your products"></input>
             </div>
             <div className="header-shopOwner__avata">
-                <img className="header-shopOwner__avata__avata-img" src={getImageUser() == null ? "/image/avata.jpg" : getImageUser()} alt=""/>
+                <img className="header-shopOwner__avata__avata-img" src={getImageUser() == null ? "/image/avata.png" : getImageUser()} alt=""/>
             </div>
         </div>
     );

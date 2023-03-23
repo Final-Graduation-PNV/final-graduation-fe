@@ -4,7 +4,7 @@ import "../../styles/Modal/ModalPM.scss";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CityList from "../../components/features/city/CityList";
 import "../../styles/Modal/InforMarketPl.scss";
@@ -35,6 +35,19 @@ function InforMarketPL({ closeModal }) {
     latitude: "",
     longitude: "",
   })
+  useEffect(() => {
+    const getCurrentLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude)
+        });
+      } else {
+        console.log("Trình duyệt của bạn không hỗ trợ định vị GPS.");
+      }
+    }
+    getCurrentLocation()
+  }, [])
 
   console.log("Name: ", name, " phone: ", phone, "birth: ", birth, "gender: ", gender, "Address: ", address, "city: ", city, "longitude: ", longitude, "latitude: ", latitude)
   const handleSubmit = (add) => {

@@ -41,7 +41,22 @@ function HomePage() {
     lat: "",
     lng: ""
   })
+  // console.log("add", searchLocation)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const getCurrentLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          searchLocation.lat = position.coords.latitude;
+          searchLocation.lng = position.coords.longitude;
+        });
+      } else {
+        console.log("Trình duyệt của bạn không hỗ trợ định vị GPS.");
+      }
+    }
+    getCurrentLocation()
+  }, [])
 
   useEffect(() => {
     const getHomPage = async () => {

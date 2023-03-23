@@ -32,10 +32,9 @@ function Header({
 
   const onAddressChange = (e) => {
     setSearchAddress(e.target.value);
-    // console.log("address;", searchAddress);
   };
 
-  function getCurrentLocation() {
+ function getCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         searchLocation.lat = position.coords.latitude;
@@ -47,9 +46,9 @@ function Header({
   }
 
   const handleSearch = () => {
-    getCurrentLocation();
     if (searchAddress !== "") {
-      Geocode.fromAddress(searchAddress).then(
+      Geocode.fromAddress(searchAddress)
+      .then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location;
           searchLocation.lat = lat;
@@ -58,12 +57,16 @@ function Header({
         (error) => {
           console.error(error);
         }
-      );
+      )
+      .then(
+        openModal(true)
+      )
+    } else{
+      openModal(true)
     }
-    console.log(" GPS.", searchLocation.lat, searchLocation.lng);
-    openModal(true);
-    console.log("d");
   };
+
+
   const refreshHomePage = () => {
     refreshProduct();
     navigate("/");

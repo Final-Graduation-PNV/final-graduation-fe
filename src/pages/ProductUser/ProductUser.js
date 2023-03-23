@@ -96,9 +96,6 @@ const Product = () => {
                         <div className="product-user__body__left-menu__menu">
                             <ul>
                                 <li><a href="#"><img className="product-user-icon" src="/image/Yourpro.png" alt="" />Your product</a></li>
-                                <li><a href="#"><img className="product-user-icon" src="/image/manacus.png" alt="" />Manage customers</a></li>
-                                <li><a href="#"><img className="product-user-icon" src="/image/manare.png" alt="" />Manage revenue</a></li>
-                                <li><a href="#"><img className="product-user-icon" src="/image/manaor.png" alt="" />Manage order</a></li>
                                 <Link to="/home" style={{ textDecoration: "none", color: "black", fontSize: 15, fontWeight: 600 }}><li><img className="product-user-icon" src="/image/home.png" alt="" />Home</li></Link>
                             </ul>
 

@@ -83,7 +83,6 @@ function HomePage() {
       refreshCart()
     } catch (e) {
       AlertCartError(e.data.message)
-
     }
   }
 

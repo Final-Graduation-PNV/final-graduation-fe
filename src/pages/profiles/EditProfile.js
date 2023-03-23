@@ -39,8 +39,6 @@ function EditProfile() {
     const handleSave = async (data) => {
       try {
         const res = await editProfile(data);
-        console.log("edit profile: ", res)
-
         AlertProfile(res.data.message)
       } catch (err) {
         console.log("err edit profile:", err)
@@ -75,8 +73,6 @@ function EditProfile() {
     }
   }
 
-  console.log("infor ", inforProfile)
-  console.log("img file:", imgFile);
   return (
     <>
       <Header />

@@ -73,11 +73,47 @@ const Cart = () => {
       button: "Ok",
     })
   }
+
+  const AlertOPTPassWord = (e) => {
+    Swal.fire({
+      color: "#3c7026",
+      icon: 'success',
+      title: e,
+      button: "Ok",
+    })
+  }
+  const ErrorOTPPassWord = (e) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: e,
+      button: "Ok",
+    })
+  }
+  const AlertChangePassWord = (e) => {
+    Swal.fire({
+      color: "#3c7026",
+      icon: 'success',
+      title: e,
+      button: "Ok",
+    })
+  }
+  const ErrorChangePassWord = (e) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: e,
+      button: "Ok",
+    })
+  }
+
   return {
     AlertCartError, AlertcartPayment,
     AlertCartSuccess, AlertSendSuccess,
     AlertPaymentError, AlertPaymentSuccess,
-    AlertProfile, AlertForgotPassword
+    AlertProfile, AlertForgotPassword,
+    AlertOPTPassWord, ErrorOTPPassWord,
+    AlertChangePassWord, ErrorChangePassWord
   }
 }
 export default Cart

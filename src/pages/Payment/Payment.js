@@ -19,13 +19,14 @@ function Payment() {
   const [isShow, setIsShow] = useState(false);
   const [thanks, setThanks] = useState(false);
   const [notes, setNotes] = useState("");
+
   const navigate = useNavigate();
   const phone = ls.get("phone", { decrypt: true });
   const address = ls.get("address", { decrypt: true });
   const city = ls.get("city", { decrypt: true });
   const note = ls.get("note", { decrypt: true })
   const getDATA = ls.get('data', { decrypt: true });
-  console.log("phone: ", phone, "Address: ", address, "City: ", city, "Note:", note)
+  console.log("phone: ", phone, "Address: ", address, "City: ", city, "Note:", notes)
   const { AlertPaymentSuccess } = Cart();
 
   const totalPayment = () => {
@@ -40,9 +41,8 @@ function Payment() {
       city !== null && city !== "" &&
       address !== null && address !== ""
     ) {
-      const res = await payment(getChecked_LC().split(","), note, localStorage.getItem("user_name"), phone, city, address)
+      const res = await payment(getChecked_LC().split(","), notes, localStorage.getItem("user_name"), phone, city, address)
       await Promise.all([AlertPaymentSuccess(res.data.message), navigate("/")]);
-      console.log("res payment:", res)
     } else {
       setIsShow(true)
     }
@@ -92,8 +92,8 @@ function Payment() {
               )
             }
             <div className="product-note">
-              <p defaultValue={notes} onChange={(e) => setNotes(e.target.value)}>Note:</p>
-              <input type="text" className="note" name="note" placeholder='Note to seller' />
+              <p >Note:</p>
+              <input type="text" className="note" name="note" placeholder='Note to seller' value={notes} onChange={(e) => setNotes(e.target.value)} />
             </div>
             <div className="product-ship">
               <div className="ship-free">

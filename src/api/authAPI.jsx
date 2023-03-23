@@ -36,7 +36,7 @@ export const verifyOTP = async (id, otp) => {
 };
 
 export const logout = async (id) => {
-  return await http.post(`${LOGOUT_OTP_API_URL}/${id}/cancel`);
+  return await http.post(`${LOGOUT_OTP_API_URL}/${id}`);
 };
 
 export const shopBe = async (id) => {
@@ -54,5 +54,10 @@ export const forgotPassword = async (email) => {
 };
 
 export const confirmOTPforgot = async (id, otp) => {
-  return await http.get(`users/${id}/forgot`, { otp });
+  return await http.post(`users/${id}/forgot`, { otp });
+};
+
+export const changePassWord = async (id, password) => {
+  console.log("change password: ", id, password);
+  return await http.post(`users/${id}/password`, { password });
 };

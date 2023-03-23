@@ -5,41 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { confirmOTPforgot } from "../../api/authAPI";
 import "../../styles/Modal/CofirmOTP.scss";
 import Cart from "./Cart";
+import ChangePassWord from "./ChangePassWord";
 
 const ConfirmOTPForgot = ({ closeModal, id }) => {
-  const [seconds, setSeconds] = useState(300);
-  const [isRunning, setIsRunning] = useState(true);
   const [otp, setOtp] = useState("");
-  const { AlertSendSuccess } = Cart()
+  const [isShow, setIsShow] = useState(false)
+  const { AlertOPTPassWord, ErrorOTPPassWord } = Cart()
   const navigate = useNavigate();
 
-  console.log("id", id)
-  useEffect(() => {
-    if (isRunning && seconds > 0) {
-      const interval = setInterval(() => {
-        setSeconds(seconds => seconds - 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    } else if (seconds === 0) {
-      setIsRunning(false);
-    }
-  }, [isRunning, seconds])
-
-  const formatTime = (time) => {
-    const minutes = Math.floor(time / 60)
-    const seconds = time % 60;
-    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  }
-
-
   const comfirmOTPhandler = async () => {
+
     try {
-      await confirmOTPforgot(id, otp)
-      console.log("id:", id, "otp:", otp)
-      navigate("/")
+      const res = await confirmOTPforgot(id, otp)
+      AlertOPTPassWord(res.data.message)
+      // closeModal(false)
+      setIsShow(true)
     } catch (error) {
-      console.log("id:", id, "otp:", otp)
-      console.log("Error confirm otp: ", error)
+      ErrorOTPPassWord(error.data.message)
     }
   }
 
@@ -59,6 +41,7 @@ const ConfirmOTPForgot = ({ closeModal, id }) => {
 
   return (
     <div className="modalBackground-cofirmOTP">
+      {isShow && <ChangePassWord closeModal={setIsShow} id={id} />}
       <div className="modalcontainer-confirmOTP">
         <p className="confirmOTP__title">Confirm OTP</p>
         <div className="content-confirmOTP">
@@ -66,7 +49,6 @@ const ConfirmOTPForgot = ({ closeModal, id }) => {
             <FontAwesomeIcon className="faEnvelopeCircleCheck" icon={faEnvelopeCircleCheck} />
             <p>The OTP verification code has been sent to your Email. Please enter...</p>
           </div>
-          <div className="countSeconds">{formatTime(seconds)}</div>
           <div className="inputConfirm">
             <input placeholder="Enter otp code..." value={otp} onChange={(e) => setOtp(e.target.value)} />
           </div>

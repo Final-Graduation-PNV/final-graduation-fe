@@ -37,7 +37,7 @@ function Header({
 
   function getCurrentLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition(function (position) {
         searchLocation.lat = position.coords.latitude;
         searchLocation.lng = position.coords.longitude;
       });
@@ -47,8 +47,8 @@ function Header({
   }
 
   const handleSearch = () => {
-    getCurrentLocation()
-    if(searchAddress !== ""){
+    getCurrentLocation();
+    if (searchAddress !== "") {
       Geocode.fromAddress(searchAddress).then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location;
@@ -62,7 +62,7 @@ function Header({
     }
     console.log(" GPS.", searchLocation.lat, searchLocation.lng);
     openModal(true);
-    console.log("d")
+    console.log("d");
   };
   const refreshHomePage = () => {
     refreshProduct();
@@ -170,7 +170,6 @@ function Header({
                     setIsLogout(true);
                   }}
                 />
-                {console.log("get image user :", getImageUser())}
               </div>
             </div>
           </div>

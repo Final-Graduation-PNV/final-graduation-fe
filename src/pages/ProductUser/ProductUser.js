@@ -8,6 +8,8 @@ import HeaderShopOwner from "../../components/HeaderShopOwner";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import ProductInfo from "./ProductInfo";
+import Cart from "../Modals/Cart";
+
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -17,6 +19,8 @@ const Product = () => {
     const [modalEditProduct, setModalEditProduct] = useState(false);
     const [editData, setEditData] = useState([]);
     const [search, setSearch] = useState("");
+  const { AlertDleteProduct } = Cart();
+
     useEffect(() => {  //Get categories for shop owners
         const getCategories = async () => {
             try {
@@ -64,6 +68,7 @@ const Product = () => {
         if (isConfirmed) {
             try {
                 const res = await deleteShopProduct(id)
+                AlertDleteProduct()
                 setToggle(!toggle)
             } catch (err) {
                 console.log("Err get shop products: ", err)

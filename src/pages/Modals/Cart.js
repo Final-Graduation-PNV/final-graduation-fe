@@ -33,6 +33,7 @@ const Cart = () => {
       timer: 1500
     })
   }
+  
   const AlertPaymentSuccess = () => {
     Swal.fire({
       color: "#3c7026",
@@ -42,6 +43,7 @@ const Cart = () => {
     })
 
   }
+
   const AlertPaymentError = () => {
     Swal.fire({
       icon: 'error',
@@ -50,12 +52,14 @@ const Cart = () => {
       button: "Ok",
     })
   }
+
   const AlertcartPayment = () => {
     Swal.fire({
       text: 'You have not selected any items for checkout',
       button: "Ok",
     })
   }
+
   const AlertProfile = (e) => {
     Swal.fire({
       color: "#3c7026",
@@ -65,6 +69,33 @@ const Cart = () => {
     })
   }
 
+  const AlertAddProduct = (e) => {
+    Swal.fire({
+      color: "#3c7026",
+      icon: 'success',
+      text: 'Add new product successfully',
+      title: e,
+      button: "Ok",
+    })
+  }
+  const AlertEditProduct = (e) => {
+    Swal.fire({
+      text: 'Edit product successfully',
+      color: "#3c7026",
+      icon: 'success',
+      title: e,
+      button: "Ok",
+    })
+  }
+  const AlertDleteProduct = (e) => {
+    Swal.fire({
+      text: 'Delete product successfully',
+      color: "#3c7026",
+      icon: 'success',
+      title: e,
+      button: "Ok",
+    })
+  }
   const AlertForgotPassword = (e) => {
     Swal.fire({
       icon: 'error',
@@ -113,7 +144,8 @@ const Cart = () => {
     AlertPaymentError, AlertPaymentSuccess,
     AlertProfile, AlertForgotPassword,
     AlertOPTPassWord, ErrorOTPPassWord,
-    AlertChangePassWord, ErrorChangePassWord
+    AlertChangePassWord, ErrorChangePassWord,
+    AlertAddProduct, AlertEditProduct,AlertDleteProduct
   }
 }
 export default Cart

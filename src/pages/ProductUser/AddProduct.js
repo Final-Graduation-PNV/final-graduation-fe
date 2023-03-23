@@ -3,11 +3,13 @@ import { useState } from "react";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import { addNewProduct } from "../../api/shopOnnwerAPI";
 import InputField from "../../components/InputField";
+import Cart from "../Modals/Cart";
 
 function AddProduct({ toggle, setToggle, closeModal, categories }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
   const [imgFile, setImgFile] = useState("");
+  const { AlertAddProduct } = Cart();
 
   const [product, setProduct] = useState({
     name: "",
@@ -54,10 +56,12 @@ function AddProduct({ toggle, setToggle, closeModal, categories }) {
     const addPro = async () => {
       try {
         const res = await addNewProduct(product);
+        AlertAddProduct();
         setToggle(!toggle);
         closeModal(false);
         onRedirect();
         console.log("chayj")
+
       } 
       catch (err) {
         setErrors(err.data.errors)

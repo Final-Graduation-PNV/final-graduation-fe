@@ -3,6 +3,7 @@ import axios from "axios";
 import ButtonSubmit from "../../components/ButtonSubmit";
 import { updateShopProduct } from "../../api/shopOnnwerAPI";
 import InputField from "../../components/InputField";
+import Cart from "../Modals/Cart";
 
 
 
@@ -10,6 +11,8 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
   const [modal, setModal] = useState(false);
   const [img, setImg] = useState("");
   const [imgFile, setImgFile] = useState("");
+  const { AlertEditProduct } = Cart();
+
 
   const [product, setProduct] = useState({
     id: data.id,
@@ -65,9 +68,11 @@ function EditProduct({ toggle, setToggle, data, closeModal, categories }) {
     const updatePoduct = async () => {
       try {
         const res = await updateShopProduct( product);
+        AlertEditProduct();
         setToggle(!toggle);
         closeModal(false);
         onRedirect();
+
       } catch (err) {
         setErrors(err.data.errors)
         console.log("Err update shop product: ", err.data.errors)

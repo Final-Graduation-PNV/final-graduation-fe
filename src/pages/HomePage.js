@@ -105,7 +105,6 @@ function HomePage() {
 
     try {
       const res = await periodShop();
-
       console.log("res:", res)
       if (res.data.valid_account[0].message == "Your account has not expired!") {
         // setPeriod(true);

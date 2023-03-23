@@ -1,4 +1,6 @@
 .shop-map{
+  margin-top: -11px;
+
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -6,9 +8,12 @@
   display: flex;
   // justify-content: center;
   align-items: center;
+  &__close{
+    margin-left: 770px;
+  }
   &__modal{
     width: 800px;
-    height: 685px;
+    height: 645px;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35);

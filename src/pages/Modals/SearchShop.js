@@ -75,7 +75,7 @@ function SearchShop({ closeModal, searchLocation, searchAddress, setSearchAddres
                     <button type="submit">Search</button>
                 </form>
             </div> */}
-        <FontAwesomeIcon onClick={() => {reset()}} style={{ fontSize: 25, color: 'blue' }} icon={faClose} />
+        <FontAwesomeIcon className="shop-map__close" onClick={() => {reset()}} style={{ fontSize: 25, color: 'blue' }} icon={faClose} />
         <div className="shop-map__modal__google-map" style={{ height: '600px', width: '800px' }}            >
           {currentLocation.lat && currentLocation.lng ? (
             <GoogleMapReact
@@ -89,10 +89,10 @@ function SearchShop({ closeModal, searchLocation, searchAddress, setSearchAddres
                 lng={currentLocation.lng}
               />
               {locations ?
-                locations.map((location) => (
+                locations.filter(location => location.latitude !== null).map((location) => (
                   <Marker key={location.id}
-                    lat={location.lat}
-                    lng={location.lng}
+                    lat={location.latitude}
+                    lng={location.longitude}
                     name={location.name}
                   />
                 )) : (<div></div>)}

@@ -17,7 +17,7 @@ import useCarts from "../hooks/useCarts";
 import useProducts from "../hooks/useProducts";
 import Footer from "../layout/footer/Footer";
 import Header from "../layout/header/Header";
-import { getImageUser } from "../utils/localStorageUtils";
+import { getImageUser, removeShopOnwer, removeToken, removeUserId, removeUserName } from "../utils/localStorageUtils";
 import { default as Cart } from "./Modals/Cart";
 import ChangePs from "./Modals/ChangePs";
 import CreatePM from "./Modals/CreateMP";
@@ -108,10 +108,11 @@ function HomePage() {
       if (res.data.valid_account[0].message == "Your account has not expired!") {
         // setPeriod(true);
         navigate("/shopOnnwer")
-      } else {
-        setPeriod(true);
       }
     } catch (error) {
+      if (error.status == 402) {
+        setPeriod(true);
+      }
       console.log("Error shop onwer: ", error)
     }
   }

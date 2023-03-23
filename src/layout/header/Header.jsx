@@ -15,6 +15,7 @@ import useCarts from "../../hooks/useCarts";
 import useProducts from "../../hooks/useProducts";
 import Logout from "../../pages/Modals/Logout";
 import { getImageUser } from "../../utils/localStorageUtils";
+
 Geocode.setApiKey("AIzaSyAsUqfmF2hquaeaLJi6qk7tP0KsHx7GKV8");
 function Header({
   searchAddress,

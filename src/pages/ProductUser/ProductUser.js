@@ -9,6 +9,7 @@ import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import ProductInfo from "./ProductInfo";
 import Cart from "../Modals/Cart";
+import { getImageUser } from '../../utils/localStorageUtils';
 
 
 const Product = () => {
@@ -95,7 +96,7 @@ const Product = () => {
                 <div className="product-user__body">
                     <div className="product-user__body__left-menu">
                         <div className="product-user__body__left-menu__avata">
-                            <img className="product-user-img" src="/image/avata.png" alt="" />
+                            <img className="product-user-img" src={getImageUser() == null ? "/image/logo.jpg" : getImageUser()} alt="" />
                             <p>{localStorage.getItem("user_name")}</p>
                         </div>
                         <div className="product-user__body__left-menu__menu">

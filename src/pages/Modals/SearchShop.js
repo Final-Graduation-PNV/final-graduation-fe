@@ -4,6 +4,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping, faLocation, faClose } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/Modal/SearchShop.scss"
+import { getLocation } from "../../api/shopOnnwerAPI";
 
 const AnyReactComponent = () => <div><FontAwesomeIcon style={{ fontSize: 25, color: 'blue' }} icon={faLocation} /></div>;
 function Marker({ name }) {
@@ -38,18 +39,31 @@ function SearchShop({ closeModal, searchLocation, searchAddress, setSearchAddres
   // },[]);
   // console.log("locurrenn na:", currentLocation.lat, currentLocation.lng)
 
-  useEffect(() => {
-    axios
-      .get("https://61ce733e7067f600179c5ea7.mockapi.io/mn/shops")
-      .then((res) => {
-        setLocations(res.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://61ce733e7067f600179c5ea7.mockapi.io/mn/shops")
+  //     .then((res) => {
+  //       setLocations(res.data);
+  //     });
+  // }, []);
+
+  useEffect(() => {  //Get categories for shop owners
+    const getLoca = async () => {
+        try {
+            const res = await getLocation()
+            setLocations(res.data.shop_owners)
+        } catch (err) {
+            console.log("Err get shop categories: ", err)
+        }
+    }
+    getLoca()
+}, [])
 
   const reset = () => {
     setSearchAddress("")
     closeModal(false)
   }
+  console.log("add", locations)
   // const handleClose
   return (
     <div className="shop-map" style={{ height: '100vh', width: '100%' }}>

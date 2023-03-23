@@ -6,7 +6,7 @@ const SHOP_PRODUCTS = "shop/products";
 const SHOP_CATEGORIES = "categories";
 const SHOP_PERIOD_API_URL = "shop/check";
 const SHOP_VNPAY_CREATE_API_URL = "shop/vnpay/create";
-
+const GET_LOCATION = "get-shop"
 export const searchShopProduct = async (search) => {
   return await http.get(`${SEARCH_API_URL}?name=${search}`);
 };
@@ -14,6 +14,10 @@ export const searchShopProduct = async (search) => {
 export const getShopProducts = async () => {
   return await http.get(SHOP_PRODUCTS);
 };
+
+export const getLocation = async () => {
+  return await http.get(GET_LOCATION);
+}
 
 export const addNewProduct = async (product) => {
   return await http.post(`${SHOP_PRODUCTS}`, {
